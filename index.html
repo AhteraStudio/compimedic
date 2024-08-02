@@ -426,7 +426,6 @@
 <!-- end footer -->
 
 <!-- dark mode -->
-<script>
 function applyDarkMode() {
     const elements = document.querySelectorAll('*');
     elements.forEach(element => {
@@ -434,8 +433,8 @@ function applyDarkMode() {
         const bgColor = style.backgroundColor;
         const color = style.color;
 
-        // Ubah background putih jadi hitam
-        if (bgColor === 'rgb(255, 255, 255)') {
+        // Ubah background putih dan semi-transparan putih jadi hitam
+        if (bgColor === 'rgb(255, 255, 255)' || bgColor === 'rgba(255, 255, 255, 0.5)') {
             element.style.backgroundColor = '#000000';
         }
 

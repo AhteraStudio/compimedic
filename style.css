@@ -5,8 +5,15 @@ body {
             text-decoration: none;
             padding-top: 5rem;
             padding-bottom: 0px;
+            user-select: none;
         }
 
+img {
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
     .gallery {
       padding: 1rem;
       display: grid;
@@ -64,12 +71,16 @@ body {
             opacity: 0;
             animation: slideInFromRight 0.5s forwards; /* Apply animation */
         }
-    </style>
- <script>
-        // JavaScript buat set favicon
-        (function() {
-            var link = document.createElement('link');
-            link.rel = 'icon';
-            link.href = 'images/compimedic new logo only.png'; // Ganti URL ini ke favicon lo
-            document.head.appendChild(link);
-        })();
+    
+
+<script>
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+  document.addEventListener('keydown', function(e) {
+    // Mencegah penggunaan shortcut seperti Ctrl+C
+    if (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 'x')) {
+      e.preventDefault();
+    }
+  });
+</script>

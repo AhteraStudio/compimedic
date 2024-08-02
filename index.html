@@ -121,23 +121,7 @@
         </div>
     </div>
 </footer>
-<script>
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.carousel-item');
-    showSlides(slideIndex);
 
-    function moveSlide(n) {
-        showSlides(slideIndex += n);
-    }
-
-    function showSlides(n) {
-        if (n >= slides.length) { slideIndex = 0 }
-        if (n < 0) { slideIndex = slides.length - 1 }
-        slides.forEach((slide, index) => {
-            slide.style.display = index === slideIndex ? 'block' : 'none';
-        });
-    }
-</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
     const tham = document.querySelector(".tham");

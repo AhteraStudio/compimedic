@@ -434,9 +434,9 @@ function applyDarkMode() {
         const bgColor = style.backgroundColor;
         const color = style.color;
 
-        // Ubah background putih dan semi-transparan putih jadi hitam
+        // Ubah background putih dan semi-transparan putih jadi hitam dan hitam transparan
         if (bgColor === 'rgb(255, 255, 255)' || bgColor === 'rgba(255, 255, 255, 0.5)') {
-            element.style.backgroundColor = '#000000';
+            element.style.backgroundColor = bgColor === 'rgb(255, 255, 255)' ? '#000000' : 'rgba(0, 0, 0, 0.5)';
         }
 
         // Pastikan teks putih tetap putih

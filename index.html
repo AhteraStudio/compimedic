@@ -425,5 +425,41 @@
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 <!-- end footer -->
 
+<!-- dark mode -->
+<script>
+function applyDarkMode() {
+    const elements = document.querySelectorAll('*');
+    elements.forEach(element => {
+        const style = window.getComputedStyle(element);
+        const bgColor = style.backgroundColor;
+        const color = style.color;
+
+        // Ubah background putih jadi hitam
+        if (bgColor === 'rgb(255, 255, 255)') {
+            element.style.backgroundColor = '#000000';
+        }
+
+        // Pastikan teks putih tetap putih
+        if (color === 'rgb(255, 255, 255)') {
+            element.style.color = '#ffffff';
+        }
+    });
+}
+
+// Cek preferensi mode gelap pengguna
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    applyDarkMode();
+}
+
+// Pantau perubahan preferensi color scheme
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+    if (event.matches) {
+        applyDarkMode();
+    } else {
+        location.reload(); // Reload halaman untuk kembali ke mode terang
+    }
+});
+</script>
+<!-- end dark mdoe -->
 </body>
 </html>

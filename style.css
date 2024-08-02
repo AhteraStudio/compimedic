@@ -1,0 +1,75 @@
+body {
+             font-family: "Didact Gothic", sans-serif;
+            background-color: white;
+            color: #051C2C;
+            text-decoration: none;
+            padding-top: 5rem;
+            padding-bottom: 0px;
+        }
+
+    .gallery {
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: repeat(10, 80vw);
+      grid-template-rows: 1fr;
+      grid-column-gap: 1rem;
+      grid-row-gap: 1rem;
+      overflow: scroll;
+      height: 90vh;
+      scroll-snap-type: both mandatory;
+      scroll-padding: 1rem;
+    }
+
+    .gallery li {
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      height: 300px; /* Bisa lu adjust sesuai kebutuhan */
+      scroll-snap-align: center;
+      display: inline-block;
+      border-radius: 3px;
+      font-size: 0;
+    }
+
+    .active {
+      scroll-snap-type: unset;
+    }
+
+    @media (min-width: 768px) {
+      .gallery li {
+        height: 100vh;
+      }
+    }
+@keyframes slideInFromRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        #toast-interactive {
+            display: none; /* Sembunyikan secara default */
+            position: fixed;
+            bottom: 1rem; /* Jarak dari bawah */
+            right: 1rem;  /* Jarak dari kanan */
+            z-index: 9999; /* Pastikan toast berada di atas elemen lain */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+            max-width: 300px; /* Pendekkan toast */
+            backdrop-filter: blur(10px) saturate(180%);
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            animation: slideInFromRight 0.5s forwards; /* Apply animation */
+        }
+    </style>
+ <script>
+        // JavaScript buat set favicon
+        (function() {
+            var link = document.createElement('link');
+            link.rel = 'icon';
+            link.href = 'images/compimedic new logo only.png'; // Ganti URL ini ke favicon lo
+            document.head.appendChild(link);
+        })();

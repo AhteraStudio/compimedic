@@ -19,6 +19,22 @@
 <meta name="theme-color" content="#000000">
 <script src="/service-worker.js" defer></script>
 <link rel="stylesheet" href="style.css">
+<!-- favicon Js -->
+    <script>
+        function setFavicon(url) {
+            let link = document.createElement('link');
+            let oldLink = document.getElementById('favicon');
+            link.id = 'favicon';
+            link.rel = 'icon';
+            link.href = url;
+            if (oldLink) {
+                document.head.removeChild(oldLink);
+            }
+            document.head.appendChild(link);
+        }
+        setFavicon('/logo-compimedic.png');
+    </script>
+<!-- end favicon Js -->
 </head>
 <body>
 <!-- header -->

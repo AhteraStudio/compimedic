@@ -439,6 +439,10 @@ function applyDarkMode() {
             element.style.backgroundColor = bgColor === 'rgb(255, 255, 255)' ? '#000000' : 'rgba(0, 0, 0, 0.5)';
         }
 
+        // Ubah teks gray-600 menjadi putih
+        if (color === 'rgb(74, 74, 74)') {
+            element.style.color = '#ffffff';
+        }
         // Pastikan teks putih tetap putih
         if (color === 'rgb(255, 255, 255)') {
             element.style.color = '#ffffff';

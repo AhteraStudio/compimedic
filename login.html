@@ -16,14 +16,22 @@
     <script>
         function submitLogin() {
             var formData = new FormData(document.getElementById('loginForm'));
+            var username = formData.get('username');
             var password = formData.get('password');
             var hashedPassword = CryptoJS.SHA256(password).toString();
 
-            formData.set('password', hashedPassword);
+            var data = {
+                username: username,
+                password: hashedPassword
+            };
 
-            fetch('https://script.google.com/macros/s/AKfycby0aYIrWWyNBcrWnuIjHMZeA9vVXILK0GJvltm-2ts6TMZrPI4AavvHDRs83oh_NlmL/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbya0NMBlHv7hJQtpfTDfX7VqEjUczuyxlJyd8PcuCqj1E7dI4iFJjF8Xr1UOCThbP6H/exec', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+                mode: 'cors'
             })
             .then(response => response.json())
             .then(data => {

@@ -120,7 +120,7 @@
             const data = await response.json();
             renderTable(data);
             
-            const searchInput = document.getElementById('table-search');
+       const searchInput = document.getElementById('table-search');
             searchInput.addEventListener('input', (e) => {
                 const searchTerm = e.target.value.toLowerCase();
                 const filteredData = data.filter(item => {
@@ -150,7 +150,8 @@
                 nameOfProduct.className = 'px-6 py-4';
                 
                 const productLink = document.createElement('a');
-                productLink.href = `https://api.whatsapp.com/send?phone=6285186655283&text=Halo%2C%20saya%20ingin%20memesan%20produk%20ini%20(${encodeURIComponent(item['Name of Product'])})%2C%20apakah%20tersedia%3F`;
+                const productMessage = encodeURIComponent(`Halo, saya ingin memesan produk ini (${item['Name of Product']}), dari brand (${item['Brand']}). Apakah tersedia?`);
+                productLink.href = `https://api.whatsapp.com/send?phone=YOUR_PHONE_NUMBER&text=${productMessage}`;
                 productLink.textContent = item['Name of Product'];
                 productLink.className = 'text-blue-600 dark:text-blue-500 hover:underline';
                 productLink.target = '_blank'; // Open in new tab

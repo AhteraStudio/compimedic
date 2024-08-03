@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+</head>
+<body>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <button type="button" onclick="submitLogin()">Login</button>
+    </form>
+
+    <script>
+        function submitLogin() {
+            var formData = new FormData(document.getElementById('loginForm'));
+            var password = formData.get('password');
+            var hashedPassword = CryptoJS.SHA256(password).toString();
+
+            formData.set('password', hashedPassword);
+
+            fetch('YOUR_LOGIN_SCRIPT_URL', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    localStorage.setItem('userToken', data.token);
+                    window.location.href = 'dashboard.html';
+                } else {
+                    alert('Login failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

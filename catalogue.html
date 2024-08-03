@@ -150,7 +150,7 @@
                 nameOfProduct.className = 'px-6 py-4';
                 
                 const productLink = document.createElement('a');
-                const productMessage = encodeURIComponent(`Halo, saya ingin memesan produk ini (${item['Name of Product']}), dari brand (${item['Brand']}). Apakah tersedia?`);
+                const productMessage = encodeURIComponent(`Halo, saya mau pesan ${item['Name of Product']}, dari brand ${item['Brand']}. Bisa bantu saya untuk memproses pesanan ini? Terimakasih..`);
                 productLink.href = `https://api.whatsapp.com/send?phone=6285186655283&text=${productMessage}`;
                 productLink.textContent = item['Name of Product'];
                 productLink.className = 'text-blue-600 dark:text-blue-500 hover:underline';

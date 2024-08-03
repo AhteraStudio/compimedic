@@ -8,7 +8,7 @@
             if (!token) {
                 window.location.href = 'login.html';
             } else {
-                fetch('YOUR_LOGIN_SCRIPT_URL?token=' + token)
+                fetch('https://script.google.com/macros/s/AKfycby0aYIrWWyNBcrWnuIjHMZeA9vVXILK0GJvltm-2ts6TMZrPI4AavvHDRs83oh_NlmL/exec?token=' + token)
                 .then(response => response.json())
                 .then(data => {
                     if (data.status !== 'success') {

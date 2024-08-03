@@ -25,19 +25,19 @@
                 password: hashedPassword
             };
 
-            fetch('https://script.google.com/macros/s/AKfycbwaY9kZZK42lvXH2OsoxoDEwPWwf9V8UptArIlHBa1jriNcWkk1Ro0yqvm8qaGVQcUM/exec', {
+            fetch('https://script.google.com/macros/s/AKfycbwGveor3xXMYhJK3ee6FbgSTOW15IxvwpNSK_zD2Qv7j_at8dWapC-FVndeDBMk_92m/exec', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data),
-                mode: 'cors' // Pastikan mode diatur ke 'cors'
+                mode: 'cors'
             })
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
                     localStorage.setItem('userToken', data.token);
-                    window.location.href = 'dashboard.html';
+                    window.location.href = 'dashboard.html'; // Redirect ke halaman dashboard
                 } else {
                     alert('Login failed');
                 }

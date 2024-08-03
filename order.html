@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Check Your Order Status</h1>
+        <input type="text" id="order-code" placeholder="Enter your order code">
+        <button onclick="checkOrder()">Check Status</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        async function checkOrder() {
+            const orderCode = document.getElementById('order-code').value;
+            if (!orderCode) {
+                document.getElementById('result').innerText = 'Please enter an order code.';
+                return;
+            }
+
+            const response = await fetch(`https://script.google.com/macros/s/AKfycbyZURs4YEjo_3XEg9zdPgxh1133IgfBEGZmOfusuvwwIHb54W_YRI6mOvg_FY176Vfs/exec?orderCode=${orderCode}`);
+            const data = await response.json();
+
+            if (data.name === 'Not found') {
+                document.getElementById('result').innerText = 'Order not found.';
+            } else {
+                document.getElementById('result').innerHTML = `
+                    <strong>Customer Name:</strong> ${data.name}<br>
+                    <strong>Payment Status:</strong> ${data.status}
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

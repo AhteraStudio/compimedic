@@ -35,6 +35,40 @@
         setFavicon('/logo-compimedic.png');
     </script>
 <!-- end favicon Js -->
+
+    <style>
+        /* end loading */
+        /* Style untuk overlay loading */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Style untuk spinner loading */
+.loading-spinner {
+  border: 16px solid #f3f3f3; /* Warna background spinner */
+  border-top: 16px solid #3498db; /* Warna spinner itu sendiri */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+/* Animasi spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* end loading */
+    </style>
 </head>
 <body>
 <!-- header -->
@@ -85,7 +119,7 @@
 
 
 
-
+<!--teks atas-->
   <div class="p-4">
 <h2 class="text-2xl font-semibold text-[#3396BB] mb-4">Catalogue of Products</h2>
         <label for="table-search" class="sr-only">Search</label>
@@ -98,13 +132,17 @@
             <input type="text" id="table-search" class="block p-2 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-[#3396BB] focus:border-[#3396BB] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#3396BB] dark:focus:border-[#3396BB]" placeholder="Search for items">
         </div>
     </div>
-
+<!-- end teks-->
 
     <!--tabel-->
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-  
 
 
+<!--loading 1-->
+          <div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+</div>
+          <!--end loading 1-->
     <table class="w-full min-w-[600px] text-sm text-left rtl:text-right text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
@@ -120,8 +158,12 @@
         </tbody>
     </table>
 </div>
+    <!--end tabel-->
+<!-- loading 2 -->
+<div id="dataContainer"></div>
+<!-- end loading 2 -->
 
-
+    <!-- js data -->
     <script>
              async function fetchCatalogData() {
             const response = await fetch('https://script.google.com/macros/s/AKfycbznbNg7reZXkHmlZ49n8avSytHswGi0cqAhXjhQDHJhFUwZq-qmAP6FVWPLGd3CFRhl/exec');
@@ -189,9 +231,44 @@
         fetchCatalogData();
     </script>
 <!--end tabel-->
+    <!-- js data -->
 
 
+    <!--loading check-->
+    <script>
+    // Nunjukin loading spinner
+function showLoading() {
+  document.getElementById('loadingOverlay').style.display = 'flex';
+}
 
+// Nyembunyiin loading spinner
+function hideLoading() {
+  document.getElementById('loadingOverlay').style.display = 'none';
+}
+
+// Contoh fungsi buat ngambil data dari Apps Script
+function fetchData() {
+  showLoading(); // Nunjukin loading spinner
+
+  // Contoh fetch request ke Apps Script
+  fetch('https://script.google.com/macros/s/AKfycbznbNg7reZXkHmlZ49n8avSytHswGi0cqAhXjhQDHJhFUwZq-qmAP6FVWPLGd3CFRhl/exec')
+    .then(response => response.json())
+    .then(data => {
+      // Proses data yang diterima
+      document.getElementById('dataContainer').innerText = JSON.stringify(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    })
+    .finally(() => {
+      hideLoading(); // Nyembunyiin loading spinner
+    });
+}
+
+// Panggil fetchData() sesuai kebutuhan, misalnya pas halaman load
+window.onload = fetchData;
+    </script>
+        <!--end loading check-->
 
 <!-- footer -->
 <footer id="footer" class="bg-[#3396BB]">

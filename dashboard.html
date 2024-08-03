@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            var token = localStorage.getItem('userToken');
+            if (!token) {
+                window.location.href = 'login.html';
+            } else {
+                fetch('YOUR_LOGIN_SCRIPT_URL?token=' + token)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status !== 'success') {
+                        window.location.href = 'login.html';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Welcome to Dashboard</h1>
+</body>
+</html>

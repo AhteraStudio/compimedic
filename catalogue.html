@@ -159,9 +159,7 @@
     </table>
 </div>
     <!--end tabel-->
-<!-- loading 2 -->
-<div id="dataContainer"></div>
-<!-- end loading 2 -->
+
 
     <!-- js data -->
     <script>
@@ -250,7 +248,13 @@ function hideLoading() {
 function fetchData() {
   showLoading(); // Nunjukin loading spinner
 
-
+  // Contoh fetch request ke Apps Script
+  fetch('https://script.google.com/macros/s/AKfycbznbNg7reZXkHmlZ49n8avSytHswGi0cqAhXjhQDHJhFUwZq-qmAP6FVWPLGd3CFRhl/exec')
+    .then(response => response.json())
+    .then(data => {
+      // Proses data yang diterima
+      document.getElementById('dataContainer').innerText = JSON.stringify(data);
+    })
     .catch(error => {
       console.error('Error:', error);
     })

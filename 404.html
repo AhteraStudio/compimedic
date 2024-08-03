@@ -34,51 +34,7 @@
         setFavicon('/logo-compimedic.png');
     </script>
 <!-- end favicon Js -->
-<style>
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f5f5f5;
-    font-family: "Poppins", sans-serif;
-}
 
-.error-container {
-    text-align: center;
-    color: #000;
-    max-width:90%;
-}
-
-.error-image {
-    max-width: 50%;
-    height: auto;
-    margin-bottom: 20px;
-}
-
-.error-title {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.error-description {
-    font-size: 18px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: gray;
-}
-
-.back-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #000;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 30px;
-}
-</style>
 </head>
 <body>
 <!-- header -->
@@ -129,13 +85,37 @@ body {
 
 
 <!-- error -->
-  <div class="error-container">
-        <img src="https://raw.githubusercontent.com/EdilAhtera/ahtera/64c91c37f9c61a5c24a99718c14e7adc97905b16/images/1722083827407.png" alt="404 Image" class="error-image">
-        <h1 class="error-title">404 ERROR</h1>
-          <p class="error-description">Waduh, bro! Udah capek-capek nyari, tapi nggak ketemu juga nih. Halaman yang lo tuju mungkin udah kabur atau emang nggak pernah ada.</p>
-        <p class="error-description">Tenang aja, jangan baper. Balik aja ke halaman utama dan coba cari yang lain. Siapa tahu ketemunya justru di sana.</p>
-        <a href="index.html" class="back-button">Go Back</a>
-    </div>
+ <section class="flex items-center h-full p-16 dark:bg-gray-50 dark:text-gray-800">
+	<div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
+		<div class="max-w-md text-center">
+			<h2 class="mb-8 font-extrabold text-9xl dark:text-gray-400">
+				<span class="sr-only">
+					<font style="vertical-align: inherit;">
+						<font style="vertical-align: inherit;">Kesalahan</font>
+					</font>
+				</span>
+				<font style="vertical-align: inherit;">
+					<font style="vertical-align: inherit;">404</font>
+				</font>
+			</h2>
+			<p class="text-2xl font-semibold md:text-3xl">
+				<font style="vertical-align: inherit;">
+					<font style="vertical-align: inherit;">Maaf, kami tidak dapat menemukan halaman ini.</font>
+				</font>
+			</p>
+			<p class="mt-4 mb-8 dark:text-gray-600">
+				<font style="vertical-align: inherit;">
+					<font style="vertical-align: inherit;">Namun jangan khawatir, Anda dapat menemukan banyak hal lainnya di beranda kami.</font>
+				</font>
+			</p>
+			<a rel="noopener noreferrer" href="#" class="px-8 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50">
+				<font style="vertical-align: inherit;">
+					<font style="vertical-align: inherit;">Kembali ke beranda</font>
+				</font>
+			</a>
+		</div>
+	</div>
+</section>
 <!-- error -->
 
 

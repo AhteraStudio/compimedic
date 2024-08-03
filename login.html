@@ -31,7 +31,7 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data),
-                mode: 'cors'
+                mode: 'cors' // Pastikan mode diatur ke 'cors'
             })
             .then(response => response.json())
             .then(data => {

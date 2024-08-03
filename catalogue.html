@@ -26,9 +26,17 @@
   </div>
   <script>
     async function fetchData() {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzcBWv1nggGlq63JrorygHvJFVI_qCHIj0dU4uwjfE/dev');
-      const data = await response.json();
-      return data;
+      const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+      const targetUrl = 'https://script.google.com/macros/s/AKfycbzbGoYUTHAPmaTWpWQeAbGJAe1IsZSpV3HuCc6iWUzdzGp6e-Y5fjFIVV3fDnwBmHQt/exec';
+      try {
+        const response = await fetch(proxyUrl + targetUrl);
+        const text = await response.text();
+        console.log("Response text:", text); // Log the raw response
+        const data = JSON.parse(text); // Attempt to parse the JSON
+        return data;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     }
 
     function renderTable(data) {
@@ -47,7 +55,11 @@
       });
     }
 
-    fetchData().then(data => renderTable(data));
+    fetchData().then(data => {
+      if (data) {
+        renderTable(data);
+      }
+    });
   </script>
 </body>
 </html>

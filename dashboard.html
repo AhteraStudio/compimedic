@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      padding: 20px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to the Dashboard</h1>
-    <p>This is a protected area. You must be logged in to view this page.</p>
+  <div class="container">
+    <h1>Welcome to Dashboard</h1>
+    <p>This is a protected page. You can only access this after logging in.</p>
     <button onclick="logout()">Logout</button>
-    
-    <script>
-        function logout() {
-            localStorage.removeItem('userToken');
-            window.location.href = 'login.html';
-        }
-        
-        // Redirect to login if not authenticated
-        if (!localStorage.getItem('userToken')) {
-            window.location.href = 'login.html';
-        }
-    </script>
+  </div>
+  <script>
+    // Check if user is logged in
+    if (localStorage.getItem('loggedIn') !== 'true') {
+      window.location.href = 'login.html'; // Redirect to login if not logged in
+    }
+
+    // Logout function
+    function logout() {
+      localStorage.removeItem('loggedIn');
+      window.location.href = 'login.html';
+    }
+  </script>
 </body>
 </html>

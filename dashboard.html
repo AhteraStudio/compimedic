@@ -2,28 +2,22 @@
 <html>
 <head>
     <title>Dashboard</title>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            var token = localStorage.getItem('userToken');
-            if (!token) {
-                window.location.href = 'login.html';
-            } else {
-                fetch('https://script.google.com/macros/s/AKfycby0aYIrWWyNBcrWnuIjHMZeA9vVXILK0GJvltm-2ts6TMZrPI4AavvHDRs83oh_NlmL/exec?token=' + token)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status !== 'success') {
-                        window.location.href = 'login.html';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    window.location.href = 'login.html';
-                });
-            }
-        });
-    </script>
 </head>
 <body>
-    <h1>Welcome to Dashboard</h1>
+    <h1>Welcome to the Dashboard</h1>
+    <p>This is a protected area. You must be logged in to view this page.</p>
+    <button onclick="logout()">Logout</button>
+    
+    <script>
+        function logout() {
+            localStorage.removeItem('userToken');
+            window.location.href = 'login.html';
+        }
+        
+        // Redirect to login if not authenticated
+        if (!localStorage.getItem('userToken')) {
+            window.location.href = 'login.html';
+        }
+    </script>
 </body>
 </html>

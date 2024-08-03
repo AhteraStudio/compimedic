@@ -50,30 +50,34 @@
     <p id="message"></p>
   </div>
   <script>
-  document.getElementById('loginForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-  var username = document.getElementById('username').value;
-  var password = document.getElementById('password').value;
-  
-  fetch('https://script.google.com/macros/s/AKfycby9tU8fH2nCtCI38l_KhTbqhcJXCceyHTWYkkg7HVIp4pKP34HSipnwo8nn_yOM0o4muQ/exec', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams({
-      'username': username,
-      'password': password
-    }).toString(),
-  })
-  .then(response => response.text())
-  .then(result => {
-    document.getElementById('message').innerText = result;
-  })
-  .catch(error => {
-    document.getElementById('message').innerText = 'Error: ' + error;
-  });
-});
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
 
+      fetch('https://script.google.com/macros/s/AKfycby9tU8fH2nCtCI38l_KhTbqhcJXCceyHTWYkkg7HVIp4pKP34HSipnwo8nn_yOM0o4muQ/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          'username': username,
+          'password': password
+        }).toString(),
+      })
+      .then(response => response.text())
+      .then(result => {
+        if (result === "Login successful") {
+          localStorage.setItem('loggedIn', 'true');
+          window.location.href = 'dashboard.html';
+        } else {
+          document.getElementById('message').innerText = result;
+        }
+      })
+      .catch(error => {
+        document.getElementById('message').innerText = 'Error: ' + error;
+      });
+    });
   </script>
 </body>
 </html>

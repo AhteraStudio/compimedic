@@ -1,67 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Catalog</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-</head>
-<body class="bg-gray-100">
-  <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Product Catalog</h1>
-    <table class="min-w-full bg-white">
-      <thead>
-        <tr>
-          <th class="py-2">No</th>
-          <th class="py-2">Name of Products</th>
-          <th class="py-2">Brand</th>
-          <th class="py-2">Price</th>
-          <th class="py-2">Status</th>
-        </tr>
-      </thead>
-      <tbody id="product-table">
-        <!-- Data will be inserted here -->
-      </tbody>
-    </table>
-  </div>
-  <script>
-    async function fetchData() {
-      const targetUrl = 'https://script.google.com/macros/s/AKfycbxxe0cLEBHymRMPochi01JjAEbiS4R3R06IscBGG7t1GDAsLAjzy3RHD-brIcEKGCYt/exec';
-      try {
-        const response = await fetch(targetUrl);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        const text = await response.text();
-        console.log("Response text:", text); // Log the raw response
-        const data = JSON.parse(text); // Attempt to parse the JSON
-        return data;
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product Catalog</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name of Products</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="catalog-body">
+        </tbody>
+    </table>
 
-    function renderTable(data) {
-      const table = document.getElementById('product-table');
-      table.innerHTML = '';
-      data.forEach((row, index) => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td class="border px-4 py-2">${index + 1}</td>
-          <td class="border px-4 py-2">${row['Name of Products']}</td>
-          <td class="border px-4 py-2">${row['Brand']}</td>
-          <td class="border px-4 py-2">${row['Price']}</td>
-          <td class="border px-4 py-2">${row['Status']}</td>
-        `;
-        table.appendChild(tr);
-      });
-    }
+    <script>
+        async function fetchCatalogData() {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbzrrfj42VkyUvZHuxAa4WsrixshxTsDGMztdIkh7zqo60umUoDD0748ScYNZ4Lk5Uv6/exec');
+            const data = await response.json();
+            
+            const tableBody = document.getElementById('catalog-body');
+            tableBody.innerHTML = '';
+            
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                Object.values(item).forEach(text => {
+                    const cell = document.createElement('td');
+                    cell.textContent = text;
+                    row.appendChild(cell);
+                });
+                tableBody.appendChild(row);
+            });
+        }
 
-    fetchData().then(data => {
-      if (data) {
-        renderTable(data);
-      }
-    });
-  </script>
+        fetchCatalogData();
+    </script>
 </body>
 </html>

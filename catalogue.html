@@ -144,7 +144,9 @@
 
 
 <!--loading 1-->
-          <span class="loader"></span>
+         <div class="loading-overlay" id="loadingOverlay">
+  <span class="loader"></span>
+</div>
           <!--end loading 1-->
     <table class="w-full min-w-[600px] text-sm text-left rtl:text-right text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -237,14 +239,14 @@
 
     <!--loading check-->
     <script>
-    // Nunjukin loading spinner
+// Nunjukin loading spinner
 function showLoading() {
-  document.getElementById('loader').style.display = 'flex';
+  document.getElementById('loadingOverlay').style.display = 'flex';
 }
 
 // Nyembunyiin loading spinner
 function hideLoading() {
-  document.getElementById('loader').style.display = 'none';
+  document.getElementById('loadingOverlay').style.display = 'none';
 }
 
 // Contoh fungsi buat ngambil data dari Apps Script

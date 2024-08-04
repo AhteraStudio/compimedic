@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://edilahtera.github.io/compimedic/sitemap.xml

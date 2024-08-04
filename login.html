@@ -7,7 +7,7 @@
         document.addEventListener('DOMContentLoaded', (event) => {
             var token = localStorage.getItem('userToken');
             if (token) {
-                fetch('YOUR_LOGIN_SCRIPT_URL?token=' + token)
+                fetch('https://script.google.com/macros/s/AKfycby9tU8fH2nCtCI38l_KhTbqhcJXCceyHTWYkkg7HVIp4pKP34HSipnwo8nn_yOM0o4muQ/exec?token=' + token)
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
@@ -38,7 +38,7 @@
 
             formData.set('password', hashedPassword);
 
-            fetch('https://script.google.com/macros/s/AKfycby9tU8fH2nCtCI38l_KhTbqhcJXCceyHTWYkkg7HVIp4pKP34HSipnwo8nn_yOM0o4muQ/exec', {
+            fetch('YOUR_LOGIN_SCRIPT_URL', {
                 method: 'POST',
                 body: formData
             })

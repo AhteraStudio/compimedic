@@ -77,6 +77,32 @@
       </div>
     </nav>
   </header>
+<!-- header -->
+<!-- Overlay -->
+<div id="overlay" class="fixed inset-0 bg-gray-900 opacity-50 hidden"></div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuButton = document.querySelector('[data-collapse-toggle="mobile-menu-2"]');
+    const menu = document.getElementById('mobile-menu-2');
+    const overlay = document.getElementById('overlay');
+
+    menuButton.addEventListener('click', function () {
+      const isOpen = menu.classList.contains('hidden');
+      if (isOpen) {
+        menu.classList.remove('hidden');
+        overlay.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        overlay.classList.add('hidden');
+      }
+    });
+
+    overlay.addEventListener('click', function () {
+      menu.classList.add('hidden');
+      overlay.classList.add('hidden');
+    });
+  });
+</script>
 <!-- end header -->
 
 

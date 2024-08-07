@@ -231,12 +231,12 @@ color: #00CDC8;
 
 <!-- main -->
 <section class="bg-white py-8 antialiased md:py-12">
+ <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
 
 <!-- search input -->
-  <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-<div id="search-container">
-  <input type="text" id="search-input" placeholder="Search by name or location..." />
-</div>
+  <div id="search-container" class="flex justify-center mt-10 mb-6">
+    <input type="text" id="search-input" placeholder="Search for items.." class="w-full max-w-md px-4 py-2 border-2 border-gray-300 hover:border-[#3396bb] rounded-lg" />
+  </div>
 <!-- end search input -->
 
 
@@ -274,7 +274,7 @@ const showLoadingCards = () => {
 const fetchData = async () => {
   const response = await fetch('https://script.google.com/macros/s/AKfycbwVB3oS_uHsYUNha9q1bTp8WVJXoAOx-6Z6rj6B1aQlK8PBuPl46u85BRg-B3ih7LMl/exec');
   const products = await response.json();
-  
+
   const container = document.getElementById('product-container');
   container.innerHTML = '';
 
@@ -402,7 +402,7 @@ background: none;
 </style>
 
 
-       
+
     <div class="w-full text-center">
       <button type="button" class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Show more</button>
     </div>

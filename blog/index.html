@@ -1,43 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">    
-<title>Blog</title>
-    <link rel="stylesheet" href="{{ "/assets/styles.css" | relative_url }}">
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/EdilAhtera/compimedic/main/logo-compimedic.png">
-    <!-- link -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="./tailwind.config.js">
-    <link href="./server.js">
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css"  rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Didact+Gothic&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-<!-- favicon Js -->
-    <script>
-        function setFavicon(url) {
-            let link = document.createElement('link');
-            let oldLink = document.getElementById('favicon');
-            link.id = 'favicon';
-            link.rel = 'icon';
-            link.href = url;
-            if (oldLink) {
-                document.head.removeChild(oldLink);
-            }
-            document.head.appendChild(link);
-        }
-        setFavicon('https://raw.githubusercontent.com/EdilAhtera/compimedic/main/logo-compimedic.png');
-    </script>
-<!-- end favicon Js -->
+---
+layout: default
+---
 
-</head>
-<body>
-    {% include header.html %}
-    <main>
-           
-    </main>
-    {% include footer.html %}
-</body>
-</html>
+<p>card all content</p>

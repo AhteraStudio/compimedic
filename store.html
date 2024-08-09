@@ -32,6 +32,55 @@
     </script>
 <!-- end favicon Js -->
 
+<!-- Json LD product -->
+   // Generate JSON-LD for the product
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": product.NamaBarang,
+      "image": product.FotoBarang,
+      "description": product.Deskripsi || "",  // Include if available
+      "sku": product.SKU || "",  // Include if available
+      "brand": product.Brand ? {
+        "@type": "Brand",
+        "name": product.Brand
+      } : undefined,  // Include only if available
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "IDR",
+        "price": product.Price,
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock",
+        "url": product.LinkBarang
+      }
+    };
+
+    // Clean up undefined values
+    const cleanedJsonLd = JSON.parse(JSON.stringify(jsonLd, (key, value) => value === undefined ? null : value));
+
+    // Append JSON-LD to <head> only if it does not already exist
+    const existingScripts = document.querySelectorAll('script[type="application/ld+json"]');
+    const isExisting = Array.from(existingScripts).some(script => {
+      try {
+        const existingData = JSON.parse(script.textContent);
+        return existingData.name === cleanedJsonLd.name;
+      } catch (e) {
+        return false;
+      }
+    });
+
+    if (!isExisting) {
+      const jsonLdScript = document.createElement('script');
+      jsonLdScript.type = 'application/ld+json';
+      jsonLdScript.textContent = JSON.stringify(cleanedJsonLd);
+      document.head.appendChild(jsonLdScript);
+    }
+  });
+};
+<script type="application/ld+json">
+</script>
+<!-- end Json LD -->
+
 
   <style>
 /* Grid container untuk mengatur tampilan card */

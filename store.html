@@ -101,7 +101,9 @@
   text-decoration: none;
   margin-bottom: 4px;
 
-  white-space: nowrap; 
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Batasin sampai 2 baris */
   overflow: hidden;
   text-overflow: ellipsis;
 }

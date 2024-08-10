@@ -356,22 +356,7 @@ const fetchData = async () => {
   // Generate JSON-LD
   generateJsonLd(products);
 };
-// Tambahin event listener buat tombol-tombol "Add to Cart"
-container.addEventListener('click', (event) => {
-  if (event.target.matches('.add-to-cart-btn') || event.target.closest('.add-to-cart-btn')) {
-    // Ambil nama produk dari card yang klik
-    const card = event.target.closest('.card');
-    const productName = card.querySelector('.card-title').innerText;
-    
-    // Bangun URL WhatsApp dengan pesan
-    const whatsappNumber = '6285186655283';
-    const message = `Halo Compimedic, saya ingin menanyakan perihal produk ${productName} bantu saya untuk proses pemesanannya`;
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-    // Redirect ke URL WhatsApp
-    window.open(whatsappUrl, '_blank');
-  }
-});
 
 
 

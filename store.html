@@ -329,17 +329,23 @@ const fetchData = async () => {
         <a href="${product.LinkBarang}" class="card-title" target="_blank">${product.NamaBarang}</a>
         <ul class="card-details">
           <li class="card-location">
-            <!-- SVG icon dan konten lainnya -->
+            <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
+            </svg>
+            <p>${product.Lokasi}</p>
           </li>
           <li class="card-preorder">
-            <!-- SVG icon dan konten lainnya -->
+            <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M8 7V6c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1h-1M3 18v-7c0-.6.4-1 1-1h11c.6 0 1 .4 1 1v7c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1Zm8-3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+            </svg>
+            <p>${product.PreOrder}</p>
           </li>
         </ul>
         <div class="card-footer">
           <p class="card-price">Rp. ${product.Price}</p>
-          <button type="button" class="add-to-cart-btn" data-product-name="${product.NamaBarang}">
+          <button type="button" class="add-to-cart-btn">
             <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <!-- SVG path -->
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
             </svg>
           </button>
         </div>
@@ -349,16 +355,6 @@ const fetchData = async () => {
 
   // Generate JSON-LD
   generateJsonLd(products);
-
-  // Add event listener to all add-to-cart buttons
-  document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-    button.addEventListener('click', (event) => {
-      const productName = event.currentTarget.getAttribute('data-product-name');
-      const message = `Halo Compimedic, saya ingin menanyakan perihal produk ${productName}. bantu saya untuk proses pemesanannya`;
-      const whatsappUrl = `https://wa.me/6285186655283?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
-    });
-  });
 };
 
 const searchProducts = () => {

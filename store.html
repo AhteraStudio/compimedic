@@ -314,7 +314,7 @@ const fetchData = async () => {
   container.innerHTML = '';
 
   products.forEach(product => {
-    container.insertAdjacentHTML('afterbegin', `
+    const cardHTML = `
     <div class="card">
       <div class="card-image">
         <a href="${product.LinkBarang}" class="product-link" target="_blank">
@@ -340,18 +340,28 @@ const fetchData = async () => {
         </ul>
         <div class="card-footer">
           <p class="card-price">Rp. ${product.Price}</p>
-          <button type="button" class="add-to-cart-btn">
+          <button type="button" class="add-to-cart-btn" onclick="sendWhatsAppMessage('${product.NamaBarang}')">
             <svg class="icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
             </svg>
           </button>
         </div>
       </div>
-    </div>`);
-  });
+    </div>`;
 
+    container.insertAdjacentHTML('afterbegin', cardHTML);
+  });
+  
   // Generate JSON-LD
   generateJsonLd(products);
+};
+
+const sendWhatsAppMessage = (productName) => {
+  const phoneNumber = '6285186655283';
+  const message = `Halo Compimedic, saya ingin menanyakan perihal produk ${productName}. Bantu saya untuk proses pemesanannya.`;
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+  
+  window.open(whatsappUrl, '_blank');
 };
 
 

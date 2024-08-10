@@ -36,28 +36,32 @@
 <!-- Json LD -->
 <script type="application/ld+json">
 const generateJsonLd = (products) => {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": products.map((product, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "url": product.LinkBarang,
+  const itemListElement = products.map((product, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "item": {
+      "@type": "Product",
       "name": product.NamaBarang,
       "image": product.FotoBarang,
-      "description": product.Diskon,
+      "description": product.DeskProduct || "Deskripsi singkat tentang produk.",
       "offers": {
         "@type": "Offer",
         "priceCurrency": "IDR",
         "price": product.Price,
-        "itemCondition": "https://schema.org/NewCondition"
+        "url": product.LinkBarang
       }
-    }))
+    }
+  }));
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": itemListElement
   };
 
   const script = document.createElement('script');
   script.type = 'application/ld+json';
-  script.textContent = JSON.stringify(jsonLd, null, 2);
+  script.textContent = JSON.stringify(jsonLd);
   document.head.appendChild(script);
 };
 </script>
@@ -350,15 +354,27 @@ const fetchData = async () => {
           </button>
         </div>
       </div>
-    </div>`);
+    </div>`;
   });
-
-  // Generate JSON-LD
-  generateJsonLd(products);
+<!-- Json ld-->
+generateJsonLd(products);
 };
 
+const searchProducts = () => {
+  const input = document.getElementById('search-input').value.toLowerCase();
+  const cards = document.querySelectorAll('.card');
 
+  cards.forEach(card => {
+    const name = card.querySelector('.card-title').textContent.toLowerCase();
+    const location = card.querySelector('.card-location p').textContent.toLowerCase();
 
+    if (name.includes(input) || location.includes(input)) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+};
 
 document.getElementById('search-input').addEventListener('input', searchProducts);
 

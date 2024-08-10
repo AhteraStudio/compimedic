@@ -32,7 +32,34 @@
     </script>
 <!-- end favicon Js -->
 
+<script type="application/ld+json">
 
+const generateJsonLd = (products) => {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": products.map((product, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": product.LinkBarang,
+      "name": product.NamaBarang,
+      "image": product.FotoBarang,
+      "description": product.Diskon,
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "IDR",
+        "price": product.Price,
+        "itemCondition": "https://schema.org/NewCondition"
+      }
+    }))
+  };
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(jsonLd, null, 2);
+  document.head.appendChild(script);
+};
+</script>
   <style>
 /* Grid container untuk mengatur tampilan card */
 .grid-container {
@@ -322,8 +349,8 @@ const fetchData = async () => {
       </div>
     </div>`);
   });
-  
-  // Json ld
+
+  // Generate JSON-LD
   generateJsonLd(products);
 };
 

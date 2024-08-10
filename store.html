@@ -316,8 +316,8 @@ const fetchData = async () => {
   const container = document.getElementById('product-container');
   container.innerHTML = '';
 
-  products.forEach((product, index) => {
-    container.insertAdjacentHTML('beforeend', `
+  products.forEach(product => {
+    container.insertAdjacentHTML('afterbegin', `
     <div class="card">
       <div class="card-image">
         <a href="${product.LinkBarang}" class="product-link" target="_blank">
@@ -352,10 +352,10 @@ const fetchData = async () => {
       </div>
     </div>`);
 
-    // Attach event listener to each button
-    const button = document.querySelector(`.add-to-cart-btn[data-product-name="${product.NamaBarang}"]`);
+    // Add event listener to the button
+    const button = container.querySelector(`.add-to-cart-btn[data-product-name="${product.NamaBarang}"]`);
     button.addEventListener('click', () => {
-      const message = `Halo Compimedic, saya ingin menanyakan perihal produk ${product.NamaBarang} bantu saya untuk proses pemesanannya`;
+      const message = `Halo Compimedic, saya ingin menanyakan perihal produk ${product.NamaBarang}. Bantu saya untuk proses pemesanannya`;
       const url = `https://wa.me/6285186655283?text=${encodeURIComponent(message)}`;
       window.open(url, '_blank');
     });
@@ -364,7 +364,6 @@ const fetchData = async () => {
   // Generate JSON-LD
   generateJsonLd(products);
 };
-
 
 
 document.getElementById('search-input').addEventListener('input', searchProducts);

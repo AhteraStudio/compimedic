@@ -321,7 +321,7 @@ const fetchData = async () => {
   container.innerHTML = '';
 
   products.forEach(product => {
-    container.innerHTML += `
+    container.insertAdjacentHTML('afterbegin', `
     <div class="card">
       <div class="card-image">
         <a href="${product.LinkBarang}" class="product-link" target="_blank">

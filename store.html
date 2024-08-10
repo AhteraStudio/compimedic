@@ -35,35 +35,7 @@
 
 <!-- Json LD -->
 <script type="application/ld+json">
-const generateJsonLd = (products) => {
-  const itemListElement = products.map((product, index) => ({
-    "@type": "ListItem",
-    "position": index + 1,
-    "item": {
-      "@type": "Product",
-      "name": product.NamaBarang,
-      "image": product.FotoBarang,
-      "description": product.DeskProduct || "Deskripsi singkat tentang produk.",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "IDR",
-        "price": product.Price,
-        "url": product.LinkBarang
-      }
-    }
-  }));
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": itemListElement
-  };
-
-  const script = document.createElement('script');
-  script.type = 'application/ld+json';
-  script.textContent = JSON.stringify(jsonLd);
-  document.head.appendChild(script);
-};
 </script>
 <!-- end Json LD -->
 

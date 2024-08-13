@@ -1,1 +1,1 @@
-LinkBarang|FotoBarang|Diskon|NamaBarang|Lokasi|PreOrder|Price
+LinkBarang|FotoBarang|Diskon|NamaBarang|Lokasi|PreOrder|Price 

@@ -5,7 +5,7 @@ title: Store
 
 <h1>Store</h1>
 <div class="store-cards">
-  {% assign items = site.static_files | where_exp: "file", "file.path contains '/compimedic/items/' and file.extname == '.html'" %}
+  {% assign items = site.static_files | where_exp: "file", "file.path contains '/items/' and file.extname == '.html'" %}
   {% for item in items %}
     {% capture itemContent %}
       {{ item | read_file }}

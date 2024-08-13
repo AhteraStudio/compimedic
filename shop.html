@@ -5,21 +5,12 @@ title: Store
 
 <h1>Store</h1>
 <div class="store-cards">
-  {% assign items = site.static_files | where_exp: "file", "file.path contains '/items/' and file.extname == '.html'" %}
+  {% assign items = site.static_files | where_exp: "file", "file.path contains '/compimedic/items/' and file.extname == '.html'" %}
   {% for item in items %}
+    <p>{{ item.path }}</p>
     {% capture itemContent %}
       {{ item | read_file }}
     {% endcapture %}
-    {% assign itemData = itemContent | split: '|' %}
-    {% assign product = {
-      "link": itemData[0] | strip,
-      "foto": itemData[1] | strip,
-      "diskon": itemData[2] | strip,
-      "nama": itemData[3] | strip,
-      "lokasi": itemData[4] | strip,
-      "preorder": itemData[5] | strip,
-      "price": itemData[6] | strip
-    } %}
-    {% include item-card.html item=product %}
+    <pre>{{ itemContent }}</pre>
   {% endfor %}
 </div>

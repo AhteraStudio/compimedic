@@ -1,0 +1,5 @@
+{% for item in site.static_files %}
+  {% if item.path contains '/items/' and item.extname == '.html' %}
+    <li><a href="{{ item.path | relative_url }}">{{ item.basename }}</a></li>
+  {% endif %}
+{% endfor %}

@@ -176,16 +176,18 @@ body {
   padding: 0;
   margin-bottom: 10px;
   display: flex;
-  gap: 10px; /* Jarak antar item */
-  font-size: 0.8rem; /* Ukuran font yang sesuai */
+  flex-wrap: wrap;
+  gap: 8px; /* Jarak antar item */
+  font-size: 0.5rem; /* Ukuran font yang sesuai */
 }
 
 .card-details li {
   display: flex;
   align-items: center;
-  flex-basis: 45%; /* Biar dia kesamping kalau ada space cukup */
-  min-width: auto; /* Ubah min-width supaya nggak ada batasan yang kaku */
+  flex-basis: calc(50% - 8px); /* Biar cuma 2 item yang kesamping */
+  min-width: auto;
 }
+
 
 /* Mengatur footer card */
 .card-footer {

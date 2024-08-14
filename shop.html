@@ -20,44 +20,40 @@ title: Shop
   {% endfor %}
 </div>
 
-<style>
-/* Basic reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-/* Grid container setup */
+
+
+
+<style>
+/* Grid container untuk mengatur tampilan card */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Tampilkan card 6 di desktop, 2 di mobile */
-  gap: 10px; /* Jarak antar card */
-  padding: 10px; /* Jarak antara container dan tepi layar */
-  justify-content: center; /* Center grid container di tengah layar */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Sesuaikan ukuran minimum card */
+  gap: 16px;
+  margin: 0 auto;
 }
 
-/* Card styling with fixed size */
+/* Mengatur card */
 .card {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: RGB(255,255,255,0.1) ;
+  border: 1px solid RGB(255,255,255,0.2);
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+  height: 300px; /* Atur tinggi card supaya tetap konsisten */
   width: 100%;
-  max-width: 220px; /* Maksimum lebar card */
+  position: relative; /* Tambahkan relative positioning untuk diskon */
 }
 
+/* Mengatur card image */
 .card-image {
+  height: 57%; /* Sesuaikan tinggi gambar */
   width: 100%;
-  height: 200px; /* Tinggi gambar */
   background-color: #f5f5f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
+  position: relative; /* Tambahkan relative positioning untuk diskon */
 }
 
 .card-image img {
@@ -66,63 +62,122 @@ title: Shop
   object-fit: cover;
 }
 
-.card-content {
-  padding: 10px;
-  text-align: left;
+/* Mengatur diskon */
+.card-discount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #00CDC8;
+  padding-right: 4px;
+  padding-left: 4px;
+  border-bottom-left-radius: 6px; /* Atur angka ini sesuai selera lo */
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  font-size: 10px; /* Kecilkan ukuran font */
+  color: white;
+  z-index: 1; /* Pastikan diskon berada di atas gambar */
+
 }
 
+/* Mengatur konten card */
+.card-content {
+  padding: 5px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mengatur title */
 .card-title {
-  font-size: 1rem;
-  margin-bottom: 6px;
+  font-size: 11px; /* Kecilkan ukuran font */
+  color: gray;
   font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 4px;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Batasin sampai 2 baris */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-title:hover {
+  text-decoration: underline;
+}
+
+/* Mengatur detail card */
+.card-details {
+  margin-top: 4px;
+  list-style: none;
+  padding: 0;
+color: gray;
+}
+
+.card-details li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px; /* Kecilkan ukuran font */
+}
+
+/* Mengatur footer card */
+.card-footer {
+  display: flex;
+  justify-content: space-between; /* Pisahkan price dan button */
+  align-items: center;
+  margin-top: auto; /* Letakkan di bagian bawah card */
+  padding: 8px;
+}
+
+/* Mengatur harga */
+.card-price {
+  font-size: 14px; /* Kecilkan ukuran font */
+  font-weight: bold;
+  color: gray;
+  margin-right: auto; /* Letakkan di kiri bawah */
+}
+
+/* Mengatur button add-to-cart */
+.add-to-cart-btn {
+  border: none;
+  color:  #3396bb;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px; /* Kecilkan ukuran font */
+}
+
+.add-to-cart-btn:hover {
   color: #333;
 }
 
-.card-location,
-.card-preorder,
-.card-discount {
-  font-size: 0.9rem;
-  color: #777;
-  margin-bottom: 4px;
+/* Mengatur icon */
+.icon {
+  width: 9px;
+  height: 9px;
+  color: gray;
 }
+.add-to-cart-btn .icon {
+ width: 19px;
+ height: 19px;
+color: #3396bb;
 
-.card-price {
-  font-size: 1rem;
-  color: #e74c3c;
-  font-weight: bold;
-  margin-top: 8px;
-}
-
-/* Responsive behavior */
-@media (min-width: 1024px) {
+/* Media query untuk desktop */
+@media (min-width: 768px) {
   .grid-container {
-    grid-template-columns: repeat(6, 1fr); /* Tampilkan 6 card di desktop */
-    gap: 15px; /* Jarak antar card di desktop */
-    padding: 20px; /* Jarak antara container dan tepi layar di desktop */
-  }
-
-  .card {
-    max-width: 200px; /* Lebar card di desktop */
-  }
-
-  .card-image {
-    height: 180px; /* Tinggi gambar di desktop */
+    grid-template-columns: repeat(5, 1fr); /* 5 card per baris di desktop */
   }
 }
 
-@media (max-width: 1024px) {
+/* Media query untuk mobile */
+@media (max-width: 767px) {
   .grid-container {
-    grid-template-columns: repeat(2, 1fr); /* Tampilkan 2 card di mobile */
-    gap: 10px; /* Jarak antar card di mobile */
-    padding: 10px; /* Jarak antara container dan tepi layar di mobile */
-  }
-
-  .card {
-    max-width: 150px; /* Lebar card di mobile */
-  }
-
-  .card-image {
-    height: 150px; /* Tinggi gambar di mobile */
+    grid-template-columns: repeat(2, 1fr); /* 2 card per baris di mobile */
   }
 }
+
+
+  </style>
 </style>

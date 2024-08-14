@@ -88,7 +88,7 @@ title: Store
 <script>
 const sendWhatsAppMessage = (productName) => {
   const phoneNumber = '6285186655283';
-  const message = `Halo Compimedic, saya ingin menanyakan perihal produk ${productName}. Bantu saya untuk proses pemesanannya.`;
+  const message = `Halo Compimedic, saya ingin menanyakan produk ${productName}. Tolong bantu saya untuk proses pemesanannya, terimakasih.`;
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
 
   window.open(whatsappUrl, '_blank');

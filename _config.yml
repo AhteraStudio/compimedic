@@ -1,4 +1,4 @@
 collections:
   items:
     output: true
-    permalink: /:collection/:name/
+    permalink: /items/:name/

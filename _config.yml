@@ -1,1 +1,4 @@
-baseurl: "/compimedic"
+collections:
+  items:
+    output: true
+    permalink: /:collection/:name/

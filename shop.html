@@ -2,7 +2,6 @@
 layout: default
 ---
 
-
 <div id="product-container" class="grid-container">
   {% for item in site.items %}
     <div class="card">
@@ -32,8 +31,9 @@ layout: default
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px; /* Jarak antar card */
+  gap: 10px; /* Jarak antar card lebih rapat */
   padding: 10px; /* Jarak antara container dan tepi layar */
+  justify-content: center; /* Center grid container di tengah layar */
 }
 
 /* Card styling with fixed size */
@@ -68,7 +68,6 @@ layout: default
   width: 100%;
   height: 100%;
   object-fit: cover;
-  aspect-ratio: 1 / 1; /* Ini buat bikin gambar square */
 }
 
 .card-content {
@@ -102,16 +101,16 @@ layout: default
 @media (min-width: 1024px) {
   .grid-container {
     grid-template-columns: repeat(6, 1fr);
-    gap: 15px; /* Jarak antar card di desktop */
+    gap: 10px; /* Jarak antar card di desktop */
     padding: 20px; /* Jarak antara container dan tepi layar di desktop */
   }
 
   .card {
-    width: 200px; /* Lebar card di desktop */
+    width: 180px; /* Lebar card di desktop */
   }
 
   .card-image {
-    height: 200px; /* Tinggi gambar di desktop */
+    height: 180px; /* Tinggi gambar di desktop */
   }
 }
 

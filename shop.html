@@ -2,6 +2,7 @@
 layout: default
 ---
 
+
 <div id="product-container" class="grid-container">
   {% for item in site.items %}
     <div class="card">
@@ -31,8 +32,8 @@ layout: default
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  padding: 20px;
+  gap: 10px; /* Jarak antar card */
+  padding: 10px; /* Jarak antara container dan tepi layar */
 }
 
 /* Card styling with fixed size */
@@ -101,6 +102,8 @@ layout: default
 @media (min-width: 1024px) {
   .grid-container {
     grid-template-columns: repeat(6, 1fr);
+    gap: 15px; /* Jarak antar card di desktop */
+    padding: 20px; /* Jarak antara container dan tepi layar di desktop */
   }
 
   .card {
@@ -115,6 +118,8 @@ layout: default
 @media (max-width: 1024px) {
   .grid-container {
     grid-template-columns: repeat(2, 1fr);
+    gap: 10px; /* Jarak antar card di mobile */
+    padding: 10px; /* Jarak antara container dan tepi layar di mobile */
   }
 
   .card {

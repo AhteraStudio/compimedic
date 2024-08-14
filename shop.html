@@ -3,14 +3,102 @@ layout: default
 ---
 
 <div id="product-container" class="grid-container">
-
-{% for item in site.items %}
-  <h2>{{ item.title }}</h2>
-  <p>Price: {{ item.price }}</p>
-  <p>Location: {{ item.location }}</p>
-  <p>Discount: {{ item.discount }}</p>
-  <p>Preorder: {{ item.preorder }}</p>
- {% include card.html %}
+  {% for item in site.items %}
+    <div class="card">
+      <div class="card-image">
+        <img src="{{ item.image }}" alt="{{ item.title }}">
+      </div>
+      <div class="card-content">
+        <h2 class="card-title">{{ item.title }}</h2>
+        <p class="card-location">{{ item.location }}</p>
+        <p class="card-preorder">{{ item.preorder }}</p>
+        <p class="card-discount">{{ item.discount }}</p>
+        <p class="card-price">Rp. {{ item.price }}</p>
+      </div>
+    </div>
   {% endfor %}
-
 </div>
+
+<style>
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Grid container setup */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Card styling */
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+  width: 100%;
+  padding-top: 100%; /* Ini buat bikin square */
+  background-size: cover;
+  background-position: center;
+}
+
+.card-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+}
+
+.card-location,
+.card-preorder,
+.card-discount {
+  font-size: 0.9rem;
+  color: #777;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.card-price {
+  font-size: 1.1rem;
+  color: #e74c3c;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 10px;
+}
+
+/* Responsive behavior */
+@media (min-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>

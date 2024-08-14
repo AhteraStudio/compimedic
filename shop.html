@@ -152,15 +152,8 @@ body {
   text-decoration: underline;
 }
 
-/* tambahan */
-.card-details {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between; /* Membuat kedua item bersebelahan dengan jarak yang sama */
-}
 
+/* tambahan */
 .card-location,
 .card-preorder, .card-category {
   font-size: 0.9rem;
@@ -172,7 +165,7 @@ body {
 .card-location .icon,
 .card-preorder .icon, 
 .card-category {
-  margin-right: 8px;
+  margin-right: 3px;
 }
 /* end tambahan */
 
@@ -182,13 +175,21 @@ body {
   list-style: none;
   padding: 0;
 color: gray;
+
+list-style: none;
+  padding: 0;
+  margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap; /* Supaya item bisa wrap ke bawah */
+  gap: 10px; /* Jarak antar item */
 }
 
 .card-details li {
   display: flex;
+  display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 10px; /* Kecilkan ukuran font */
+  flex: 1 1 45%; /* Biar dua-dua item aja yang berdampingan */
+  min-width: 150px; /* Ukuran minimum biar gak terlalu kecil */
 }
 
 /* Mengatur footer card */

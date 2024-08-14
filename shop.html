@@ -1,16 +1,9 @@
 ---
 layout: default
-title: Store
 ---
 
-<h1>Store</h1>
-<div class="store-cards">
-  {% assign items = site.static_files | where_exp: "file", "file.path contains '/compimedic/items/' and file.extname == '.html'" %}
-  {% for item in items %}
-    <p>{{ item.path }}</p>
-    {% capture itemContent %}
-      {{ item | read_file }}
-    {% endcapture %}
-    <pre>{{ itemContent }}</pre>
+<div id="product-container" class="grid-container">
+  {% for item in site.items %}
+    {% include card.html %}
   {% endfor %}
 </div>

@@ -2,6 +2,36 @@
 layout: default
 ---
 
+<head>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {% for item in site.items %}
+    {
+      "@type": "Product",
+      "name": "{{ item.title }}",
+      "image": "{{ item.image }}",
+      "description": "{{ item.category }} - {{ item.location }}",
+      "sku": "{{ item.sku }}", 
+      "offers": {
+        "@type": "Offer",
+        "url": "{{ item.link }}",
+        "priceCurrency": "IDR",
+        "price": "{{ item.price }}",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock",
+        "priceValidUntil": "2024-12-31"
+      }
+    }{% if forloop.last == false %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+</head>
+
+
 
 <section class="bg-white py-8 antialiased md:py-12">
  <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">

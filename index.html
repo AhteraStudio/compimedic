@@ -31,6 +31,39 @@
         setFavicon('/logo-compimedic.png');
     </script>
 <!-- end favicon Js -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Nama Situs Kamu",
+  "url": "https://www.example.com",
+  "description": "Deskripsi singkat tentang situs kamu.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.example.com/?search={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "hasPart": [
+    {
+      "@type": "WebPage",
+      "name": "About Us",
+      "url": "https://www.example.com/about-us"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Store",
+      "url": "https://www.example.com/store"
+    },
+    {
+      "@type": "WebPage",
+      "name": "Mitra",
+      "url": "https://www.example.com/mitra"
+    }
+  ]
+}
+</script>
+
 </head>
 <body>
 <!-- header -->

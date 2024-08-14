@@ -172,26 +172,21 @@ body {
 /* Mengatur detail card */
 .card-details {
   margin-top: 4px;
+  padding: 0;
   list-style: none;
-  padding: 0;
-color: gray;
-
-list-style: none;
-  padding: 0;
   margin-bottom: 10px;
   display: flex;
-  flex-wrap: wrap; /* Supaya item bisa wrap ke bawah */
-  gap: 2px; /* Jarak antar item */
-font-size: 0.5rem;
+  flex-wrap: wrap;
+  gap: 10px; /* Atur jarak antar item */
+  font-size: 0.9rem;
 }
 
 .card-details li {
-  display: flex;
+  flex: 1 1 45%; /* Flex basis 45% supaya nggak terlalu besar */
+  min-width: 120px;
   display: flex;
   align-items: center;
-  flex: 1 1 40%; /* Atur proporsinya lebih kecil */
-  min-width: 120px; /* Ubah min-width supaya gak terlalu besar */
-font-size: 0.5rem;
+  font-size: 0.9rem; /* Pastikan ukurannya kecil */
 }
 
 /* Mengatur footer card */

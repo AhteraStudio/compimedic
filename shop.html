@@ -30,33 +30,28 @@ layout: default
 /* Grid container setup */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px; /* Jarak antar card lebih rapat */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Tampilkan card 6 di desktop, 2 di mobile */
+  gap: 10px; /* Jarak antar card */
   padding: 10px; /* Jarak antara container dan tepi layar */
   justify-content: center; /* Center grid container di tengah layar */
 }
 
 /* Card styling with fixed size */
 .card {
-  width: 180px; /* Lebar card di desktop */
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 200px; /* Maksimum lebar card */
 }
 
-.card:hover {
-  transform: scale(1.05); /* Efek hover */
-}
-
-/* Square image setup */
 .card-image {
   width: 100%;
-  height: 180px; /* Tinggi gambar di desktop */
-  background-size: cover;
-  background-position: center;
+  height: 200px; /* Tinggi gambar */
   background-color: #f5f5f5;
   display: flex;
   justify-content: center;
@@ -71,12 +66,12 @@ layout: default
 }
 
 .card-content {
-  padding: 10px; /* Padding lebih kecil di mobile */
+  padding: 10px;
   text-align: left;
 }
 
 .card-title {
-  font-size: 0.9rem; /* Ukuran font lebih kecil di mobile */
+  font-size: 1rem;
   margin-bottom: 6px;
   font-weight: bold;
   color: #333;
@@ -85,13 +80,13 @@ layout: default
 .card-location,
 .card-preorder,
 .card-discount {
-  font-size: 0.8rem; /* Ukuran font lebih kecil di mobile */
+  font-size: 0.9rem;
   color: #777;
   margin-bottom: 4px;
 }
 
 .card-price {
-  font-size: 0.9rem; /* Ukuran font lebih kecil di mobile */
+  font-size: 1rem;
   color: #e74c3c;
   font-weight: bold;
   margin-top: 8px;
@@ -100,13 +95,13 @@ layout: default
 /* Responsive behavior */
 @media (min-width: 1024px) {
   .grid-container {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px; /* Jarak antar card di desktop */
+    grid-template-columns: repeat(6, 1fr); /* Tampilkan 6 card di desktop */
+    gap: 15px; /* Jarak antar card di desktop */
     padding: 20px; /* Jarak antara container dan tepi layar di desktop */
   }
 
   .card {
-    width: 180px; /* Lebar card di desktop */
+    max-width: 180px; /* Lebar card di desktop */
   }
 
   .card-image {
@@ -116,13 +111,13 @@ layout: default
 
 @media (max-width: 1024px) {
   .grid-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* Tampilkan 2 card di mobile */
     gap: 10px; /* Jarak antar card di mobile */
     padding: 10px; /* Jarak antara container dan tepi layar di mobile */
   }
 
   .card {
-    width: 150px; /* Lebar card di mobile */
+    max-width: 150px; /* Lebar card di mobile */
   }
 
   .card-image {

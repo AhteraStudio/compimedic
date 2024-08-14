@@ -3,7 +3,15 @@ layout: default
 ---
 
 <div id="product-container" class="grid-container">
-  {% for item in site.items %}
-    {% include card.html %}
+
+{% for item in site.items %}
+  <h2>{{ item.title }}</h2>
+  <p>Price: {{ item.price }}</p>
+  <p>Location: {{ item.location }}</p>
+  <p>Discount: {{ item.discount }}</p>
+  <p>Preorder: {{ item.preorder }}</p>
+{% endfor %}
+ {% include card.html %}
   {% endfor %}
+
 </div>

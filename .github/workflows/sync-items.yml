@@ -23,3 +23,5 @@ jobs:
         with:
           add: 'product/*'
           message: 'Sync files from _items to /product'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

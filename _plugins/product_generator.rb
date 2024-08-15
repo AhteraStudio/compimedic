@@ -3,8 +3,14 @@ module Jekyll
     safe true
 
     def generate(site)
-      puts "Total items found: #{site.collections['items'].docs.size}"  # Debugging
-      site.collections['items'].docs.each do |item|
+      items = site.collections['items']
+      if items.nil?
+        puts "Collection 'items' not found."
+        return
+      end
+
+      puts "Total items found: #{items.docs.size}"  # Debugging
+      items.docs.each do |item|
         path = "/product/#{item.basename_without_ext}.html"
         puts "Generating: #{path}"  # Debugging
         site.pages << ProductPage.new(site, site.source, path, item)

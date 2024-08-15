@@ -106,29 +106,37 @@
         <dt class="text-sm font-medium leading-6 text-gray-900">Bussiness Email</dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">contact@compimedic.com</dd>
       </div>
-    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+   <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
   <dt class="text-sm font-medium leading-6 text-gray-900">Tahun didirikan</dt>
-  <dd id="founded-date" class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"></dd>
+  <dd id="founded-date" class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+    MEDAN 1 JUNI 2024
+  </dd>
 </div>
 <script>
-function calculateAge() {
-  const foundedDate = new Date('2024-06-01'); // Tanggal didirikan
-  const now = new Date();
+document.addEventListener('DOMContentLoaded', function() {
+    function calculateAge(foundedDate) {
+        const today = new Date();
+        const founded = new Date(foundedDate);
+        
+        let years = today.getFullYear() - founded.getFullYear();
+        let months = today.getMonth() - founded.getMonth();
 
-  let years = now.getFullYear() - foundedDate.getFullYear();
-  let months = now.getMonth() - foundedDate.getMonth();
+        if (months < 0) {
+            years--;
+            months += 12;
+        }
 
-  if (months < 0) {
-    years--;
-    months += 12;
-  }
+        return { years, months };
+    }
 
-  const ageText = `${years} tahun ${months} bulan`;
-  document.getElementById('founded-date').innerText = ageText;
-}
-
-// Panggil fungsi setelah DOM selesai dimuat
-document.addEventListener('DOMContentLoaded', calculateAge);
+    const foundedDate = '2024-06-01'; // Format YYYY-MM-DD
+    const age = calculateAge(foundedDate);
+    const foundedDateElement = document.getElementById('founded-date');
+    
+    // Format the result
+    const formattedAge = `${age.years} Tahun ${age.months} Bulan`;
+    foundedDateElement.innerHTML = `MEDAN 1 JUNI 2024 (${formattedAge})`;
+});
 </script>
 
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">

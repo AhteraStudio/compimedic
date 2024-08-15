@@ -1,6 +1,7 @@
 # _plugins/sync_items_to_product.rb
 
 require 'fileutils'
+require 'yaml'
 
 module Jekyll
   class SyncItemsToProduct < Jekyll::Generator
@@ -25,7 +26,14 @@ module Jekyll
         dst = File.join(product_path, item)
 
         if File.file?(src) && File.extname(src) == '.html'
-          FileUtils.cp(src, dst)
+          # Baca metadata YAML dari file
+          content = File.read(src)
+          yaml_part = content.split("---").reject(&:empty?).first
+
+          # Tulis ulang file ke /product
+          File.open(dst, 'w') do |file|
+            file.write(content)
+          end
         end
       end
     end

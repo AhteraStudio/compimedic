@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Investor Relations</title>
+    <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/EdilAhtera/compimedic/main/logo-compimedic.png">
+    <!-- link -->
+ <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="./input.css" rel="stylesheet">
+  <link href="./tailwind.config.js">
+  <link href="./server.js">
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css"  rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Didact+Gothic&display=swap" rel="stylesheet">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#000000">
+<script src="/service-worker.js" defer></script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+<!-- favicon Js -->
+    <script>
+        function setFavicon(url) {
+            let link = document.createElement('link');
+            let oldLink = document.getElementById('favicon');
+            link.id = 'favicon';
+            link.rel = 'icon';
+            link.href = url;
+            if (oldLink) {
+                document.head.removeChild(oldLink);
+            }
+            document.head.appendChild(link);
+        }
+        setFavicon('https://raw.githubusercontent.com/EdilAhtera/compimedic/main/logo-compimedic.png');
+    </script>
+<!-- end favicon Js -->
+</head>
+<body>
+<!-- header -->
+  <header style="backdrop-filter: blur(10px) saturate(180%); background: rgba(255, 255, 255, 0.5); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); position: fixed; top: 0; left: 0; right: 0; width: 100%; z-index: 10;">
+    <nav style="background: transparent; solid rgba(128, 128, 128, 0.3); padding: 3px;">
+      <div class="flex flex-wrap justify-between items-center mx-auto" style="max-width: 97%;">
+        <a href="index.php" class="flex items-center justify-center lg:justify-start">
+          <img src="https://raw.githubusercontent.com/EdilAhtera/compimedic/main/img/1721568418869.png" style="height: 4rem; sm:height: 5rem;" alt="Compimedic Logo" />
+        </a>
+        <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-[#3396BB] rounded-lg lg:hidden hover:backdrop-filter: blur(10px) focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="mobile-menu-2" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+          </svg>
+          <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
+          <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+            <li>
+              <a href="/Compimedic.php" class="block py-2 pr-4 pl-3 text-[#3396BB] rounded bg-primary-700 lg:bg-transparent lg:text-[#3396BB] lg:p-0" aria-current="page">Home</a>
+            </li>
+            <li>
+              <a href="/catalogue.php" class="block py-2 pr-4 pl-3 text-[#4A4A4A] hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-[#3396BB] lg:p-0">Catalogue Products</a>
+            </li>
+            <li>
+              <a href="/Store.php" class="block py-2 pr-4 pl-3 text-[#4A4A4A] hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-[#3396BB] lg:p-0">Store</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 pr-4 pl-3 text-[#4A4A4A] hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-[#3396BB] lg:p-0">Branchs</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 pr-4 pl-3 text-[#4A4A4A] hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-[#3396BB] lg:p-0">Investor</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 pr-4 pl-3 text-[#4A4A4A] hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-[#3396BB] lg:p-0">Licensing</a>
+            </li>
+            <li>
+              <a href="/check-order.php" class="block py-2 pr-4 pl-3 text-[#4A4A4A] hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-[#3396BB] lg:p-0">My Order Status</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+<!-- end header -->
+
+
+
+<!-- tabel -->
+<div>
+  <div class="px-4 sm:px-0">
+    <h3 class="text-base font-semibold leading-7 text-gray-900">Perseroan Terbatas</h3>
+    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">PT DIL HEALTHCARE INDONESIA, atau yang memiliki nama merek dagang sebagai Compimedic Solutions, atau disebut juga sebagai Compimedic, merupakan distributor alat kesehatan, medis, dan berbagai kebutuhan Rumah Sakit, Klinik, dan Keselamatan Kerja, serta untuk penggunaan pribadi.</p>
+  </div>
+  <div class="mt-6 border-t border-gray-100">
+    <dl class="divide-y divide-gray-100">
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Perseroan</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">PT DIL HEALTHCARE INDONESIA (Compimedic Solutions)</dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Fax</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">(+62)851-8665-5283</dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Bussiness Email</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">contact@compimedic.com</dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Tahun didirikan</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Medan, 1 Juni 2024</dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">About</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Attachments</dt>
+        <dd class="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+          <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200">
+            <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+              <div class="flex w-0 flex-1 items-center">
+                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+                </svg>
+                <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                  <span class="truncate font-medium">laporan_keuangan_2024.pdf</span>
+                  <span class="flex-shrink-0 text-gray-400">2.4mb</span>
+                </div>
+              </div>
+              <div class="ml-4 flex-shrink-0">
+                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
+              </div>
+            </li>
+            <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+              <div class="flex w-0 flex-1 items-center">
+                <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+                </svg>
+                <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                  <span class="truncate font-medium">coverletter_back_end_developer.pdf</span>
+                  <span class="flex-shrink-0 text-gray-400">4.5mb</span>
+                </div>
+              </div>
+              <div class="ml-4 flex-shrink-0">
+                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
+              </div>
+            </li>
+          </ul>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+<!-- end tabel -->
+
+
+
+<!-- footer -->
+<footer id="footer" class="bg-[#3396BB]">
+    <div class="mx-auto w-full max-w-[97%] p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+            <div class="mb-6 md:mb-0">
+                <a class="flex items-center justify-center md:justify-start">
+                    <img src="https://raw.githubusercontent.com/EdilAhtera/compimedic/main/img/Picsart_24-07-21_21-15-12-407.png" class="h-15 payment-method" style="height: 75px;" alt="compimedic" />
+                </a>
+            </div>
+            <div class="grid grid-cols-2 gap-8 sm:gaAp-6 sm:grid-cols-3">
+                <div>
+                    <h2 class="mb-3 text-sm font-bold text-white uppercase">Company</h2>
+                    <ul class="text-white font-medium">
+                        <li>
+                            <a href="#" class="hover:underline">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Head Office</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Our Contact</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Carrier</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="mb-3 text-sm font-bold text-white uppercase">Follow us</h2>
+                    <ul class="text-white font-medium">
+                        <li>
+                            <a href="https://www.linkedin.com/company/pt-compimedic-solutions/" class="hover:underline ">LinkedIn</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/themesberg/flowbite" class="hover:underline ">E-Commerce</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="mb-3 text-sm font-bold text-white uppercase">Legal</h2>
+                    <ul class="text-white font-medium">
+                        <li>
+                            <a href="#" class="hover:underline">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="sm:flex sm:items-center sm:justify-between mt-6">
+            <span class="text-sm text-white sm:text-center">© 2024 <a href="#" class="hover:underline">Compimedic™ PT Compimedic Solutions Healthcare</a>. All Rights Reserved.
+            </span>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    const tham = document.querySelector(".tham");
+
+    tham.addEventListener('click', () => {
+        tham.classList.toggle('tham-active');
+    });
+</script>
+
+<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+<!-- end footer -->
+
+<!-- dark mode
+<script>
+function applyDarkMode() {
+    const elements = document.querySelectorAll('*');
+    elements.forEach(element => {
+        const style = window.getComputedStyle(element);
+        const bgColor = style.backgroundColor;
+        const color = style.color;
+
+        // Ubah background putih dan semi-transparan putih jadi hitam dan hitam transparan
+        if (bgColor === 'rgb(255, 255, 255)' || bgColor === 'rgba(255, 255, 255, 0.5)') {
+            element.style.backgroundColor = bgColor === 'rgb(255, 255, 255)' ? '#000000' : 'rgba(0, 0, 0, 0.5)';
+        }
+
+        // Ubah teks gray-600 menjadi putih
+        if (color === 'rgb(74, 74, 74)') {
+            element.style.color = '#ffffff';
+        }
+        // Pastikan teks putih tetap putih
+        if (color === 'rgb(255, 255, 255)') {
+            element.style.color = '#ffffff';
+        }
+    });
+}
+
+// Cek preferensi mode gelap pengguna
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    applyDarkMode();
+}
+
+// Pantau perubahan preferensi color scheme
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+    if (event.matches) {
+        applyDarkMode();
+    } else {
+        location.reload(); // Reload halaman untuk kembali ke mode terang
+    }
+});
+</script>
+end dark mdoe -->
+</body>
+</html>

@@ -99,15 +99,19 @@ const sendWhatsAppMessage = (productName) => {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    var prices = document.querySelectorAll('.card-price span');
+    // Pilih semua elemen yang memiliki ID yang dimulai dengan 'price-'
+    var prices = document.querySelectorAll('[id^="price-"]');
     prices.forEach(function(span) {
         var priceValue = span.innerHTML.trim();
-        // Hapus semua non-digit, kecuali titik/koma desimal
-        priceValue = priceValue.replace(/[^0-9]/g, '');
-        if (priceValue) {
-            var formattedPrice = parseInt(priceValue).toLocaleString('id-ID');
-            span.innerHTML = formattedPrice;
-        }
+        
+        // Hapus semua karakter kecuali angka
+        priceValue = priceValue.replace(/[^\d]/g, '');
+
+        // Ubah string ke angka, lalu format dengan Locale Indonesia
+        var formattedPrice = parseFloat(priceValue).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+
+        // Update harga pada elemen
+        span.innerHTML = formattedPrice.replace('IDR', 'Rp');
     });
 });
 </script>

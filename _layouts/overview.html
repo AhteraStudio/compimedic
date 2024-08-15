@@ -137,9 +137,25 @@
                     <h2 class="sr-only">Product information</h2>
                     <p class="text-3xl tracking-tight text-gray-900"><span id="price-{{ page.id }}">{{ page.price | remove: ',' | remove: '.' }}</span></p>
 
-                    <form class="mt-10">
-                        <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-[#3396bb] px-8 py-3 text-base font-medium text-white hover:bg-[#00cdc8] focus:outline-none focus:ring-2 focus:ring-offset-2">Add to bag</button>
-                    </form>
+                  <form class="mt-10 flex items-center">
+    <!-- Tombol pertama di kiri -->
+    <button type="button" style="background-color: #3396bb; color: white; padding: 0 16px; height: 50px; border: none; border-radius: 4px; font-size: 16px; font-weight: medium; margin-right: 10px; flex-shrink: 0;">
+        Button Left
+    </button>
+
+    <!-- Tombol square di kanan -->
+    <div style="display: flex; flex-grow: 1;">
+        <button type="button" style="background-color: #3396bb; color: white; width: 50px; height: 50px; border: none; border-radius: 4px; font-size: 16px; font-weight: medium; margin-left: 4px;">
+            Square 1
+        </button>
+        <button type="button" style="background-color: #3396bb; color: white; width: 50px; height: 50px; border: none; border-radius: 4px; font-size: 16px; font-weight: medium; margin-left: 4px;">
+            Square 2
+        </button>
+        <button type="button" style="background-color: #3396bb; color: white; width: 50px; height: 50px; border: none; border-radius: 4px; font-size: 16px; font-weight: medium; margin-left: 4px;">
+            Square 3
+        </button>
+    </div>
+</form>
                 </div>
 
                 <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">

@@ -8,23 +8,19 @@ module Jekyll
     priority :high
 
     def generate(site)
-      # Path folder
       items_path = File.join(site.source, '_items')
       product_path = File.join(site.source, 'product')
 
-      # Pastikan folder /product ada
       FileUtils.mkdir_p(product_path) unless Dir.exist?(product_path)
-
-      # Hapus semua file di /product sebelum copy
       FileUtils.rm_rf(Dir.glob(File.join(product_path, '*')))
 
-      # Copy file .html dari _items ke /product
       Dir.foreach(items_path) do |item|
         next if item == '.' || item == '..'
         src = File.join(items_path, item)
         dst = File.join(product_path, item)
 
         if File.file?(src) && File.extname(src) == '.html'
+          puts "Copying #{src} to #{dst}"
           FileUtils.cp(src, dst)
         end
       end

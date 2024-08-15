@@ -134,5 +134,19 @@
         </div>
     </div>
 {% include footer.html %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var prices = document.querySelectorAll('.card-price span');
+    prices.forEach(function(span) {
+        var priceValue = span.innerHTML.trim();
+        // Hapus semua non-digit, kecuali titik/koma desimal
+        priceValue = priceValue.replace(/[^0-9]/g, '');
+        if (priceValue) {
+            var formattedPrice = parseInt(priceValue).toLocaleString('id-ID');
+            span.innerHTML = formattedPrice;
+        }
+    });
+});
+</script>
 </body>
 </html>

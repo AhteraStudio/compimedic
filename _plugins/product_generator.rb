@@ -18,10 +18,9 @@ module Jekyll
       @name = File.basename(path)
 
       self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), 'default.html') # Sesuaikan layout kalo perlu
-      self.data['title'] = item.data['title']
-      self.data['content'] = item.content
-      self.data.merge!(item.data) # Merge semua data dari _items
+      # Load the content directly from the HTML file in _items
+      self.content = item.content
+      self.data.merge!(item.data) # Merge all metadata from the _items file
     end
   end
 end

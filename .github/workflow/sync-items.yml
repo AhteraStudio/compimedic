@@ -1,0 +1,27 @@
+name: Sync Items to Product
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Copy files from _items to /product
+        run: |
+          mkdir -p product
+          cp -r _items/*.html product/
+
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'product/*'
+          message: 'Sync files from _items to /product'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

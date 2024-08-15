@@ -39,6 +39,47 @@
         setFavicon('https://raw.githubusercontent.com/EdilAhtera/compimedic/main/logo-compimedic.png');
     </script>
 <!-- end favicon Js -->
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ page.product }}",
+  "image": [
+    "{{ page.image }}"
+  ],
+  "description": "{{ page.description }}",
+  "sku": "{{ page.sku }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "{{ page.brand }}"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ page.url }}",
+    "priceCurrency": "IDR",
+    "price": "{{ page.price | remove: ',' | remove: '.' }}",
+    "priceValidUntil": "{{ page.expiry_date }}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "[Compimedic Official Store]"
+    }
+  }
+}
+</script>
+
+    <title>{{ page.product }} - Buy Now at [Compimedic Official Store]</title>
+    <meta name="description" content="{{ page.description }}">
+    <meta name="keywords" content="{{ page.product }}, {{ page.category }}, {{ page.brand }}, {{ page.price }}">
+    <meta property="og:title" content="{{ page.product }}">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:image" content="{{ page.image }}">
+    <meta property="og:url" content="{{ page.url }}">
+    <meta property="og:type" content="product">
+    <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>
    {% include header.html %}

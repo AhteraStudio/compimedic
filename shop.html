@@ -95,9 +95,17 @@ const sendWhatsAppMessage = (productName) => {
 };
 
 
-function number_format(number) {
-    return number.toLocaleString('id-ID');
-}
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var prices = document.querySelectorAll('.card-price span');
+    prices.forEach(function(span) {
+        var priceValue = span.innerHTML;
+        var formattedPrice = parseInt(priceValue).toLocaleString('id-ID');
+        span.innerHTML = formattedPrice;
+    });
+});
 </script>
 
 

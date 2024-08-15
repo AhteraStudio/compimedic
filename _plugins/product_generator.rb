@@ -26,7 +26,6 @@ module Jekyll
       @name = File.basename(path)
 
       self.process(@name)
-      # Load content directly from the HTML file in _items
       self.content = item.content
       self.data.merge!(item.data) # Merge all metadata from the _items file
     end

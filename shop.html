@@ -24,7 +24,14 @@ title: Compimedic Official Store
         "itemCondition": "https://schema.org/NewCondition",
         "availability": "https://schema.org/InStock",
         "priceValidUntil": "2024-12-31"
+      },
+      {% if item.ratingValue and item.reviewCount %}
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ item.ratingValue }}",
+        "reviewCount": "{{ item.reviewCount }}"
       }
+      {% endif %}
     }{% if forloop.last == false %},{% endif %}
     {% endfor %}
   ]

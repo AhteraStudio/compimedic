@@ -3,8 +3,10 @@ module Jekyll
     safe true
 
     def generate(site)
+      puts "Total items found: #{site.collections['items'].docs.size}"  # Debugging
       site.collections['items'].docs.each do |item|
         path = "/product/#{item.basename_without_ext}.html"
+        puts "Generating: #{path}"  # Debugging
         site.pages << ProductPage.new(site, site.source, path, item)
       end
     end
@@ -18,7 +20,7 @@ module Jekyll
       @name = File.basename(path)
 
       self.process(@name)
-      # Load the content directly from the HTML file in _items
+      # Load content directly from the HTML file in _items
       self.content = item.content
       self.data.merge!(item.data) # Merge all metadata from the _items file
     end

@@ -1,1 +1,1 @@
-# compimedic
+# compimedic solutions

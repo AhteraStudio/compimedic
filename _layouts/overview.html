@@ -179,6 +179,48 @@ onclick="sendWhatsAppMessage('{{ page.product }}')">
 </svg>
         </button>
     </div>
+
+<!-- hide -->
+<style>
+  /* Tambahin CSS buat transisi jika mau */
+  .hidden {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .visible {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const buttonContainer = document.querySelector('.button-container');
+    const footer = document.getElementById('footer');
+    let lastScrollTop = 0;
+
+    function handleScroll() {
+      const scrollTop = window.scrollY;
+      const footerTop = footer.offsetTop;
+      const windowHeight = window.innerHeight;
+
+      // Check if scroll is below the footer and hide buttons
+      if (scrollTop + windowHeight > footerTop) {
+        buttonContainer.classList.add('hidden');
+      } else {
+        buttonContainer.classList.remove('hidden');
+      }
+
+      // Show buttons if scrolling up
+      if (scrollTop < lastScrollTop) {
+        buttonContainer.classList.remove('hidden');
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile Safari
+    }
+
+    window.addEventListener('scroll', handleScroll);
+  });
+</script>
     <!-- end tombol mobile -->
 
 

@@ -217,3 +217,177 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('myCartDropdownButton1').click();
 });
 </script>
+
+
+
+
+
+<!-- Button untuk membuka Modal -->
+
+<!-- Modal -->
+<div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="modal-content bg-white w-full h-full p-8 relative">
+    <!-- Card 1 -->
+    <div class="card bg-white shadow-md p-4 rounded-lg flex items-center mb-4 relative w-full">
+      <!-- Checkbox -->
+      <input type="checkbox" class="absolute left-4 top-1/2 transform -translate-y-1/2">
+
+      <!-- Gambar Produk -->
+      <img src="{{ page.image }}" alt="{{ page.product }}" class="w-16 h-16 object-cover rounded-md ml-10 mr-4">
+
+      <!-- Detail Produk -->
+      <div class="flex-1">
+        <!-- Nama Produk -->
+        <h2 class="font-semibold text-sm">{{ page.product }}</h2>
+
+        <!-- Harga dan Quantity -->
+        <div class="flex items-center justify-between mt-2">
+          <div class="price text-gray-700 font-medium text-sm">
+            Rp. <span id="price">{{ page.price }}</span>
+          </div>
+          <div class="quantity flex items-center">
+            <!-- Tombol Kurang -->
+            <button class="decrement bg-gray-200 text-gray-700 px-2 py-1 rounded-md mr-2">-</button>
+            <input type="number" id="quantity" value="1" min="1" class="w-12 text-center bg-gray-100 rounded-md text-sm">
+            <!-- Tombol Tambah -->
+            <button class="increment bg-gray-200 text-gray-700 px-2 py-1 rounded-md ml-2">+</button>
+          </div>
+        </div>
+
+        <!-- Total Harga -->
+        <div class="total mt-2 text-gray-900 font-semibold text-sm">
+          Total: Rp. <span id="total">{{ page.price }}</span>
+        </div>
+      </div>
+
+      <!-- Tombol Dismiss Card -->
+      <button class="dismiss absolute top-1/2 right-0 transform -translate-y-1/2 bg-red-500 text-white rounded-full px-2 py-1 text-sm">x</button>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card bg-white shadow-md p-4 rounded-lg flex items-center w-full relative">
+      <!-- Checkbox -->
+      <input type="checkbox" class="absolute left-4 top-1/2 transform -translate-y-1/2">
+
+      <!-- Gambar Produk -->
+      <img src="{{ page.image2 }}" alt="{{ page.product2 }}" class="w-16 h-16 object-cover rounded-md ml-10 mr-4">
+
+      <!-- Detail Produk -->
+      <div class="flex-1">
+        <!-- Nama Produk -->
+        <h2 class="font-semibold text-sm">{{ page.product2 }}</h2>
+
+        <!-- Harga dan Quantity -->
+        <div class="flex items-center justify-between mt-2">
+          <div class="price text-gray-700 font-medium text-sm">
+            Rp. <span id="price2">{{ page.price2 }}</span>
+          </div>
+          <div class="quantity flex items-center">
+            <!-- Tombol Kurang -->
+            <button class="decrement2 bg-gray-200 text-gray-700 px-2 py-1 rounded-md mr-2">-</button>
+            <input type="number" id="quantity2" value="1" min="1" class="w-12 text-center bg-gray-100 rounded-md text-sm">
+            <!-- Tombol Tambah -->
+            <button class="increment2 bg-gray-200 text-gray-700 px-2 py-1 rounded-md ml-2">+</button>
+          </div>
+        </div>
+
+        <!-- Total Harga -->
+        <div class="total mt-2 text-gray-900 font-semibold text-sm">
+          Total: Rp. <span id="total2">{{ page.price2 }}</span>
+        </div>
+      </div>
+
+      <!-- Tombol Dismiss Card -->
+      <button class="dismiss absolute top-1/2 right-0 transform -translate-y-1/2 bg-red-500 text-white rounded-full px-2 py-1 text-sm">x</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const openModalBtn = document.getElementById('myCartDropdownButton1');
+  const modal = document.getElementById('productModal');
+
+  // Event listener buat buka modal
+  openModalBtn.addEventListener('click', function() {
+    modal.classList.remove('hidden');
+    history.pushState(null, null, null); // Trigger back event ketika modal dibuka
+  });
+
+  // Event listener buat dismiss modal pake tombol back
+  window.addEventListener('popstate', function() {
+    if (!modal.classList.contains('hidden')) {
+      modal.classList.add('hidden');
+    }
+  });
+
+  // Card 1
+  const priceElement = document.getElementById('price');
+  const quantityElement = document.getElementById('quantity');
+  const totalElement = document.getElementById('total');
+  
+  let price = parseInt(priceElement.innerText.replace(/[^0-9]/g, ''));
+  
+  function updateTotal() {
+    let quantity = parseInt(quantityElement.value);
+    let total = price * quantity;
+    totalElement.innerText = total.toLocaleString('id-ID');
+  }
+
+  document.querySelector('.increment').addEventListener('click', function() {
+    quantityElement.value = parseInt(quantityElement.value) + 1;
+    updateTotal();
+  });
+
+  document.querySelector('.decrement').addEventListener('click', function() {
+    if (quantityElement.value > 1) {
+      quantityElement.value = parseInt(quantityElement.value) - 1;
+      updateTotal();
+    }
+  });
+
+  quantityElement.addEventListener('input', function() {
+    if (quantityElement.value < 1) quantityElement.value = 1;
+    updateTotal();
+  });
+
+  document.querySelector('.dismiss').addEventListener('click', function() {
+    this.closest('.card').remove();
+  });
+
+  // Card 2
+  const priceElement2 = document.getElementById('price2');
+  const quantityElement2 = document.getElementById('quantity2');
+  const totalElement2 = document.getElementById('total2');
+  
+  let price2 = parseInt(priceElement2.innerText.replace(/[^0-9]/g, ''));
+  
+  function updateTotal2() {
+    let quantity2 = parseInt(quantityElement2.value);
+    let total2 = price2 * quantity2;
+    totalElement2.innerText = total2.toLocaleString('id-ID');
+  }
+
+  document.querySelector('.increment2').addEventListener('click', function() {
+    quantityElement2.value = parseInt(quantityElement2.value) + 1;
+    updateTotal2();
+  });
+
+  document.querySelector('.decrement2').addEventListener('click', function() {
+    if (quantityElement2.value > 1) {
+      quantityElement2.value = parseInt(quantityElement2.value) - 1;
+      updateTotal2();
+    }
+  });
+
+  quantityElement2.addEventListener('input', function() {
+    if (quantityElement2.value < 1) quantityElement2.value = 1;
+    updateTotal2();
+  });
+
+  document.querySelector('.dismiss').addEventListener('click', function() {
+    this.closest('.card').remove();
+  });
+});
+</script>

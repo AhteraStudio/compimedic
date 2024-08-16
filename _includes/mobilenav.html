@@ -65,11 +65,11 @@
 // Buat nge-check kalo lagi di halaman /compimedic/product atau /compimedic/product/?...
     if (currentPath.startsWith('/compimedic/product')) {
         const homeBtn = document.getElementById('home-btn');
-        homeBtn.classList.add('bg-[#3396bb]', 'text-white');
-        homeBtn.querySelector('svg').classList.remove('text-[#3396bb]');
-        homeBtn.querySelector('span').classList.remove('text-[#3396bb]');
-        homeBtn.querySelector('svg').classList.add('text-white');
-        homeBtn.querySelector('span').classList.add('text-white');
+        homeBtn.classList.add('bg-white', 'text-white');
+        homeBtn.querySelector('svg').classList.remove('text-white');
+        homeBtn.querySelector('span').classList.remove('text-white');
+        homeBtn.querySelector('svg').classList.add('text-[#3396bb]');
+        homeBtn.querySelector('span').classList.add('text-[#3396bb]');
     }
 
     });

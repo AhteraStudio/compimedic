@@ -54,22 +54,11 @@
         // Buat nge-check kalo lagi di halaman /product
         if (currentPath === '/compimedic/shop') {
             const homeBtn = document.getElementById('home-btn');
-            homeBtn.classList.add('bg-[#3396bb]', 'text-white');
-            homeBtn.querySelector('svg').classList.remove('text-[#3396bb]');
-            homeBtn.querySelector('span').classList.remove('text-[#3396bb]');
-            homeBtn.querySelector('svg').classList.add('text-white');
-            homeBtn.querySelector('span').classList.add('text-white');
-        }
-
-
-// Buat nge-check kalo lagi di halaman /product
-        if (currentPath === '/compimedic/product') {
-            const homeBtn = document.getElementById('home-btn');
-            homeBtn.classList.add('bg-[#3396bb]', 'text-white');
-            homeBtn.querySelector('svg').classList.remove('text-[#3396bb]');
-            homeBtn.querySelector('span').classList.remove('text-[#3396bb]');
-            homeBtn.querySelector('svg').classList.add('text-white');
-            homeBtn.querySelector('span').classList.add('text-white');
+            homeBtn.classList.add('bg-white', 'text-[#3396bb]');
+            homeBtn.querySelector('svg').classList.remove('text-white');
+            homeBtn.querySelector('span').classList.remove('text-white');
+            homeBtn.querySelector('svg').classList.add('text-[#3396bb]');
+            homeBtn.querySelector('span').classList.add('text-[#3396bb]');
         }
     });
 </script>

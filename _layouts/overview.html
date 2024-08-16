@@ -198,12 +198,12 @@ onclick="sendWhatsAppMessage('{{ page.product }}')">
   }
 </style>
 </style>
-
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const buttonContainer = document.querySelector('.button-container');
     const footer = document.getElementById('footer');
     let lastScrollTop = 0;
+    let isHidden = false;
 
     function handleScroll() {
       const scrollTop = window.scrollY;
@@ -212,14 +212,26 @@ onclick="sendWhatsAppMessage('{{ page.product }}')">
 
       // Check if scroll is below the footer and hide buttons
       if (scrollTop + windowHeight > footerTop) {
-        buttonContainer.classList.add('hidden');
+        if (!isHidden) {
+          buttonContainer.classList.add('hidden');
+          buttonContainer.classList.remove('visible');
+          isHidden = true;
+        }
       } else {
-        buttonContainer.classList.remove('hidden');
+        if (isHidden) {
+          buttonContainer.classList.remove('hidden');
+          buttonContainer.classList.add('visible');
+          isHidden = false;
+        }
       }
 
       // Show buttons if scrolling up
       if (scrollTop < lastScrollTop) {
-        buttonContainer.classList.remove('hidden');
+        if (isHidden) {
+          buttonContainer.classList.remove('hidden');
+          buttonContainer.classList.add('visible');
+          isHidden = false;
+        }
       }
 
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile Safari
@@ -227,6 +239,7 @@ onclick="sendWhatsAppMessage('{{ page.product }}')">
 
     window.addEventListener('scroll', handleScroll);
   });
+</script>
 </script>
     <!-- end tombol mobile -->
 

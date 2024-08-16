@@ -226,82 +226,85 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <!-- Modal -->
 <div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-  <div class="modal-content bg-white w-full h-full p-8 relative">
+  <div class="modal-content bg-white w-full h-full p-4 relative">
     <!-- Card 1 -->
-    <div class="card bg-white shadow-md p-4 rounded-lg flex items-center mb-4 relative w-full">
+    <div class="card bg-white shadow-md p-2 rounded-lg flex items-center mb-2 relative w-full">
       <!-- Checkbox -->
-      <input type="checkbox" class="absolute left-4 top-1/2 transform -translate-y-1/2">
+      <input type="checkbox" class="absolute left-2 top-1/2 transform -translate-y-1/2">
 
       <!-- Gambar Produk -->
-      <img src="{{ page.image }}" alt="{{ page.product }}" class="w-16 h-16 object-cover rounded-md ml-10 mr-4">
+      <img src="{{ page.image }}" alt="{{ page.product }}" class="w-12 h-12 object-cover rounded-md ml-4 mr-2">
 
       <!-- Detail Produk -->
       <div class="flex-1">
         <!-- Nama Produk -->
-        <h2 class="font-semibold text-sm">{{ page.product }}</h2>
+        <h2 class="font-semibold text-xs">{{ page.product }}</h2>
 
         <!-- Harga dan Quantity -->
-        <div class="flex items-center justify-between mt-2">
-          <div class="price text-gray-700 font-medium text-sm">
+        <div class="flex items-center justify-between mt-1">
+          <div class="price text-gray-700 font-medium text-xs">
             Rp. <span id="price">{{ page.price }}</span>
           </div>
           <div class="quantity flex items-center">
             <!-- Tombol Kurang -->
-            <button class="decrement bg-gray-200 text-gray-700 px-2 py-1 rounded-md mr-2">-</button>
-            <input type="number" id="quantity" value="1" min="1" class="w-12 text-center bg-gray-100 rounded-md text-sm">
+            <button class="decrement bg-gray-200 text-gray-700 px-1 py-0.5 rounded-md mr-1 text-xs">-</button>
+            <input type="number" id="quantity" value="1" min="1" class="w-10 text-center bg-gray-100 rounded-md text-xs">
             <!-- Tombol Tambah -->
-            <button class="increment bg-gray-200 text-gray-700 px-2 py-1 rounded-md ml-2">+</button>
+            <button class="increment bg-gray-200 text-gray-700 px-1 py-0.5 rounded-md ml-1 text-xs">+</button>
           </div>
         </div>
 
         <!-- Total Harga -->
-        <div class="total mt-2 text-gray-900 font-semibold text-sm">
+        <div class="total mt-1 text-gray-900 font-semibold text-xs">
           Total: Rp. <span id="total">{{ page.price }}</span>
         </div>
       </div>
 
       <!-- Tombol Dismiss Card -->
-      <button class="dismiss absolute top-1/2 right-0 transform -translate-y-1/2 bg-red-500 text-white rounded-full px-2 py-1 text-sm">x</button>
+      <button class="dismiss absolute top-1/2 right-0 transform -translate-y-1/2 bg-red-500 text-white rounded-full px-1 py-0.5 text-xs">x</button>
     </div>
 
     <!-- Card 2 -->
-    <div class="card bg-white shadow-md p-4 rounded-lg flex items-center w-full relative">
+    <div class="card bg-white shadow-md p-2 rounded-lg flex items-center w-full relative">
       <!-- Checkbox -->
-      <input type="checkbox" class="absolute left-4 top-1/2 transform -translate-y-1/2">
+      <input type="checkbox" class="absolute left-2 top-1/2 transform -translate-y-1/2">
 
       <!-- Gambar Produk -->
-      <img src="{{ page.image2 }}" alt="{{ page.product2 }}" class="w-16 h-16 object-cover rounded-md ml-10 mr-4">
+      <img src="{{ page.image2 }}" alt="{{ page.product2 }}" class="w-12 h-12 object-cover rounded-md ml-4 mr-2">
 
       <!-- Detail Produk -->
       <div class="flex-1">
         <!-- Nama Produk -->
-        <h2 class="font-semibold text-sm">{{ page.product2 }}</h2>
+        <h2 class="font-semibold text-xs">{{ page.product2 }}</h2>
 
         <!-- Harga dan Quantity -->
-        <div class="flex items-center justify-between mt-2">
-          <div class="price text-gray-700 font-medium text-sm">
+        <div class="flex items-center justify-between mt-1">
+          <div class="price text-gray-700 font-medium text-xs">
             Rp. <span id="price2">{{ page.price2 }}</span>
           </div>
           <div class="quantity flex items-center">
             <!-- Tombol Kurang -->
-            <button class="decrement2 bg-gray-200 text-gray-700 px-2 py-1 rounded-md mr-2">-</button>
-            <input type="number" id="quantity2" value="1" min="1" class="w-12 text-center bg-gray-100 rounded-md text-sm">
+            <button class="decrement2 bg-gray-200 text-gray-700 px-1 py-0.5 rounded-md mr-1 text-xs">-</button>
+            <input type="number" id="quantity2" value="1" min="1" class="w-10 text-center bg-gray-100 rounded-md text-xs">
             <!-- Tombol Tambah -->
-            <button class="increment2 bg-gray-200 text-gray-700 px-2 py-1 rounded-md ml-2">+</button>
+            <button class="increment2 bg-gray-200 text-gray-700 px-1 py-0.5 rounded-md ml-1 text-xs">+</button>
           </div>
         </div>
 
         <!-- Total Harga -->
-        <div class="total mt-2 text-gray-900 font-semibold text-sm">
+        <div class="total mt-1 text-gray-900 font-semibold text-xs">
           Total: Rp. <span id="total2">{{ page.price2 }}</span>
         </div>
       </div>
 
       <!-- Tombol Dismiss Card -->
-      <button class="dismiss absolute top-1/2 right-0 transform -translate-y-1/2 bg-red-500 text-white rounded-full px-2 py-1 text-sm">x</button>
+      <button class="dismiss absolute top-1/2 right-0 transform -translate-y-1/2 bg-red-500 text-white rounded-full px-1 py-0.5 text-xs">x</button>
     </div>
   </div>
 </div>
+
+
+
 
 
 <script>

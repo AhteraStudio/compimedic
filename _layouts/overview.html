@@ -136,6 +136,18 @@
                 display: flex;
             }
         }
+
+/* Default: tombol tampil di semua perangkat */
+.desktop-tablet-button {
+    display: inline-block;
+}
+
+/* Mode mobile: sembunyikan tombol */
+@media only screen and (max-width: 767px) {
+    .desktop-tablet-button {
+        display: none;
+    }
+}
     </style>
 
 </head>
@@ -225,11 +237,10 @@ onclick="sendWhatsAppMessage('{{ page.product }}')">
 
 
 <!-- tombol buy -->
-<form class="mt-10 flex items-center">
-    <!-- Tombol pertama di kiri -->
-    <button type="button" style="background-color: #3396bb; color: white; padding: 0 16px; height: 40px; border: none; border-radius: 30px; font-size: 16px; font-weight: medium; margin-right: 10px; cursor: pointer;">
-        Add to Cart
-    </button>
+<!-- Tombol pertama di kiri -->
+<button class="desktop-tablet-button" type="button" style="background-color: #3396bb; color: white; padding: 0 16px; height: 40px; border: none; border-radius: 30px; font-size: 16px; font-weight: medium; margin-right: 10px; cursor: pointer;">
+    Add to Cart
+</button>
 
     <!-- Wrapper untuk tombol square di kanan -->
     <div style="display: flex; margin-left: auto;">

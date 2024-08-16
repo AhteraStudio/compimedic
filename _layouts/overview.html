@@ -79,7 +79,45 @@
     <meta property="og:url" content="{{ page.url }}">
     <meta property="og:type" content="product">
     <meta name="twitter:card" content="summary_large_image">
+
+
+
+<style>
+        .button-container {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30px;
+        }
+        .button {
+            flex: 1;
+            height: 100%;
+            border: none;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .buy-button {
+            background-color: #00cdc8;
+        }
+        .tanyak-button {
+            background-color: #3369bb;
+        }
+    </style>
+
 </head>
+
+
+<!-- tombol mobile -->
+<div class="button-container">
+        <button class="button buy-button">Buy</button>
+        <button class="button tanyak-button">Tanyak</button>
+    </div>
+<!-- end tombol mobile -->
+
+
 
    {% include header.html %}
     <div class="bg-white">

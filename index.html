@@ -20,26 +20,6 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
-<!-- dark theme -->
-<script>
-  function updateThemeColor() {
-    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (isDarkMode) {
-      themeColorMeta.setAttribute('content', '#000000'); // Warna pas dark mode (misalnya hitam)
-    } else {
-      themeColorMeta.setAttribute('content', '#3396bb'); // Warna pas light mode
-    }
-  }
-
-  // Panggil saat load pertama kali
-  updateThemeColor();
-
-  // Pantau perubahan tema (misalnya user ganti setting di OS)
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeColor);
-</script>
-
 <!-- favicon Js -->
     <script>
         function setFavicon(url) {

@@ -137,6 +137,13 @@
             }
         }
 
+/* Kontainer tombol */
+.button-info {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Spasi antar tombol */
+}
+
 /* Default: tombol tampil di semua perangkat */
 .desktop-tablet-button {
     display: inline-block;
@@ -237,6 +244,7 @@ onclick="sendWhatsAppMessage('{{ page.product }}')">
 
 
 <!-- tombol buy -->
+<div class="button-info">
 <!-- Tombol pertama di kiri -->
 <button class="desktop-tablet-button" type="button" style="background-color: #3396bb; color: white; padding: 0 16px; height: 40px; border: none; border-radius: 30px; font-size: 16px; font-weight: medium; margin-right: 10px; cursor: pointer;">
     Add to Cart
@@ -266,7 +274,7 @@ onclick="sendWhatsAppMessage('{{ page.product }}')">
             </svg>
         </button>
     </div>
-</form>
+</div>
 
 <script>
     function sendWhatsAppMessage(productName) {

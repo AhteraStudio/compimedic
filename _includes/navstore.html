@@ -393,4 +393,69 @@ document.addEventListener('DOMContentLoaded', function() {
     this.closest('.card').remove();
   });
 });
+
+
+// JS fungsi kelola produk
+document.addEventListener('DOMContentLoaded', function() {
+    // Ambil elemen modal
+    var modal = document.getElementById('productModal');
+
+    // Set data produk ke dalam modal
+    function setProductData(product) {
+        // Isi data untuk Card 1
+        document.querySelector('.card img').src = product.image;
+        document.querySelector('.card h2').innerText = product.product;
+        document.querySelector('.card #price').innerText = product.price;
+        document.querySelector('.card #total').innerText = product.price;
+
+        // Isi data untuk Card 2
+        document.querySelector('.card2 img').src = product.image2;
+        document.querySelector('.card2 h2').innerText = product.product2;
+        document.querySelector('.card2 #price2').innerText = product.price2;
+        document.querySelector('.card2 #total2').innerText = product.price2;
+    }
+
+    // Contoh penggunaan dengan data produk (ganti dengan data yang sesuai)
+    setProductData({
+        image: 'path/to/image.jpg',
+        product: 'Product 1',
+        price: '10000',
+        image2: 'path/to/image2.jpg',
+        product2: 'Product 2',
+        price2: '20000'
+    });
+
+    // Tampilkan modal
+    document.querySelector('.buy-button').addEventListener('click', function() {
+        modal.classList.remove('hidden');
+    });
+
+    // Tutup modal
+    document.querySelectorAll('.dismiss').forEach(button => {
+        button.addEventListener('click', function() {
+            modal.classList.add('hidden');
+        });
+    });
+});
+//end JS fungsi kelola produk
+
+//cookies
+function saveToCart(product) {
+    var cart = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)cart\s*=\s*([^;]*).*$)|^.*$/, "$1") || '[]');
+    cart.push(product);
+    document.cookie = 'cart=' + JSON.stringify(cart) + '; path=/';
+}
+
+// Simpan data produk ke dalam cookies ketika tombol "Add to Cart" diklik
+document.querySelector('.add-to-cart').addEventListener('click', function() {
+    var product = {
+        image: document.querySelector('.card img').src,
+        product: document.querySelector('.card h2').innerText,
+        price: document.querySelector('.card #total').innerText,
+        quantity: parseInt(document.getElementById('quantity').value)
+    };
+    saveToCart(product);
+});
+//end cookies
+
 </script>

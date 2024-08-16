@@ -182,14 +182,21 @@ onclick="sendWhatsAppMessage('{{ page.product }}')">
 
 <!-- hide -->
 <style>
-  /* Tambahin CSS buat transisi jika mau */
-  .hidden {
-    opacity: 0;
-    transition: opacity 0.3s ease;
+<style>
+  .button-container {
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
+
+  .hidden {
+    transform: translateY(100%); /* Geser tombol keluar dari viewport */
+    opacity: 0;
+  }
+
   .visible {
+    transform: translateY(0); /* Kembali ke posisi semula */
     opacity: 1;
   }
+</style>
 </style>
 
 <script>

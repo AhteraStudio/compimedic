@@ -26,3 +26,7 @@ function App() {
 }
 
 export default App;
+
+.MuiBottomNavigation-root {
+  background-color: #fff; /* Ganti warna background sesuai selera */
+}

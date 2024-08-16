@@ -69,42 +69,9 @@
 }
 </script>
 
-
-
-<!-- end react -->
-<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-<!-- end react -->
-
 </head>
 <body>
 
-<!-- react -->
-<div id="root"></div>.
-<script type="text/babel">
-  const { useState } = React;
-
-  function App() {
-    const [value, setValue] = useState(0);
-
-    return (
-      <BottomNavigation
-        showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      >
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-      </BottomNavigation>
-    );
-  }
-
-  ReactDOM.render(<App />, document.getElementById('root'));
-</script>
 
 <!-- header -->
   <header style="background: rgba(255, 255, 255); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); position: fixed; top: 0; left: 0; right: 0; width: 100%; z-index: 10;">

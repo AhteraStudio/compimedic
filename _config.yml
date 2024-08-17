@@ -3,5 +3,10 @@ collections:
     output: true
     permalink: /items/:name/
 
+  pinindex:
+    output: true
+    permalink: /pinindex/:name/
+
+
 plugins:
   - _plugins/sync_items_to_product.rb

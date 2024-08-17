@@ -17,6 +17,17 @@
 </div>
 
 <style>
+/* Untuk webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Untuk Firefox */
+scrollbar-width: none;
+
+/* Untuk Edge dan IE */
+-ms-overflow-style: none;
+
 @media (max-width: 639px) {
   .overflow-x-auto {
     padding-left: 0;

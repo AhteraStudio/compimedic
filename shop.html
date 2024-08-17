@@ -44,8 +44,8 @@ body {
  <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
 <div id="product-container" class="grid-container">
   {% for item in site.items %}
-    <div class="card">
-        <a href="{{ item.link }}" class="product-link" target="_blank">
+    <a href="{{ item.link }}" class="product-link" target="_blank">
+    <div class="card"></a>
       <div class="card-image">
         <a href="{{ item.link }}" class="product-link" target="_blank">
           <img src="{{ item.image }}" alt="{{ item.product }}" />

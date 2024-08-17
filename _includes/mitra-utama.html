@@ -1,4 +1,152 @@
 <!-- content -->
+    <style>
+/* mitra kami */
+        .mitra-kami {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+height: 500px;
+            overflow: hidden; /* Ensure no scrollbars */
+        }
+
+        .planet {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            justify-content: center;
+align-items: center;
+          animation: zoomIn 2s ease-in-out forwards;
+        }
+
+        .planet:nth-child(2) {
+
+            animation-delay: 0.5s;
+            --angle: 1deg;
+        }
+
+        .planet:nth-child(3) {
+            animation-delay: 1s;
+            --angle: 67deg;
+        }
+
+        .planet:nth-child(4) {
+            animation-delay: 1.5s;
+            --angle: 140deg;
+        }
+
+        .planet:nth-child(5) {
+            animation-delay: 2s;
+            --angle: 220deg;
+        }
+
+        .planet:nth-child(6) {
+            animation-delay: 2.5s;
+            --angle: 282deg;
+        }
+    .center-planet {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    z-index: 1;
+    background: #fff; 
+display: flex;
+position: absolute;    
+            align-items: center;
+            justify-content: center;
+overflow: hidden; /* Agar gambar tidak keluar dari lingkaran */    
+    box-shadow: 0 4px 20px rgba(51, 150, 187, 0.2);
+}
+.center-planet1 {
+    display: flex;
+    justify-content: center; /* Menyusun item secara horizontal di tengah */
+    align-items: center;     /* Menyusun item secara vertikal di tengah */
+    position: relative;      /* Membutuhkan ini jika ingin memposisikan item secara absolut di dalamnya */
+    height: 100%;            /* Atur tinggi sesuai kebutuhan */
+}
+.center-planet1::before,
+.center-planet1::after,
+.center-planet .line1,
+.center-planet .line2,
+.center-planet .line3 {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed rgba(0, 0, 0, 0.2);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.center-planet1::after {
+    width: 220px; /* Lebar lingkaran garis */
+    height: 220px; /* Tinggi lingkaran garis */
+    border-width: 1px;
+}
+.center-planet1::before {
+    width: 350px; /* Lebar lingkaran garis */
+    height: 350px; /* Tinggi lingkaran garis */
+    border-width: 1px;
+}
+       @keyframes zoomIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+        top: 50%;
+        left: 50%;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+        top: calc(50% - 150px * sin(var(--angle)));
+        left: calc(50% - 150px * cos(var(--angle)));
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        top: calc(50% - 150px * sin(var(--angle)));
+        left: calc(50% - 150px * cos(var(--angle)));
+    }
+}
+
+.animate-zoomIn {
+    animation: zoomIn 1s forwards;
+}
+
+section {
+    position: relative; /* Agar top dan left bekerja */
+}
+    </style>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('.mitra-kami');
+
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    function handleScroll() {
+        if (isInViewport(section)) {
+            section.classList.add('animate-zoomIn');
+            // Hapus event listener setelah animasi diaktifkan
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }
+
+    // Tambahkan event listener untuk scroll
+    window.addEventListener('scroll', handleScroll);
+});
+</script>
 
 <section>
     <div class="gap-8 items-center py-8 px-0 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">

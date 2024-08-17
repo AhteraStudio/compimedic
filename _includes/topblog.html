@@ -4,13 +4,15 @@
     {% for item in site.pinindex %}
     <!-- Card -->
     <div class="relative w-[224px] h-[280px] rounded-lg overflow-hidden" style="box-shadow: 0 5px 20px rgba(51, 150, 187, 0.1);">
-<a href="{{ item.link }}">
-      <img class="w-full h-full object-cover" src="{{ item.img }}" alt="Judul Card">
-      <div class="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-transparent"></div>
-      <div class="absolute bottom-0 p-4 bg-gradient-to-t from-white via-white/70 to-transparent">
-        <p class="font-semibold text-xs text-[#3396bb]">{{ item.judul }}</p> <!-- Ukuran teks deskripsi diperkecil -->
-</a>
-      </div>
+      <a href="{{ item.link }}">
+        <img class="w-full h-full object-cover" src="{{ item.img }}" alt="Judul Card">
+        <div class="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-transparent"></div>
+        <div class="absolute bottom-0 p-4 bg-gradient-to-t from-white via-white/70 to-transparent">
+          <p class="font-semibold text-xs text-[#3396bb]">{{ item.judul }}</p> <!-- Ukuran teks deskripsi diperkecil -->
+        </div>
+        <!-- Square Badge -->
+        <div class="absolute top-2 right-2 w-8 h-8 bg-[#f8f8f8]"></div>
+      </a>
     </div>
     {% endfor %}
   </div>
@@ -43,6 +45,11 @@ scrollbar-width: none;
   .min-w-max {
     min-width: calc(224px * 3 + 16px * 2 + 16px * 2); /* 3 cards with 16px gap each and padding */
   }
+}
+
+/* Styling untuk square badge */
+.absolute.top-2.right-2.w-8.h-8.bg-[#f8f8f8] {
+  /* Sudah ditetapkan di HTML, jadi mungkin tidak perlu tambahan styling */
 }
 </style>
 <!-- end blog -->

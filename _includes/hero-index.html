@@ -1,0 +1,95 @@
+
+<!-- hero -->
+<div class="relative" x-data="{ state: false }">
+  
+
+
+  <div class="relative">
+    <section>
+      <div
+        class="max-w-screen-xl mx-auto px-4 py-28 gap-12 text-[#4A4A4A] overflow-hidden md:px-8 md:flex"
+      >
+        <div class="flex-none space-y-5 max-w-xl">
+         
+          <h1 class="text-4xl text-[#3396BB] font-extrabold sm:text-5xl">
+            Trusted medical equipment distributor!
+          </h1>
+          <p>
+            Providing a variety of high-quality medical devices to support healthcare services. Our commitment is to deliver reliable and innovative solutions.
+          </p>
+          <div class="flex items-center gap-x-3 sm:text-sm">
+            <a
+              href="/store"
+              class="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-[#3396BB] duration-150 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex" style="box-shadow: 0 10px 20px rgba(51, 150, 187, 0.2);"
+            >
+              buy now
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="w-5 h-5"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://wa.me/6285186655283"
+              class="flex items-center justify-center gap-x-1 py-2 px-4 text-[#3396BB] hover:text-gray-900 font-medium duration-150 md:inline-flex"
+            >
+              contact sales
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="w-5 h-5"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="flex-1 hidden md:block">
+          <!-- Replace with your image -->
+          <img
+            src="https://raw.githubusercontent.com/EdilAhtera/compimedic/main/img/1722616949956.png"
+            class="max-w-[350px]"
+          />
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("dropdown", () => ({
+      open: false,
+      toggle() {
+        this.open = !this.open;
+      },
+      close() {
+        this.open = false;
+      },
+      init() {
+        this.$watch("open", (value) => {
+          if (value) {
+            this.$nextTick(() => {
+              window.addEventListener("click", this.close);
+            });
+          } else {
+            window.removeEventListener("click", this.close);
+          }
+        });
+      },
+    }));
+  });
+</script>
+<!-- end hero -->

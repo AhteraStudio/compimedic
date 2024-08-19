@@ -139,13 +139,14 @@ body {
         }
 
 
-
 /* Grid container untuk mengatur tampilan card */
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Sesuaikan ukuran minimum card */
+  display: flex; /* Ubah ke flex untuk horizontal scroll */
+  flex-wrap: nowrap; /* Jangan biarkan flex item pindah ke baris berikutnya */
+  overflow-x: auto; /* Aktifkan scroll horizontal */
   gap: 16px;
   margin: 0 auto;
+  padding: 0 16px; /* Tambahkan padding horizontal jika perlu */
 }
 
 /* Mengatur card */
@@ -158,7 +159,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 300px; /* Atur tinggi card supaya tetap konsisten */
-  width: 100%;
+  width: 300px; /* Atur lebar card supaya tetap konsisten */
   position: relative; /* Tambahkan relative positioning untuk diskon */
 }
 
@@ -192,7 +193,6 @@ body {
   font-size: 10px; /* Kecilkan ukuran font */
   color: white;
   z-index: 1; /* Pastikan diskon berada di atas gambar */
-
 }
 
 /* Mengatur konten card */
@@ -221,7 +221,6 @@ body {
 .card-title:hover {
   text-decoration: underline;
 }
-
 
 /* tambahan */
 .card-location,
@@ -257,7 +256,6 @@ body {
   min-width: auto; /* Ubah min-width supaya nggak ada batasan yang kaku */
   font-size: 0.6rem !important;
 }
-
 
 /* Mengatur footer card */
 .card-footer {
@@ -301,18 +299,28 @@ body {
  height: 19px;
 color: #3396bb;
 
+
 /* Media query untuk desktop */
 @media (min-width: 768px) {
   .grid-container {
-    grid-template-columns: repeat(5, 1fr); /* 5 card per baris di desktop */
+    /* Atur jumlah card yang tampil di satu baris, dengan scroll horizontal */
+    scroll-snap-type: x mandatory; /* Mengatur snap pada scroll horizontal */
   }
 }
+
 
 /* Media query untuk mobile */
 @media (max-width: 767px) {
   .grid-container {
-    grid-template-columns: repeat(2, 1fr); /* 2 card per baris di mobile */
+    /* Atur jumlah card yang tampil di satu baris, dengan scroll horizontal */
+    scroll-snap-type: x mandatory; /* Mengatur snap pada scroll horizontal */
   }
+}
+
+/* Tambahkan style untuk card agar snappable */
+.card {
+  flex: 0 0 auto; /* Flex basis supaya card tidak mengecil */
+  scroll-snap-align: start; /* Mengatur snap posisi pada card */
 }
 </style>
   </div>

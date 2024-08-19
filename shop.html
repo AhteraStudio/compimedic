@@ -10,7 +10,7 @@ title: Compimedic Official Store
   "@context": "https://schema.org",
   "@type": "ItemList",
   "itemListElement": [
-    {% assign item_files = site.pages | where: "dir", "/items/" %}
+    {% assign item_files = site.pages | where: "dir", "/product/" %}
     {% for item in item_files %}
     {
       "@type": "Product",

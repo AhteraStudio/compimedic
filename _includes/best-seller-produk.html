@@ -38,7 +38,7 @@ body {
 
 <body>
 
-  {% assign item_files = site.pages | where: "dir", "/product/" %}
+  {% assign best_sellers = site.pages | where: "dir", "/items/" | where: "tag", "best-seller" %}
 
 
 <section class="bg-white py-8 antialiased md:py-12">
@@ -46,7 +46,7 @@ body {
 <div id="product-container" class="grid-container overflow-x-auto">
 
 
-  {% for item in item_files %}
+   {% for item in best_sellers %}
 
 
     <div class="card">

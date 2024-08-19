@@ -7,7 +7,7 @@
   "itemListElement": [
     {% assign best_sellers = site.pages | where: "dir", "/items/" | where: "tag", "best-seller" %}
 
-    {% for item in item_files %}
+{% for item in best_sellers %}
     {
       "@type": "Product",
       "name": "{{ item.product }}",

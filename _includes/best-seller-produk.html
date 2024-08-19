@@ -30,10 +30,18 @@
 
 
 <body>
+
+{% assign best_sellers = site.pages | where: "dir", "/items/" | where: "tag", "best-seller" %}
+
+
 <section class="bg-white py-8 antialiased md:py-12">
   <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
     <div id="product-container" class="flex gap-4 overflow-x-auto py-4 px-2">
-      {% for item in item_files %}
+      
+
+{% for item in best_sellers %}
+
+
       <div class="bg-white border border-gray-200 rounded-md shadow-md overflow-hidden flex flex-col h-[300px] w-[300px] relative">
         <div class="relative h-[57%] w-full bg-gray-100 overflow-hidden">
           <a href="{{ item.url }}" class="block h-full w-full">

@@ -38,7 +38,8 @@ body {
 
 <body>
 
-  {% assign item_files = site.pages | where: "dir", "/product/" %}
+  {% assign best_sellers = site.pages | where: "dir", "/product/" | where: "tag", "best-seller" %}
+  {% for item in best_sellers %}
 
 
 <section class="bg-white py-8 antialiased md:py-12">

@@ -13,7 +13,5 @@ shopee:
 link: /path/to/product-page
 description: Alat tes tekanan darah
 category: alkes
+tag: best-seller
 ---
-
-
-contoh penggunaan untuk pengisian data barang

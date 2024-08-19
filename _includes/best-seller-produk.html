@@ -39,14 +39,17 @@ body {
 <body>
 
   {% assign best_sellers = site.pages | where: "dir", "/product/" | where: "tag", "best-seller" %}
-  {% for item in best_sellers %}
-
+  
 
 <section class="bg-white py-8 antialiased md:py-12">
   <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
     <div id="product-container" class="grid-container overflow-x-auto whitespace-nowrap space-x-4">
       <div class="flex space-x-4">
-        {% for item in item_files %}
+
+
+      {% for item in best_sellers %}
+
+
           <div class="card inline-block">
             <div class="card-image">
               <a href="{{ item.url }}" class="product-link" target="_blank">

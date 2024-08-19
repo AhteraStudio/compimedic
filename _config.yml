@@ -1,0 +1,4 @@
+collections:
+  product:
+    output: true
+    permalink: /product/:product/

@@ -42,7 +42,7 @@ body {
 
 <body>
 
-{% assign products = site.product | where: "dir", "/product/" %}
+{% assign item_files = site.pages | where: "dir", "/product/" %}
 
 
 <section class="bg-white py-8 antialiased md:py-12">
@@ -50,7 +50,7 @@ body {
 <div id="product-container" class="grid-container">
 
 
-{% for item in products %}
+{% for item in item_files %}
 
 
     <div class="card">

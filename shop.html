@@ -10,7 +10,7 @@ title: Compimedic Official Store
   "@context": "https://schema.org",
   "@type": "ItemList",
   "itemListElement": [
-    {% assign item_files = site.pages | where: "dir", "/product/" %}
+    {% assign item_files = site.pages | where: "dir", "/items/" %}
     {% for item in item_files %}
     {
       "@type": "Product",
@@ -32,7 +32,6 @@ title: Compimedic Official Store
   ]
 }
 </script>
-
 <style>
 body {
    padding-top: 6.5rem;
@@ -43,7 +42,7 @@ body {
 
 <body>
 
-  {% assign item_files = site.pages | where: "dir", "/product/" %}
+{% assign item_files = site.pages | where: "dir", "/product/" %}
 
 
 <section class="bg-white py-8 antialiased md:py-12">
@@ -51,7 +50,7 @@ body {
 <div id="product-container" class="grid-container">
 
 
-  {% for item in item_files %}
+{% for item in item_files %}
 
 
     <div class="card">
@@ -150,25 +149,23 @@ body {
 
 /* Grid container untuk mengatur tampilan card */
 .grid-container {
-  display: flex; /* Ubah ke flex untuk horizontal scroll */
-  flex-wrap: nowrap; /* Jangan biarkan flex item pindah ke baris berikutnya */
-  overflow-x: auto; /* Aktifkan scroll horizontal */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Sesuaikan ukuran minimum card */
   gap: 16px;
   margin: 0 auto;
-  padding: 0 16px; /* Tambahkan padding horizontal jika perlu */
 }
 
 /* Mengatur card */
 .card {
   background-color: RGB(255,255,255,0.1) ;
   border: 1px solid RGB(255,255,255,0.2);
-  border-radius: 5px;
-  box-shadow: 0 4px 10px rgba(51, 150, 187, 0.1);
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 300px; /* Atur tinggi card supaya tetap konsisten */
-  width: 300px; /* Atur lebar card supaya tetap konsisten */
+  width: 100%;
   position: relative; /* Tambahkan relative positioning untuk diskon */
 }
 
@@ -202,6 +199,7 @@ body {
   font-size: 10px; /* Kecilkan ukuran font */
   color: white;
   z-index: 1; /* Pastikan diskon berada di atas gambar */
+
 }
 
 /* Mengatur konten card */
@@ -230,6 +228,7 @@ body {
 .card-title:hover {
   text-decoration: underline;
 }
+
 
 /* tambahan */
 .card-location,
@@ -266,6 +265,7 @@ body {
   font-size: 0.6rem !important;
 }
 
+
 /* Mengatur footer card */
 .card-footer {
   display: flex;
@@ -293,7 +293,7 @@ body {
   font-size: 10px; /* Kecilkan ukuran font */
 }
 
-.add-to-cart-btn:active{
+.add-to-cart-btn:hover {
   color: #333;
 }
 
@@ -311,16 +311,14 @@ color: #3396bb;
 /* Media query untuk desktop */
 @media (min-width: 768px) {
   .grid-container {
-    /* Atur flex container untuk desktop */
-    flex-wrap: nowrap; /* Jangan biarkan flex item pindah ke baris berikutnya */
+    grid-template-columns: repeat(5, 1fr); /* 5 card per baris di desktop */
   }
 }
 
 /* Media query untuk mobile */
 @media (max-width: 767px) {
   .grid-container {
-    /* Atur flex container untuk mobile */
-    flex-wrap: nowrap; /* Jangan biarkan flex item pindah ke baris berikutnya */
+    grid-template-columns: repeat(2, 1fr); /* 2 card per baris di mobile */
   }
 }
 </style>

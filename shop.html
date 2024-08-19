@@ -10,16 +10,17 @@ title: Compimedic Official Store
   "@context": "https://schema.org",
   "@type": "ItemList",
   "itemListElement": [
-    {% for item in site.items %}
+    {% assign item_files = site.pages | where: "dir", "/product/" %}
+    {% for item in item_files %}
     {
       "@type": "Product",
       "name": "{{ item.product }}",
       "image": "{{ item.image }}",
       "description": "{{ item.description }} - {{ item.category }} - {{ item.location }}",
-      "sku": "{{ item.sku }}", 
+      "sku": "{{ item.sku }}",
       "offers": {
         "@type": "Offer",
-        "url": "{{ item.link }}",
+        "url": "{{ item.url }}",
         "priceCurrency": "IDR",
         "price": "{{ item.price }}",
         "itemCondition": "https://schema.org/NewCondition",
@@ -31,6 +32,7 @@ title: Compimedic Official Store
   ]
 }
 </script>
+
 <style>
 body {
    padding-top: 6.5rem;

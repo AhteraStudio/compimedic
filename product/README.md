@@ -1,6 +1,6 @@
 ---
 layout: overview
-permalink: /product/{{ title | slugify }}/
+permalink: /product/{{ product | slugify }}/
 product: OMRON® Blood Pressure Monitor Digital HEM907C3 IntelliSense®
 price: 8500000
 location: Jakarta

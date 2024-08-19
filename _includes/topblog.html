@@ -1,7 +1,11 @@
 <!-- blog -->
+{% assign best_sellers = site.pages | where: "dir", "/blog/" | where: "tag", "artikel-utama" %}
+
 <div class="overflow-x-auto p-2">
   <div class="flex gap-4 justify-center min-w-max p-2">
-    {% for item in site.pinindex %}
+  
+ {% for item in artikel_utamas %}
+
     <!-- Card -->
     <div class="relative w-[224px] h-[280px] rounded-lg overflow-hidden" style="box-shadow: 0 5px 20px rgba(51, 150, 187, 0.2);">
       <a href="{{ item.link }}" target="_blank">

@@ -5,7 +5,8 @@
   "@context": "https://schema.org",
   "@type": "ItemList",
   "itemListElement": [
-    {% assign item_files = site.pages | where: "dir", "/product/" %}
+    {% assign best_sellers = site.pages | where: "dir", "/items/" | where: "tag", "best-seller" %}
+
     {% for item in item_files %}
     {
       "@type": "Product",

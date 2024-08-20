@@ -5,16 +5,46 @@ title: eKatalog
 
 <head>
 
-<script>
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    // User is signed in, bisa akses halaman
-  } else {
-    // User not signed in, redirect ke login
-    window.location.href = 'login.html';
-  }
-});
-</script>
+
+
+
+<!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js"></script>
+</head>
+  <button id="logout">Logout</button>
+
+  <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyDxhleffOMvCA8vo348aNBji2GisouGOjA",
+      authDomain: "compimedic-login-admin.firebaseapp.com",
+      projectId: "compimedic-login-admin",
+      storageBucket: "compimedic-login-admin.appspot.com",
+      messagingSenderId: "89992588630",
+      appId: "1:89992588630:web:daf79b5efcf9654c3a7af7"
+    };
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Check if user is logged in
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        window.location.href = 'login.html'; // Redirect to login if not logged in
+      }
+    });
+
+    // Handle logout
+    document.getElementById('logout').addEventListener('click', function() {
+      firebase.auth().signOut().then(() => {
+        window.location.href = 'login.html';
+      });
+    });
+  </script>
+
+
+
+
 
 <!-- favicon Js -->
     <script>

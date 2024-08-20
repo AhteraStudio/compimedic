@@ -83,158 +83,236 @@
 
 
 
-     <style>
-        .button-container {
-            display: flex;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50px;
-            display: none;
-            align-items: center ;
-        }
-        .button {
-            flex: 1;
-            height: 100%;
-            border: none;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+{% include navstore.html %}
 
-     .buy-button {
-    background-color: #3396bb;
-    min-width: 50%; /* Lebar minimum */
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+<section class="py-12 sm:py-16"> 
+  <div class="container mx-auto px-4">
+    <nav class="flex">
+      <ol role="list" class="flex items-center">
+        <li class="text-left">
+          <div class="-m-1">
+            <a href="/" class="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"> Home </a>
+          </div>
+        </li>
 
-.buy-button svg {
-    flex-shrink: 0; /* Biar SVG-nya nggak ngecilin button */
-    width: 16px; /* Sesuaikan width SVG */
-    height: 16px; /* Sesuaikan height SVG */
-}
+        <li class="text-left">
+          <div class="flex items-center">
+            <span class="mx-2 text-gray-400">/</span>
+            <div class="-m-1">
+              <a href="/shop" class="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"> Products </a>
+            </div>
+          </div>
+        </li>
 
-        .tanyak-button {
-            background-color: #fff;
-            color: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
+        <li class="text-left">
+          <div class="flex items-center">
+            <span class="mx-2 text-gray-400">/</span>
+            <div class="-m-1">
+              <a href="#" class="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800 w-8 truncate" aria-current="page"> {{ page.product }} </a>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </nav>
 
+    <div class="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
+      <div class="lg:col-span-3 lg:row-end-1">
+        <div class="lg:flex lg:items-start">
+          <div class="lg:order-2 lg:ml-5">
+            <div class="max-w-xl overflow-hidden rounded-lg">
+              <img class="h-full w-full max-w-full object-cover" src="{{ page.img }}" alt="" />
+            </div>
+          </div>
 
-  .cart-button {
-            background-color: #fff;
-            color: #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
+          <div class="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0">
+            <div class="flex flex-row items-start lg:flex-col">
+              <button type="button" class="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center">
+                <img class="h-full w-full object-cover" src="{{ page.img }}" alt="" />
+              </button>
+              <button type="button" class="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center">
+                <img class="h-full w-full object-cover" src="{{ page.img }}" alt="" />
+              </button>
+              <button type="button" class="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center">
+                <img class="h-full w-full object-cover" src="{{ page.img }}" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="lg:col-span-2 lg:row-span-2 lg:row-end-2">
+        <h1 class="sm: text-2xl font-bold text-gray-900 sm:text-3xl">{{ page.product }}</h1>
 
-        .button svg {
-            transition: fill 0.3s ease;
-        }
-        .buy-button:active svg,
-        .buy-button:focus svg {
-            fill: #ffffff; /* Color for active state */
-        }
-        .tanyak-button:active svg,
-        .tanyak-button:focus svg {
-            fill: #333333; /* Color for active state */
-        }
+        <div class="mt-5 flex items-center">
+          <div class="flex items-center">
+            <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+            </svg>
+            <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+            </svg>
+            <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+            </svg>
+            <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+            </svg>
+            <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
+            </svg>
+          </div>
+          <p class="ml-2 text-sm font-medium text-gray-500">1,209 Reviews</p>
+        </div>
 
-        @media only screen and (max-width: 768px) {
-            .button-container {
-                display: flex;
-            }
-        }
+        <h2 class="mt-8 text-base text-gray-900">Coffee Type</h2>
+        <div class="mt-3 flex select-none flex-wrap items-center gap-1">
+          <label class="">
+            <input type="radio" name="type" value="Powder" class="peer sr-only" checked />
+            <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">Powder</p>
+          </label>
+          <label class="">
+            <input type="radio" name="type" value="Whole Bean" class="peer sr-only" />
+            <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">Whole Bean</p>
+          </label>
+          <label class="">
+            <input type="radio" name="type" value="Groud" class="peer sr-only" />
+            <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">Groud</p>
+          </label>
+        </div>
 
-/* Kontainer tombol */
-.button-info {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px; /* Spasi antar tombol */
-    padding-top:10px;
-}
+        <h2 class="mt-8 text-base text-gray-900">Choose subscription</h2>
+        <div class="mt-3 flex select-none flex-wrap items-center gap-1">
+          <label class="">
+            <input type="radio" name="subscription" value="4 Months" class="peer sr-only" />
+            <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">4 Months</p>
+            <span class="mt-1 block text-center text-xs">$80/mo</span>
+          </label>
+          <label class="">
+            <input type="radio" name="subscription" value="8 Months" class="peer sr-only" checked />
+            <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">8 Months</p>
+            <span class="mt-1 block text-center text-xs">$60/mo</span>
+          </label>
+          <label class="">
+            <input type="radio" name="subscription" value="12 Months" class="peer sr-only" />
+            <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">12 Months</p>
+            <span class="mt-1 block text-center text-xs">$40/mo</span>
+          </label>
+        </div>
 
-/* Default: tombol tampil di semua perangkat */
-.desktop-tablet-button {
-    display: inline-block;
-}
+        <div class="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
+          <div class="flex items-end">
+            <h1 class="text-3xl font-bold">$60.50</h1>
+            <span class="text-base">/month</span>
+          </div>
 
-/* Mode mobile: sembunyikan tombol */
-@media only screen and (max-width: 767px) {
-    .desktop-tablet-button {
-        display: none;
-    }
-}
+          <button type="button" class="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+            </svg>
+            Add to cart
+          </button>
+        </div>
 
+        <ul class="mt-8 space-y-2">
+          <li class="flex items-center text-left text-sm font-medium text-gray-600">
+            <svg class="mr-2 block h-5 w-5 align-middle text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" class=""></path>
+            </svg>
+            Free shipping worldwide
+          </li>
 
+          <li class="flex items-center text-left text-sm font-medium text-gray-600">
+            <svg class="mr-2 block h-5 w-5 align-middle text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" class=""></path>
+            </svg>
+            Cancel Anytime
+          </li>
+        </ul>
+      </div>
 
-.vertical-separator {
-    width: 1px;
-    justify-content: center;
-    height: 100%;
-    background-color: #333;
-}
-    </style>
+      <div class="lg:col-span-3">
+        <div class="border-b border-gray-300">
+          <nav class="flex gap-4">
+            <a href="#" title="" class="border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800"> Description </a>
 
-</head>
+            <a href="#" title="" class="inline-flex items-center border-b-2 border-transparent py-4 text-sm font-medium text-gray-600">
+              Reviews
+              <span class="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100"> 1,209 </span>
+            </a>
+          </nav>
+        </div>
 
-
-<!-- tombol mobile -->
-    <div class="button-container">
-        <button class="button tanyak-button"
-onclick="sendWhatsAppMessage('{{ page.product }}')">
-         
-         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
-  <path d="M16 8c0 3.866-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7M5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-</svg>
-
-        </button>
- <div class="vertical-separator"></div>
-
- <button class="button cart-button">
-      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-  <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
-  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-</svg>
-
-        </button>
-
-        <button class="button buy-button text-white">
-            Beli Sekarang
-     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-seam-fill ml-2" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.01-.003.268-.108a.75.75 0 0 1 .558 0l.269.108.01.003zM10.404 2 4.25 4.461 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339L8 5.961 5.596 5l6.154-2.461z"/>
-</svg>
-        </button>
+        <div class="mt-8 flow-root sm:mt-12">
+          <h1 class="text-3xl font-bold">Delivered To Your Door</h1>
+          <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia accusantium nesciunt fuga.</p>
+          <h1 class="mt-8 text-3xl font-bold">From the Fine Farms of Brazil</h1>
+          <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio numquam enim facere.</p>
+          <p class="mt-4">{{ page.description }}</p>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-<!-- hide -->
-<style>
-  .button-container {
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
 
-  .hidden {
-    transform: translateY(100%); /* Geser tombol keluar dari viewport */
-    opacity: 0;
-  }
+{% include footer.html %}
 
-  .visible {
-    transform: translateY(0); /* Kembali ke posisi semula */
-    opacity: 1;
-  }
-</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Pilih semua elemen yang memiliki ID yang dimulai dengan 'price-'
+    var prices = document.querySelectorAll('[id^="price-"]');
+    prices.forEach(function(span) {
+        var priceValue = span.innerHTML.trim();
+        // Hapus semua non-digit kecuali koma dan titik desimal
+        priceValue = priceValue.replace(/[^\d,]/g, '');
+        
+        // Mengganti koma dengan titik untuk format angka
+        priceValue = priceValue.replace(',', '.');
+        
+        // Format angka dengan Locale Indonesia
+        var formattedPrice = parseFloat(priceValue).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+        
+        // Update harga pada elemen
+        span.innerHTML = formattedPrice;
+    });
+});
+
+
+// redirect.js
+(function() {
+    var path = window.location.pathname;
+    if (path.endsWith('.html')) {
+        var newPath = path.replace('.html', '');
+        window.location.replace(newPath);
+    }
+})();
+</script>
+
+<script>
+    function sendWhatsAppMessage(productName) {
+        const phoneNumber = '6285186655283';
+        const message = `Halo Compimedic, saya ingin menanyakan produk ${productName}. Tolong bantu saya untuk proses pemesanannya, terimakasih.`;
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+
+        window.open(whatsappUrl, '_blank');
+    }
+
+    function sharePage() {
+        if (navigator.share) {
+            navigator.share({
+                title: document.title,
+                url: window.location.href
+            }).then(() => {
+                console.log('Thanks for sharing!');
+            }).catch(console.error);
+        } else {
+            alert('Fitur share tidak didukung di browser ini.');
+        }
+    }
+</script>
+
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const buttonContainer = document.querySelector('.button-container');
@@ -276,202 +354,5 @@ onclick="sendWhatsAppMessage('{{ page.product }}')">
 
     window.addEventListener('scroll', handleScroll);
   });
-</script>
-</script>
-    <!-- end tombol mobile -->
-
-
-
-
-   {% include navstore.html %}
-
-
-
-
-
-    <div class="bg-white">
-        <div class="pt-0">
-            <nav aria-label="Breadcrumb">
-                <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                    <li>
-                        <div class="flex items-center">
-                            <a href="/shop" class="mr-2 text-sm font-medium text-gray-900">Product</a>
-                            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
-                                <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                            </svg>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="flex items-center">
-                            <a href="#" class="mr-2 text-sm font-medium text-gray-900">{{ page.category }}</a>
-                            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" aria-hidden="true" class="h-5 w-4 text-gray-300">
-                                <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                            </svg>
-                        </div>
-                    </li>
-       <li class="text-sm">
-    <a href="#" aria-current="page" style="display: block; width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" class="font-medium text-gray-500 hover:text-gray-600">{{ page.product }}</a>
-</li>
-                </ol>
-            </nav>
-
-            <!-- Image gallery -->
-            <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-                <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-                    <img src="{{ page.image1 }}" alt="img1" class="h-full w-full object-cover object-center">
-                </div>
-                <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                    <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                        <img src="{{ page.image }}" alt="img2" class="h-full w-full object-cover object-center">
-                    </div>
-                    <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                        <img src="{{ page.image }}" alt="img3" class="h-full w-full object-cover object-center">
-                    </div>
-                </div>
-                <div class="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-                    <img src="{{ page.image }}" alt="utama" class="h-full w-full object-cover object-center">
-                </div>
-            </div>
-
-            <!-- Product info -->
-           <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-                <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                    <h1 class="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">{{ page.product }}</h1>
-                </div>
-
-
-                <!-- Options -->
-         <div class="mt-4 lg:row-span-3 lg:mt-0">
-                    <h2 class="sr-only">Product information</h2>
-                    <p class="text-xl tracking-tight text-gray-900"><span id="price-{{ page.id }}">{{ page.price | remove: ',' | remove: '.' }}</span></p>
-
-
-        
-   
-
-
-<!-- tombol buy -->
-<div class="button-info">
-<!-- Tombol pertama di kiri -->
-<button class="desktop-tablet-button" type="button" style="background-color: #3396bb; color: white; padding: 0 16px; height: 40px; border: none; border-radius: 30px; font-size: 16px; font-weight: medium; margin-right: 10px; cursor: pointer;">
-    Add to Cart
-</button>
-
-    <!-- Wrapper untuk tombol square di kanan -->
-    <div style="display: flex; margin-left: auto;">
-        <!-- Tombol square dengan ikon SVG 1 (WhatsApp) -->
-        <button type="button" style="background-color: transparent; width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; border: none; border-radius: 4px; font-size: 16px; font-weight: medium; margin-left: 4px; text-align: center;" onclick="sendWhatsAppMessage('{{ page.product }}')">
-            <svg class="w-6 h-6 text-[#25D366]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path fill="currentColor" fill-rule="evenodd" d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z" clip-rule="evenodd"/>
-                <path fill="currentColor" d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z"/>
-            </svg>
-        </button>
-
-        <!-- Tombol square dengan ikon SVG 2 (Shopee) -->
-        <a href="{{ page.shopee }}" style="background-color: transparent; width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; border: none; border-radius: 4px; font-size: 16px; font-weight: medium; margin-left: 4px; text-align: center; line-height: 50px;">
-            <svg class="w-6 h-6 text-[#EE4D2D]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 109.59 122.88" fill="none">
-                <path class="st0" fill="currentColor" d="M74.98,91.98C76.15,82.36,69.96,76.22,53.6,71c-7.92-2.7-11.66-6.24-11.57-11.12 c0.33-5.4,5.36-9.34,12.04-9.47c4.63,0.09,9.77,1.22,14.76,4.56c0.59,0.37,1.01,0.32,1.35-0.2c0.46-0.74,1.61-2.53,2-3.17 c0.26-0.42,0.31-0.96-0.35-1.44c-0.95-0.7-3.6-2.13-5.03-2.72c-3.88-1.62-8.23-2.64-12.86-2.63c-9.77,0.04-17.47,6.22-18.12,14.47 c-0.42,5.95,2.53,10.79,8.86,14.47c1.34,0.78,8.6,3.67,11.49,4.57c9.08,2.83,13.8,7.9,12.69,13.81c-1.01,5.36-6.65,8.83-14.43,8.93 c-6.17-0.24-11.71-2.75-16.02-6.1c-0.11-0.08-0.65-0.5-0.72-0.56c-0.53-0.42-1.11-0.39-1.47,0.15c-0.26,0.4-1.92,2.8-2.34,3.43 c-0.39,0.55-0.18,0.86,0.23,1.2c1.8,1.5,4.18,3.14,5.81,3.97c4.47,2.28,9.32,3.53,14.48,3.72c3.32,0.22,7.5-0.49,10.63-1.81 C70.63,102.67,74.25,97.92,74.98,91.98L74.98,91.98z M54.79,7.18c-10.59,0-19.22,9.98-19.62,22.47h39.25 C74.01,17.16,65.38,7.18,54.79,7.18L54.79,7.18z M94.99,122.88l-0.41,0l-80.82-0.01h0c-5.5-0.21-9.54-4.66-10.09-10.19l-0.05-1 l-3.61-79.5v0C0,32.12,0,32.06,0,32c0-1.28,1.03-2.33,2.3-2.35l0,0h25.48C28.41,13.15,40.26,0,54.79,0s26.39,13.15,27.01,29.65 h25.4h0.04c1.3,0,2.35,1.05,2.35,2.35c0,0.04,0,0.08,0,0.12v0l-3.96,79.81l-0.04,0.68C105.12,118.21,100.59,122.73,94.99,122.88 L94.99,122.88z"/>
-            </svg>
-        </a>
-
-<!-- Tombol square dengan ikon SVG 3 (Share) -->
-        <button type="button" onclick="sharePage()" style="background-color: transparent; width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; border: none; border-radius: 4px; font-size: 16px; font-weight: medium; margin-left: 4px; text-align: center;">
-            <svg class="w-6 h-6 text-[#3396bb] active:text-[#00cdc8]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M7.926 10.898 15 7.727m-7.074 5.39L15 16.29M8 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm12 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm0-11a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
-            </svg>
-        </button>
-    </div>
-</div>
-
-<script>
-    function sendWhatsAppMessage(productName) {
-        const phoneNumber = '6285186655283';
-        const message = `Halo Compimedic, saya ingin menanyakan produk ${productName}. Tolong bantu saya untuk proses pemesanannya, terimakasih.`;
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-
-        window.open(whatsappUrl, '_blank');
-    }
-
-    function sharePage() {
-        if (navigator.share) {
-            navigator.share({
-                title: document.title,
-                url: window.location.href
-            }).then(() => {
-                console.log('Thanks for sharing!');
-            }).catch(console.error);
-        } else {
-            alert('Fitur share tidak didukung di browser ini.');
-        }
-    }
-</script>
-<!-- end tombol buy -->
-
-
-
-
-                </div>
-
-                <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-                    <!-- Description and details -->
-                    <div>
-                        <h3 class="sr-only">Description</h3>
-                        <div class="space-y-6">
-                            <p class="text-base text-gray-900">{{ page.description }}</p>
-                        </div>
-                    </div>
-
-                    <div class="mt-10">
-                        <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
-                        <div class="mt-4">
-                            <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-                                <li class="text-gray-400"><span class="text-gray-600">Hand cut and sewn locally</span></li>
-                                <li class="text-gray-400"><span class="text-gray-600">Dyed with our proprietary colors</span></li>
-                                <li class="text-gray-400"><span class="text-gray-600">Pre-washed &amp; pre-shrunk</span></li>
-                                <li class="text-gray-400"><span class="text-gray-600">Ultra-soft 100% cotton</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="mt-10">
-                        <h2 class="text-sm font-medium text-gray-900">Details</h2>
-                        <div class="mt-4 space-y-6">
-                            <p class="text-sm text-gray-600">{{ page.detail }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-{% include footer.html %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Pilih semua elemen yang memiliki ID yang dimulai dengan 'price-'
-    var prices = document.querySelectorAll('[id^="price-"]');
-    prices.forEach(function(span) {
-        var priceValue = span.innerHTML.trim();
-        // Hapus semua non-digit kecuali koma dan titik desimal
-        priceValue = priceValue.replace(/[^\d,]/g, '');
-        
-        // Mengganti koma dengan titik untuk format angka
-        priceValue = priceValue.replace(',', '.');
-        
-        // Format angka dengan Locale Indonesia
-        var formattedPrice = parseFloat(priceValue).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
-        
-        // Update harga pada elemen
-        span.innerHTML = formattedPrice;
-    });
-});
-
-
-// redirect.js
-(function() {
-    var path = window.location.pathname;
-    if (path.endsWith('.html')) {
-        var newPath = path.replace('.html', '');
-        window.location.replace(newPath);
-    }
-})();
 </script>
 </html>

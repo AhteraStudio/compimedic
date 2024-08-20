@@ -179,7 +179,7 @@
           <label class="">
             <input type="radio" name="subscription" value="8 Months" class="peer sr-only" checked />
             <p class="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">8 Months</p>
-            <span class="mt-1 block text-center text-xs">$60/mo</span>
+            <span id="price-{{ page.id }}" class="mt-1 block text-center text-xs">{{ page.price | remove: ',' | remove: '.' }}</span>
           </label>
           <label class="">
             <input type="radio" name="subscription" value="12 Months" class="peer sr-only" />

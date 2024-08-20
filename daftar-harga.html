@@ -8,10 +8,14 @@ title: eKatalog
 
 
 
+
+
 <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js"></script>
 </head>
+<body>
+  <h1>Dashboard</h1>
   <button id="logout">Logout</button>
 
   <script>
@@ -22,13 +26,14 @@ title: eKatalog
       projectId: "compimedic-login-admin",
       storageBucket: "compimedic-login-admin.appspot.com",
       messagingSenderId: "89992588630",
-      appId: "1:89992588630:web:daf79b5efcf9654c3a7af7"
+      appId: "1:89992588630:web:daf79b5efcf9654c3a7af7",
+      measurementId: "G-CF45BEP866"
     };
     const app = firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
     // Check if user is logged in
-    firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       if (!user) {
         window.location.href = 'login.html'; // Redirect to login if not logged in
       }
@@ -36,11 +41,13 @@ title: eKatalog
 
     // Handle logout
     document.getElementById('logout').addEventListener('click', function() {
-      firebase.auth().signOut().then(() => {
+      auth.signOut().then(() => {
         window.location.href = 'login.html';
       });
     });
   </script>
+
+
 
 
 

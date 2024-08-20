@@ -24,7 +24,8 @@
       projectId: "compimedic-login-admin",
       storageBucket: "compimedic-login-admin.appspot.com",
       messagingSenderId: "89992588630",
-      appId: "1:89992588630:web:daf79b5efcf9654c3a7af7"
+      appId: "1:89992588630:web:daf79b5efcf9654c3a7af7",
+      measurementId: "G-CF45BEP866"
     };
     const app = firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
@@ -35,7 +36,7 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
-      firebase.auth().signInWithEmailAndPassword(email, password)
+      auth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
           // Login successful
           alert('Login berhasil!');

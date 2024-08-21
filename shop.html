@@ -42,6 +42,35 @@ body {
 <body>
 
 
+<!-- JS data search -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-dropdown');
+    const dropdown = document.getElementById('dropdown');
+    const dropdownButton = document.getElementById('dropdown-button');
+
+    // Toggle dropdown visibility
+    dropdownButton.addEventListener('click', function() {
+        dropdown.classList.toggle('hidden');
+    });
+
+    // Handle search input
+    searchInput.addEventListener('input', function() {
+        const searchValue = searchInput.value.toLowerCase();
+        const buttons = dropdown.querySelectorAll('button');
+
+        buttons.forEach(button => {
+            const text = button.textContent.toLowerCase();
+            button.style.display = text.includes(searchValue) ? '' : 'none';
+        });
+    });
+});
+</script>
+<!-- end JS data search -->
+
+
+
+
 
 {% assign item_files = site.pages | where: "dir", "/product/" %}
 

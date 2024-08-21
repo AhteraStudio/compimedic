@@ -129,13 +129,12 @@
 
 
 <!-- gambar produk -->
-
 <div class="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
   <div class="lg:col-span-3 lg:row-end-1">
     <div class="lg:flex lg:items-start">
       <div class="lg:order-2 lg:ml-5">
         <div class="max-w-xl overflow-hidden rounded-lg">
-          <img id="mainImage" class="h-full w-full max-w-full object-cover" src="{{ page.image }}" alt="" />
+          <img id="mainImage" class="h-full w-full max-w-full object-cover" src="{{ page.image1 }}" alt="" />
         </div>
       </div>
 
@@ -157,12 +156,14 @@
 </div>
 
 <script>
+  var thumbnails = document.querySelectorAll('.thumbnail-btn');
+  var currentIndex = 0;
+
   function changeImage(imageUrl, button) {
     var mainImage = document.getElementById('mainImage');
     mainImage.src = imageUrl;
 
-    // Hilangin border dari semua thumbnail
-    var thumbnails = document.querySelectorAll('.thumbnail-btn');
+    // Update border thumbnails
     thumbnails.forEach(function(thumbnail) {
       thumbnail.classList.remove('border-gray-900');
       thumbnail.classList.add('border-transparent');
@@ -171,9 +172,41 @@
     // Kasih border di thumbnail yang dipilih
     button.classList.remove('border-transparent');
     button.classList.add('border-gray-900');
-  }
-</script>
 
+    // Update currentIndex sesuai thumbnail yang dipilih
+    currentIndex = Array.from(thumbnails).indexOf(button);
+  }
+
+  function handleSwipe(direction) {
+    if (direction === 'left') {
+      // Geser ke gambar berikutnya
+      currentIndex = (currentIndex + 1) % thumbnails.length;
+    } else if (direction === 'right') {
+      // Geser ke gambar sebelumnya
+      currentIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
+    }
+    
+    var nextThumbnail = thumbnails[currentIndex];
+    var nextImageUrl = nextThumbnail.querySelector('img').src;
+    changeImage(nextImageUrl, nextThumbnail);
+  }
+
+  var touchStartX = 0;
+  var touchEndX = 0;
+
+  document.getElementById('mainImage').addEventListener('touchstart', function(event) {
+    touchStartX = event.changedTouches[0].screenX;
+  });
+
+  document.getElementById('mainImage').addEventListener('touchend', function(event) {
+    touchEndX = event.changedTouches[0].screenX;
+    if (touchEndX < touchStartX) {
+      handleSwipe('left');
+    } else if (touchEndX > touchStartX) {
+      handleSwipe('right');
+    }
+  });
+</script>
 <!-- end gambar produk -->
 
 

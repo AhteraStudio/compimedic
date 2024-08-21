@@ -51,8 +51,17 @@
 </form>
 
 <!-- end search & filter -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var dropdownButton = document.getElementById('dropdown-button');
+    var dropdown = document.getElementById('dropdown');
 
-
+    dropdownButton.addEventListener('click', function() {
+        dropdown.classList.toggle('hidden');
+    });
+});
+</script>
+<!-- JS drop-down -->
 
 
 

@@ -241,7 +241,8 @@
 
    
 <!-- share button -->
-  <!-- Wrapper untuk tombol square di kanan -->
+
+<div class="button-info">
     <div style="display: flex; margin-left: auto;">
         <!-- Tombol square dengan ikon SVG 1 (WhatsApp) -->
         <button type="button" style="background-color: transparent; width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; border: none; border-radius: 4px; font-size: 16px; font-weight: medium; margin-left: 4px; text-align: center;" onclick="sendWhatsAppMessage('{{ page.product }}')">
@@ -265,6 +266,7 @@
             </svg>
         </button>
     </div>
+</div>
 
 <script>
     function sendWhatsAppMessage(productName) {
@@ -288,7 +290,6 @@
         }
     }
 </script>
-
 <!-- end share button -->
 
 

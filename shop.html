@@ -354,4 +354,29 @@ color: #3396bb;
 </style>
   </div>
 </section>
+
+
+
+
+<!-- JS data product search -->
+<script id="product-data" type="application/json">
+  [
+    {% for item in item_files %}
+    {
+      "id": "{{ item.id }}",
+      "description": "{{ item.description | escape }}",
+      "product": "{{ item.product | escape }}",
+      "price": "{{ item.price | remove: ',' | remove: '.' }}",
+      "url": "{{ item.url }}",
+      "image": "{{ item.image }}",
+      "discount": "{{ item.discount | escape }}",
+      "location": "{{ item.location | escape }}",
+      "preorder": "{{ item.preorder | escape }}",
+      "category": "{{ item.category | escape }}"
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+</script>
+<!-- end -->
+
 </body>

@@ -42,6 +42,23 @@ body {
 
 <body>
 
+
+<!-- search & filter -->
+<div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+  <!-- Search Input -->
+  <input type="text" placeholder="Search..." class="flex-grow px-4 py-2 border-none outline-none" />
+
+  <!-- Filter Button -->
+  <button type="button" class="bg-gray-200 text-gray-600 hover:bg-gray-300 px-4 py-2 border-none cursor-pointer">
+    <!-- Ganti dengan ikon filter yang sesuai -->
+    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    </svg>
+  </button>
+</div>
+<!-- end search & filter -->
+
+
 {% assign item_files = site.pages | where: "dir", "/product/" %}
 
 

@@ -56,8 +56,24 @@ document.addEventListener('DOMContentLoaded', function() {
     var dropdownButton = document.getElementById('dropdown-button');
     var dropdown = document.getElementById('dropdown');
 
-    dropdownButton.addEventListener('click', function() {
+    // Toggle dropdown visibility
+    dropdownButton.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent event from bubbling up to document
         dropdown.classList.toggle('hidden');
+    });
+
+    // Close dropdown if clicking outside of it
+    document.addEventListener('click', function(event) {
+        if (!dropdown.contains(event.target) && !dropdownButton.contains(event.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    // Optional: close dropdown when pressing ESC key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            dropdown.classList.add('hidden');
+        }
     });
 });
 </script>

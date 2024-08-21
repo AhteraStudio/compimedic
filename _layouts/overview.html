@@ -237,6 +237,8 @@
           <p class="ml-2 text-sm font-medium text-gray-500">1,209 Reviews</p>
         </div>
 
+
+
    
 <!-- share button -->
   <!-- Wrapper untuk tombol square di kanan -->
@@ -263,6 +265,30 @@
             </svg>
         </button>
     </div>
+
+<script>
+    function sendWhatsAppMessage(productName) {
+        const phoneNumber = '6285186655283';
+        const message = `Halo Compimedic, saya ingin menanyakan produk ${productName}. Tolong bantu saya untuk proses pemesanannya, terimakasih.`;
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
+
+        window.open(whatsappUrl, '_blank');
+    }
+
+    function sharePage() {
+        if (navigator.share) {
+            navigator.share({
+                title: document.title,
+                url: window.location.href
+            }).then(() => {
+                console.log('Thanks for sharing!');
+            }).catch(console.error);
+        } else {
+            alert('Fitur share tidak didukung di browser ini.');
+        }
+    }
+</script>
+
 <!-- end share button -->
 
 

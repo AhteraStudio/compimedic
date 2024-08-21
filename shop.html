@@ -36,6 +36,16 @@ title: Compimedic Official Store
 body {
    padding-top: 6.5rem;
 {
+
+.modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 50;
+    }
 </style>
 </head>
 
@@ -43,20 +53,63 @@ body {
 <body>
 
 
-<!-- search & filter -->
-<div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-  <!-- Search Input -->
-  <input type="text" placeholder="Search..." class="flex-grow px-4 py-2 border-none outline-none" />
 
-  <!-- Filter Button -->
-  <button type="button" class="bg-gray-200 text-gray-600 hover:bg-gray-300 px-4 py-2 border-none cursor-pointer">
-    <!-- Ganti dengan ikon filter yang sesuai -->
-    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-    </svg>
-  </button>
-</div>
-<!-- end search & filter -->
+<!-- Search and Filter Container -->
+  <div class="px-4 lg:px-8">
+    <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+      <!-- Search Input -->
+      <input type="text" placeholder="Search..." class="flex-grow px-4 py-2 border-none outline-none" />
+
+      <!-- Filter Button -->
+      <button type="button" id="filterButton" class="bg-gray-200 text-gray-600 hover:bg-gray-300 px-4 py-2 border-none cursor-pointer flex items-center">
+        <!-- Filter Icon -->
+        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal Filter -->
+  <div id="filterModal" class="modal flex">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+      <h2 class="text-xl font-semibold mb-4">Filter Produk</h2>
+      <ul class="list-disc pl-5 space-y-2">
+        <li><label class="flex items-center"><input type="checkbox" value="Omron" class="mr-2"> Omron</label></li>
+        <li><label class="flex items-center"><input type="checkbox" value="beurer" class="mr-2"> beurer</label></li>
+        <li><label class="flex items-center"><input type="checkbox" value="bistos" class="mr-2"> bistos</label></li>
+        <li><label class="flex items-center"><input type="checkbox" value="onemed" class="mr-2"> onemed</label></li>
+        <li><label class="flex items-center"><input type="checkbox" value="onehealth" class="mr-2"> onehealth</label></li>
+      </ul>
+      <div class="mt-4 flex justify-end">
+        <button id="closeModal" class="bg-gray-300 hover:bg-gray-400 text-black px-4 py-2 rounded">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const filterButton = document.getElementById('filterButton');
+    const filterModal = document.getElementById('filterModal');
+    const closeModal = document.getElementById('closeModal');
+
+    // Tampilkan modal saat tombol filter diklik
+    filterButton.addEventListener('click', () => {
+      filterModal.style.display = 'flex';
+    });
+
+    // Tutup modal saat tombol tutup diklik
+    closeModal.addEventListener('click', () => {
+      filterModal.style.display = 'none';
+    });
+
+    // Tutup modal saat klik di luar konten modal
+    window.addEventListener('click', (event) => {
+      if (event.target === filterModal) {
+        filterModal.style.display = 'none';
+      }
+    });
+  </script>
+
 
 
 {% assign item_files = site.pages | where: "dir", "/product/" %}

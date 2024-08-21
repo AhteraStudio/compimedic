@@ -129,6 +129,7 @@
 
 
 <!-- gambar produk -->
+
 <div class="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
   <div class="lg:col-span-3 lg:row-end-1">
     <div class="lg:flex lg:items-start">
@@ -139,14 +140,14 @@
       </div>
 
       <div class="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0">
-        <div class="flex flex-row items-start lg:flex-col">
-          <button type="button" class="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center" onclick="changeImage('{{ page.image1 }}')">
+        <div id="thumbnailContainer" class="flex flex-row items-start lg:flex-col">
+          <button type="button" class="thumbnail-btn flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center" onclick="changeImage('{{ page.image1 }}', this)">
             <img class="h-full w-full object-cover" src="{{ page.image1 }}" alt="" />
           </button>
-          <button type="button" class="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center" onclick="changeImage('{{ page.image2 }}')">
+          <button type="button" class="thumbnail-btn flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center" onclick="changeImage('{{ page.image2 }}', this)">
             <img class="h-full w-full object-cover" src="{{ page.image2 }}" alt="" />
           </button>
-          <button type="button" class="flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center" onclick="changeImage('{{ page.image3 }}')">
+          <button type="button" class="thumbnail-btn flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center" onclick="changeImage('{{ page.image3 }}', this)">
             <img class="h-full w-full object-cover" src="{{ page.image3 }}" alt="" />
           </button>
         </div>
@@ -156,11 +157,23 @@
 </div>
 
 <script>
-  function changeImage(imageUrl) {
+  function changeImage(imageUrl, button) {
     var mainImage = document.getElementById('mainImage');
     mainImage.src = imageUrl;
+
+    // Hilangin border dari semua thumbnail
+    var thumbnails = document.querySelectorAll('.thumbnail-btn');
+    thumbnails.forEach(function(thumbnail) {
+      thumbnail.classList.remove('border-gray-900');
+      thumbnail.classList.add('border-transparent');
+    });
+
+    // Kasih border di thumbnail yang dipilih
+    button.classList.remove('border-transparent');
+    button.classList.add('border-gray-900');
   }
 </script>
+
 <!-- end gambar produk -->
 
 

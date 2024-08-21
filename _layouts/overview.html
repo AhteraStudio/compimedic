@@ -256,22 +256,55 @@
         </ul>
       </div>
 
+<!-- tab deskripsi -->
       <div class="lg:col-span-3">
-        <div class="border-b border-gray-300">
-          <nav class="flex gap-4">
-            <a href="#" title="" class="border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800"> Description </a>
+  <div class="border-b border-gray-300">
+    <nav id="tabNav" class="flex gap-4">
+      <a href="#" id="descriptionTab" class="tab-link border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800" onclick="switchTab('description', this)"> Description </a>
 
-            <a href="#" title="" class="inline-flex items-center border-b-2 border-transparent py-4 text-sm font-medium text-gray-600">
-              Reviews
-              <span class="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100"> 1,209 </span>
-            </a>
-          </nav>
-        </div>
+      <a href="#" id="reviewsTab" class="tab-link inline-flex items-center border-b-2 border-transparent py-4 text-sm font-medium text-gray-600" onclick="switchTab('reviews', this)">
+        Reviews
+        <span class="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100"> 1,209 </span>
+      </a>
+    </nav>
+  </div>
 
-        <div class="mt-8 flow-root sm:mt-12">
-     <p class="mt-4">{{ page.description }}</p>
-        </div>
-      </div>
+  <div id="tabContent" class="mt-8 flow-root sm:mt-12">
+    <div id="descriptionContent" class="tab-content">
+      <p class="mt-4">{{ page.description }}</p>
+    </div>
+    <div id="reviewsContent" class="tab-content hidden">
+      <p class="mt-4">Here are the reviews...</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchTab(tabName, element) {
+    // Hilangin active class dari semua tab
+    var tabs = document.querySelectorAll('.tab-link');
+    tabs.forEach(function(tab) {
+      tab.classList.remove('border-gray-900', 'text-gray-900');
+      tab.classList.add('border-transparent', 'text-gray-600');
+    });
+
+    // Kasih active class ke tab yang dipilih
+    element.classList.remove('border-transparent', 'text-gray-600');
+    element.classList.add('border-gray-900', 'text-gray-900');
+
+    // Sembunyiin semua tab content
+    var contents = document.querySelectorAll('.tab-content');
+    contents.forEach(function(content) {
+      content.classList.add('hidden');
+    });
+
+    // Tampilain content yang sesuai dengan tab yang dipilih
+    var selectedContent = document.getElementById(tabName + 'Content');
+    selectedContent.classList.remove('hidden');
+  }
+</script>
+<!-- end tab deskripsi -->
+
     </div>
   </div>
 </section>

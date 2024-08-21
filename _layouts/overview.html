@@ -257,12 +257,12 @@
       </div>
 
 <!-- tab deskripsi -->
-      <div class="lg:col-span-3">
+ <div class="lg:col-span-3">
   <div class="border-b border-gray-300">
     <nav id="tabNav" class="flex gap-4">
-      <a href="#" id="descriptionTab" class="tab-link border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800" onclick="switchTab('description', this)"> Description </a>
+      <a href="#" id="descriptionTab" class="tab-link border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800" onclick="switchTab('description', this, event)"> Description </a>
 
-      <a href="#" id="reviewsTab" class="tab-link inline-flex items-center border-b-2 border-transparent py-4 text-sm font-medium text-gray-600" onclick="switchTab('reviews', this)">
+      <a href="#" id="reviewsTab" class="tab-link inline-flex items-center border-b-2 border-transparent py-4 text-sm font-medium text-gray-600" onclick="switchTab('reviews', this, event)">
         Reviews
         <span class="ml-2 block rounded-full bg-gray-500 px-2 py-px text-xs font-bold text-gray-100"> 1,209 </span>
       </a>
@@ -280,7 +280,10 @@
 </div>
 
 <script>
-  function switchTab(tabName, element) {
+  function switchTab(tabName, element, event) {
+    // Prevent default behavior of anchor tags
+    event.preventDefault();
+
     // Hilangin active class dari semua tab
     var tabs = document.querySelectorAll('.tab-link');
     tabs.forEach(function(tab) {

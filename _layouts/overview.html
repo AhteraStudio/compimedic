@@ -165,13 +165,13 @@
 
     // Update border thumbnails
     thumbnails.forEach(function(thumbnail) {
-      thumbnail.classList.remove('border-[#3396bb]');
+      thumbnail.classList.remove('border-gray-800');
       thumbnail.classList.add('border-transparent');
     });
 
     // Kasih border di thumbnail yang dipilih
     button.classList.remove('border-transparent');
-    button.classList.add('border-gray-900');
+    button.classList.add('border-[#3396bb]');
 
     // Update currentIndex sesuai thumbnail yang dipilih
     currentIndex = Array.from(thumbnails).indexOf(button);

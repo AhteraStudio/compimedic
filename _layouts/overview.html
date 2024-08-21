@@ -128,7 +128,9 @@
     </nav>
 
 
-<!-- gambar produk --><div class="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
+<!-- gambar produk -->
+
+<div class="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
   <div class="lg:col-span-3 lg:row-end-1">
     <div class="lg:flex lg:items-start">
       <div class="lg:order-2 lg:ml-5">
@@ -139,7 +141,7 @@
 
       <div class="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0">
         <div id="thumbnailContainer" class="flex flex-row items-start lg:flex-col">
-          <button type="button" class="thumbnail-btn flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-gray-900 text-center" onclick="changeImage('{{ page.image1 }}', this)">
+          <button type="button" class="thumbnail-btn flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-[#3396bb] text-center" onclick="changeImage('{{ page.image1 }}', this)">
             <img class="h-full w-full object-cover" src="{{ page.image1 }}" alt="" />
           </button>
           <button type="button" class="thumbnail-btn flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center" onclick="changeImage('{{ page.image2 }}', this)">
@@ -164,13 +166,13 @@
 
     // Update border thumbnails
     thumbnails.forEach(function(thumbnail) {
-      thumbnail.classList.remove('border-gray-900');
+      thumbnail.classList.remove('border-[#3396bb]');
       thumbnail.classList.add('border-transparent');
     });
 
     // Kasih border di thumbnail yang dipilih
     button.classList.remove('border-transparent');
-    button.classList.add('border-gray-900');
+    button.classList.add('border-[#3396bb]');
 
     // Update currentIndex sesuai thumbnail yang dipilih
     currentIndex = Array.from(thumbnails).indexOf(button);
@@ -206,6 +208,7 @@
     }
   });
 </script>
+
 <!-- end gambar produk -->
 
 

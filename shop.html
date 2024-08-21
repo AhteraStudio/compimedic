@@ -53,46 +53,47 @@ body {
 
 
 <!-- Search and Filter Container -->
-<div class="px-4 lg:px-8 relative">
+<div class="px-4 lg:px-8 mt-4">
   <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
     <!-- Search Input -->
-    <input type="text" placeholder="Search..." class="flex-grow px-4 py-2 border-none outline-none" />
+    <input type="text" placeholder="Search..." class="flex-grow px-4 py-2 outline-none" />
 
-    <!-- Filter Button -->
-    <button type="button" id="filterButton" class="relative bg-gray-200 text-gray-600 hover:bg-gray-300 px-4 py-2 border-none cursor-pointer flex items-center">
-      <!-- Filter Icon -->
-      <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-      <!-- Modal Filter -->
-      <div id="filterModal" class="modal absolute top-full left-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50 hidden flex flex-col p-4 space-y-2">
-        <label class="flex items-center"><input type="checkbox" value="Omron" class="mr-2"> Omron</label>
-        <label class="flex items-center"><input type="checkbox" value="beurer" class="mr-2"> beurer</label>
-        <label class="flex items-center"><input type="checkbox" value="bistos" class="mr-2"> bistos</label>
-        <label class="flex items-center"><input type="checkbox" value="onemed" class="mr-2"> onemed</label>
-        <label class="flex items-center"><input type="checkbox" value="onehealth" class="mr-2"> onehealth</label>
+    <!-- Filter Button with Dropdown -->
+    <div class="relative">
+      <button id="filterButton" type="button" class="bg-gray-200 text-gray-600 hover:bg-gray-300 px-4 py-2 border-none cursor-pointer flex items-center">
+        <!-- Filter Icon -->
+        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <!-- Dropdown Menu -->
+      <div id="filterDropdown" class="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50 hidden">
+        <ul class="py-2 text-gray-700">
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Omron</a></li>
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">beurer</a></li>
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">bistos</a></li>
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">onemed</a></li>
+          <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">onehealth</a></li>
+        </ul>
       </div>
-    </button>
+    </div>
   </div>
 </div>
 
 <script>
   const filterButton = document.getElementById('filterButton');
-  const filterModal = document.getElementById('filterModal');
+  const filterDropdown = document.getElementById('filterDropdown');
 
-  // Toggle modal visibility
+  // Toggle dropdown visibility
   filterButton.addEventListener('click', () => {
-    if (filterModal.classList.contains('hidden')) {
-      filterModal.classList.remove('hidden');
-    } else {
-      filterModal.classList.add('hidden');
-    }
+    filterDropdown.classList.toggle('hidden');
   });
 
-  // Close modal if clicking outside
+  // Close dropdown if clicking outside
   window.addEventListener('click', (event) => {
-    if (!filterButton.contains(event.target) && !filterModal.contains(event.target)) {
-      filterModal.classList.add('hidden');
+    if (!filterButton.contains(event.target) && !filterDropdown.contains(event.target)) {
+      filterDropdown.classList.add('hidden');
     }
   });
 </script>

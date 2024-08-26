@@ -46,12 +46,18 @@ title: Compimedic Solutions
     document.addEventListener('DOMContentLoaded', function() {
         // Ambil URL saat ini
         var currentURL = window.location.href;
-
-        // Cek apakah URL mengandung 'bussnamecard'
-        if (currentURL.includes('bussnamecard')) {
+        
+        // Cek apakah URL mengandung 'showModal=true'
+        var urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('showModal') === 'true') {
             // Tampilkan modal
             document.getElementById('airpodsModal').classList.remove('hidden');
         }
+
+        // Event listener buat tombol Cancel
+        document.getElementById('cancelButton').addEventListener('click', function() {
+            document.getElementById('airpodsModal').classList.add('hidden');
+        });
     });
 </script>
 <!-- end popup card -->

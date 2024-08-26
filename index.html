@@ -44,18 +44,22 @@ title: Compimedic Solutions
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Ambil URL saat ini
         var currentURL = window.location.href;
-        
-        // Cek apakah URL mengandung 'showModal=true'
         var urlParams = new URLSearchParams(window.location.search);
+
+        // Cek apakah URL mengandung 'showModal=true'
         if (urlParams.get('showModal') === 'true') {
             // Tampilkan modal
             document.getElementById('airpodsModal').classList.remove('hidden');
+            
+            // Hapus query parameter dari URL setelah modal muncul
+            urlParams.delete('showModal');
+            window.history.replaceState({}, '', currentURL.split('?')[0]);
         }
 
         // Event listener buat tombol Cancel
         document.getElementById('cancelButton').addEventListener('click', function() {
+            // Cuma tutup modal, tanpa nyimpen status di localStorage
             document.getElementById('airpodsModal').classList.add('hidden');
         });
     });

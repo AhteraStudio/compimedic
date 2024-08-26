@@ -39,7 +39,22 @@ title: Compimedic Solutions
 
 <body>
 
+<!-- card popup -->
 {% include busnamecard.html %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ambil URL saat ini
+        var currentURL = window.location.href;
+
+        // Cek apakah URL mengandung 'bussnamecard'
+        if (currentURL.includes('bussnamecard')) {
+            // Tampilkan modal
+            document.getElementById('airpodsModal').classList.remove('hidden');
+        }
+    });
+</script>
+<!-- end popup card -->
 
 {% include header.html %}
 

@@ -1,0 +1,23 @@
+<!-- Modal Background -->
+<div id="airpodsModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+    <!-- Modal Card -->
+    <div class="bg-white rounded-2xl shadow-lg w-80 p-6 text-center">
+        <!-- Image -->
+        <img src="path/to/airpods-image.png" alt="AirPods" class="w-28 mx-auto mb-4">
+        
+        <!-- Title -->
+        <h2 class="text-lg font-semibold mb-2">AirPods</h2>
+        
+        <!-- Subtitle -->
+        <p class="text-gray-500 mb-4">Ready to Connect</p>
+        
+        <!-- Action Buttons -->
+        <div class="flex justify-center space-x-4">
+            <button class="bg-blue-600 text-white rounded-full px-6 py-2 hover:bg-blue-700 focus:outline-none">Connect</button>
+            <button class="bg-gray-300 text-gray-700 rounded-full px-6 py-2 hover:bg-gray-400 focus:outline-none">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Optional: Button to trigger modal for demo -->
+<button onclick="document.getElementById('airpodsModal').classList.remove('hidden')" class="bg-blue-600 text-white px-4 py-2 rounded">Show Modal</button>

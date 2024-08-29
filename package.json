@@ -7,4 +7,18 @@
   "deploy": "gh-pages -d build",
   "test": "react-scripts test",
   "eject": "react-scripts eject"
+
+
+  "name": "compimedic",
+  "version": "1.0.0",
+  "description": "Description of your project",
+  "homepage": "https://edilahtera.github.io/compimedic",
+  "main": "index.html",
+  "scripts": {
+    "start": "node index.html"
+  },
+  "dependencies": {
+    "firebase": "^9.0.0"
+  },
+  "devDependencies": {}
 }

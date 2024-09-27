@@ -121,6 +121,16 @@
       <div>
         <img id="mainImage" src="{{ page.image1 }}" alt="Main Image" class="w-[100%] h-[100%] object-cover border border-gray-300">
       </div>
+<script>
+function changeImage(imageSrc) {
+  // Mengambil elemen gambar utama
+  const mainImage = document.getElementById('mainImage');
+  
+  // Mengubah sumber gambar utama dengan gambar yang diklik
+  mainImage.src = imageSrc;
+}
+</script>
+
 
       <!-- Info Produk -->
       <div class="flex flex-col justify-between w-full">

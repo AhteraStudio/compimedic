@@ -84,302 +84,191 @@
 </head>
 
 
-{% include navstore.html %}
-
-<section class="py-0 sm:py-0"> 
-  <div class="container mx-auto px-4">
-    <nav class="flex">
-      <ol role="list" class="flex items-center">
-        <li class="text-left">
-          <div class="-m-1">
-            <a href="/" class="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"> Home </a>
-          </div>
-        </li>
-
-        <li class="text-left">
-          <div class="flex items-center">
-            <span class="mx-2 text-gray-400">/</span>
-            <div class="-m-1">
-              <a href="/shop" class="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"> Products </a>
-            </div>
-          </div>
-        </li>
-
-<li class="text-left">
-          <div class="flex items-center">
-            <span class="mx-2 text-gray-400">/</span>
-            <div class="-m-1">
-              <a href="/shop/category/{{ page.category }}" class="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"> {{ page.category }} </a>
-            </div>
-          </div>
-        </li>
-
-        <li class="text-left">
-          <div class="flex items-center">
-            <span class="mx-2 text-gray-400">/</span>
-            <div class="-m-1">
-               <a href="#" class="block w-24 truncate rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800" aria-current="page">
-        {{ page.product }}
-      </a>
-            </div>
-          </div>
-        </li>
-      </ol>
-    </nav>
-
-
-<!-- gambar produk -->
-
-<div class="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
-  <div class="lg:col-span-3 lg:row-end-1">
-    <div class="lg:flex lg:items-start">
-      <div class="lg:order-2 lg:ml-5">
-        <div class="max-w-xl overflow-hidden">
-          <img id="mainImage" class="h-full w-full max-w-full object-cover" src="{{ page.image1 }}" alt="" />
-        </div>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .selected { border: 2px solid #3396bb; } /* Highlight buat gambar yang dipilih */
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto p-4">
+    <!-- Desktop Layout -->
+    <div class="hidden md:flex gap-4">
+      <!-- Gambar kecil di kiri -->
+      <div class="flex flex-col gap-2">
+        <img id="thumb1" src="{{ page.image1 }}" alt="Thumbnail 1" class="w-24 h-24 object-cover cursor-pointer border border-gray-300" onclick="changeImage('image1.jpg')">
+        <img id="thumb2" src="{{ page.image2 }}" alt="Thumbnail 2" class="w-24 h-24 object-cover cursor-pointer border border-gray-300" onclick="changeImage('image2.jpg')">
+        <img id="thumb3" src="{{ page.image3 }}" alt="Thumbnail 3" class="w-24 h-24 object-cover cursor-pointer border border-gray-300" onclick="changeImage('image3.jpg')">
       </div>
 
-      <div class="mt-2 w-full lg:order-1 lg:w-32 lg:flex-shrink-0">
-        <div id="thumbnailContainer" class="flex flex-row items-start lg:flex-col">
-          <button type="button" class="thumbnail-btn flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-[#3396bb] text-center" onclick="changeImage('{{ page.image1 }}', this)">
-            <img class="h-full w-full object-cover" src="{{ page.image1 }}" alt="" />
-          </button>
-          <button type="button" class="thumbnail-btn flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center" onclick="changeImage('{{ page.image2 }}', this)">
-            <img class="h-full w-full object-cover" src="{{ page.image2 }}" alt="" />
-          </button>
-          <button type="button" class="thumbnail-btn flex-0 aspect-square mb-3 h-20 overflow-hidden rounded-lg border-2 border-transparent text-center" onclick="changeImage('{{ page.image3 }}', this)">
-            <img class="h-full w-full object-cover" src="{{ page.image3 }}" alt="" />
-          </button>
+      <!-- Gambar utama -->
+      <div>
+        <img id="mainImage" src="{{ page.image1 }}" alt="Main Image" class="w-[500px] h-[500px] object-cover border border-gray-300">
+      </div>
+
+      <!-- Info Produk -->
+      <div class="flex flex-col justify-between w-full">
+        <div>
+          <!-- Nama produk dan harga -->
+          <h1 class="text-2xl font-semibold">{{ page.product }}</h1>
+          <div class="flex items-center space-x-2">
+            <p class="text-xl text-[#3396bb] font-bold">Rp 1.500.000</p>
+            <p class="text-sm text-gray-500 line-through">Rp 2.000.000</p>
+          </div>
+
+<!-- Tombol Beli, Chat, Share -->
+<div class="mt-4 flex gap-2">
+  <button class="font-bold border-2 border-[#3396bb] text-[#3396bb] py-2 px-4 rounded-2xl hover:bg-[#3396bb] hover:text-white transition">
+    Buy now
+  </button>
+  
+  <button class="text-black py-2 px-4 rounded flex items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#25D366" class="bi bi-whatsapp mr-2" viewBox="0 0 16 16">
+      <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+    </svg>
+    Chat
+  </button>
+  
+  <button class="text-black py-2 px-4 rounded flex items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-share mr-2" viewBox="0 0 16 16">
+      <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
+    </svg>
+    Share
+  </button>
+</div>      
+
+          <!-- Tabel detail produk -->
+          <table class="mt-4 w-full border-collapse">
+            <tbody>
+              <tr class="border-b border-gray-300">
+                <td class="py-2">Brand</td>
+                <td class="py-2">Brand XYZ</td>
+              </tr>
+              <tr class="border-b border-gray-300">
+                <td class="py-2">Weight</td>
+                <td class="py-2">1.2 kg</td>
+              </tr>
+              <tr class="border-b border-gray-300">
+                <td class="py-2">{{ page.category }}</td>
+                <td class="py-2">23 Januari 2024</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Deskripsi produk -->
+          <p class="mt-4 text-gray-700">{{ page.description  }}</p>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<script>
-  var thumbnails = document.querySelectorAll('.thumbnail-btn');
-  var currentIndex = 0;
+    <!-- Mobile Layout -->
+    <div class="md:hidden flex flex-col gap-4">
+      <!-- Gambar Utama -->
+      <img id="mobileMainImage" src="{{ page.image1 }}" alt="Main Image" class="w-full h-64 object-cover">
 
-  function changeImage(imageUrl, button) {
-    var mainImage = document.getElementById('mainImage');
-    mainImage.src = imageUrl;
+      <!-- Gambar kecil dibawah gambar utama -->
+      <div class="flex gap-2 justify-center">
+        <img id="mobileThumb1" src="{{ page.image1 }}" alt="Thumbnail 1" class="w-16 h-16 object-cover cursor-pointer border border-gray-300" onclick="changeMobileImage('image1.jpg')">
+        <img id="mobileThumb2" src="{{ page.image1 }}" alt="Thumbnail 2" class="w-16 h-16 object-cover cursor-pointer border border-gray-300" onclick="changeMobileImage('image2.jpg')">
+        <img id="mobileThumb3" src="{{ page.image1 }}" alt="Thumbnail 3" class="w-16 h-16 object-cover cursor-pointer border border-gray-300" onclick="changeMobileImage('image3.jpg')">
+      </div>
 
-    // Update border thumbnails
-    thumbnails.forEach(function(thumbnail) {
-      thumbnail.classList.remove('border-[#3396bb]');
-      thumbnail.classList.add('border-transparent');
-    });
-
-    // Kasih border di thumbnail yang dipilih
-    button.classList.remove('border-transparent');
-    button.classList.add('border-[#3396bb]');
-
-    // Update currentIndex sesuai thumbnail yang dipilih
-    currentIndex = Array.from(thumbnails).indexOf(button);
-  }
-
-  function handleSwipe(direction) {
-    if (direction === 'left') {
-      // Geser ke gambar berikutnya
-      currentIndex = (currentIndex + 1) % thumbnails.length;
-    } else if (direction === 'right') {
-      // Geser ke gambar sebelumnya
-      currentIndex = (currentIndex - 1 + thumbnails.length) % thumbnails.length;
-    }
-    
-    var nextThumbnail = thumbnails[currentIndex];
-    var nextImageUrl = nextThumbnail.querySelector('img').src;
-    changeImage(nextImageUrl, nextThumbnail);
-  }
-
-  var touchStartX = 0;
-  var touchEndX = 0;
-
-  document.getElementById('mainImage').addEventListener('touchstart', function(event) {
-    touchStartX = event.changedTouches[0].screenX;
-  });
-
-  document.getElementById('mainImage').addEventListener('touchend', function(event) {
-    touchEndX = event.changedTouches[0].screenX;
-    if (touchEndX < touchStartX) {
-      handleSwipe('left');
-    } else if (touchEndX > touchStartX) {
-      handleSwipe('right');
-    }
-  });
-</script>
-
-<!-- end gambar produk -->
-
-
-
-      <div class="lg:col-span-2 lg:row-span-2 lg:row-end-2">
-        <h1 class="sm: text-2xl font-bold text-gray-900 sm:text-3xl">{{ page.product }}</h1>
-
-        <div class="mt-5 flex items-center">
-          <div class="flex items-center">
-            <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
-            </svg>
-            <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
-            </svg>
-            <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
-            </svg>
-            <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
-            </svg>
-            <svg class="block h-4 w-4 align-middle text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" class=""></path>
-            </svg>
-          </div>
-          <p class="ml-2 text-sm font-medium text-gray-500">1,209 Reviews</p>
+      <!-- Info Produk di bawah gambar -->
+      <div>
+        <!-- Nama produk dan harga -->
+        <h1 class="text-xl font-semibold">{{ page.product }}</h1>
+        <div class="flex items-center space-x-2">
+          <p class="text-lg text-[#3396bb] font-bold">Rp 1.500.000</p>
+          <p class="text-sm text-gray-500 line-through">Rp 2.000.000</p>
         </div>
 
+        <!-- Tabel detail produk -->
+        <table class="mt-4 w-full border-collapse">
+          <tbody>
+            <tr class="border-b border-gray-300">
+              <td class="py-2">Brand</td>
+              <td class="py-2">Brand XYZ</td>
+            </tr>
+            <tr class="border-b border-gray-300">
+              <td class="py-2">Weight</td>
+              <td class="py-2">1.2 kg</td>
+            </tr>
+            <tr class="border-b border-gray-300">
+              <td class="py-2">Category</td>
+              <td class="py-2">{{ page.category }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Deskripsi produk -->
+        <p class="mt-4 text-gray-700">{{ page.description }}</p>
+      </div>
+    </div>
+  </div>
 
 
-   
-<!-- share button -->
+<!-- tombol mobile -->
+<div class="fixed bottom-0 left-0 right-0 flex justify-between overflow-hidden md:hidden">
+  <!-- Tombol Chat (tiban sedikit di belakang cart dan beli) -->
+  <button class="w-1/4 text-black rounded-tl-2xl p-3 relative z-10 flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#25D366" class="bi bi-whatsapp" viewBox="0 0 16 16">
+  <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+</svg>
+  </button>
 
-<div style="display: flex; justify-content: flex-end; align-items: center; gap: 4px;">
+  <!-- Tombol Cart (tiban sedikit di belakang beli) -->
+  <button class="w-1/4 bg-gray-300 text-black rounded-tl-2xl p-3 relative z-10 flex items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5"/>
+  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+</svg>
+  </button>
 
-    <!-- Tombol square dengan ikon SVG 1 (WhatsApp) -->
-    <button type="button" style="background-color: transparent; width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; border: none; border-radius: 4px; font-size: 16px; font-weight: medium; text-align: center;" onclick="sendWhatsAppMessage('{{ page.product }}')">
-        <svg class="w-6 h-6 text-[#25D366]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path fill="currentColor" fill-rule="evenodd" d="M12 4a8 8 0 0 0-6.895 12.06l.569.718-.697 2.359 2.32-.648.379.243A8 8 0 1 0 12 4ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.96 9.96 0 0 1-5.016-1.347l-4.948 1.382 1.426-4.829-.006-.007-.033-.055A9.958 9.958 0 0 1 2 12Z" clip-rule="evenodd"/>
-            <path fill="currentColor" d="M16.735 13.492c-.038-.018-1.497-.736-1.756-.83a1.008 1.008 0 0 0-.34-.075c-.196 0-.362.098-.49.291-.146.217-.587.732-.723.886-.018.02-.042.045-.057.045-.013 0-.239-.093-.307-.123-1.564-.68-2.751-2.313-2.914-2.589-.023-.04-.024-.057-.024-.057.005-.021.058-.074.085-.101.08-.079.166-.182.249-.283l.117-.14c.121-.14.175-.25.237-.375l.033-.066a.68.68 0 0 0-.02-.64c-.034-.069-.65-1.555-.715-1.711-.158-.377-.366-.552-.655-.552-.027 0 0 0-.112.005-.137.005-.883.104-1.213.311-.35.22-.94.924-.94 2.16 0 1.112.705 2.162 1.008 2.561l.041.06c1.161 1.695 2.608 2.951 4.074 3.537 1.412.564 2.081.63 2.461.63.16 0 .288-.013.4-.024l.072-.007c.488-.043 1.56-.599 1.804-1.276.192-.534.243-1.117.115-1.329-.088-.144-.239-.216-.43-.308Z"/>
-        </svg>
-    </button>
-
-    <!-- Tombol square dengan ikon SVG 2 (Shopee) -->
-    <a href="{{ page.shopee }}" style="background-color: transparent; width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; border: none; border-radius: 4px; font-size: 16px; font-weight: medium; text-align: center; line-height: 50px;">
-        <svg class="w-6 h-6 text-[#EE4D2D]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 109.59 122.88" fill="none">
-            <path class="st0" fill="currentColor" d="M74.98,91.98C76.15,82.36,69.96,76.22,53.6,71c-7.92-2.7-11.66-6.24-11.57-11.12 c0.33-5.4,5.36-9.34,12.04-9.47c4.63,0.09,9.77,1.22,14.76,4.56c0.59,0.37,1.01,0.32,1.35-0.2c0.46-0.74,1.61-2.53,2-3.17 c0.26-0.42,0.31-0.96-0.35-1.44c-0.95-0.7-3.6-2.13-5.03-2.72c-3.88-1.62-8.23-2.64-12.86-2.63c-9.77,0.04-17.47,6.22-18.12,14.47 c-0.42,5.95,2.53,10.79,8.86,14.47c1.34,0.78,8.6,3.67,11.49,4.57c9.08,2.83,13.8,7.9,12.69,13.81c-1.01,5.36-6.65,8.83-14.43,8.93 c-6.17-0.24-11.71-2.75-16.02-6.1c-0.11-0.08-0.65-0.5-0.72-0.56c-0.53-0.42-1.11-0.39-1.47,0.15c-0.26,0.4-1.92,2.8-2.34,3.43 c-0.39,0.55-0.18,0.86,0.23,1.2c1.8,1.5,4.18,3.14,5.81,3.97c4.47,2.28,9.32,3.53,14.48,3.72c3.32,0.22,7.5-0.49,10.63-1.81 C70.63,102.67,74.25,97.92,74.98,91.98L74.98,91.98z M54.79,7.18c-10.59,0-19.22,9.98-19.62,22.47h39.25 C74.01,17.16,65.38,7.18,54.79,7.18L54.79,7.18z M94.99,122.88l-0.41,0l-80.82-0.01h0c-5.5-0.21-9.54-4.66-10.09-10.19l-0.05-1 l-3.61-79.5v0C0,32.12,0,32.06,0,32c0-1.28,1.03-2.33,2.3-2.35l0,0h25.48C28.41,13.15,40.26,0,54.79,0s26.39,13.15,27.01,29.65 h25.4h0.04c1.3,0,2.35,1.05,2.35,2.35c0,0.04,0,0.08,0,0.12v0l-3.96,79.81l-0.04,0.68C105.12,118.21,100.59,122.73,94.99,122.88 L94.99,122.88z"/>
-        </svg>
-    </a>
-
-    <!-- Tombol square dengan ikon SVG 3 (Share) -->
-    <button type="button" onclick="sharePage()" style="background-color: transparent; width: 50px; height: 50px; display: inline-flex; align-items: center; justify-content: center; border: none; border-radius: 4px; font-size: 16px; font-weight: medium; text-align: center;">
-        <svg class="w-6 h-6 text-[#3396bb] active:text-[#00cdc8]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M7.926 10.898 15 7.727m-7.074 5.39L15 16.29M8 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm12 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm0-11a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
-            </svg>
-</button>
+  <!-- Tombol Beli (lebih lebar) -->
+  <button class="w-2/4 bg-gradient-to-r from-[#3396bb] to-[#17cdca] text-white p-3 rounded-tl-2xl relative -ml-6 z-20">
+    Buy now
+  </button>
 </div>
+<!-- end tombol mobile -->
 
 
+  <script>
+    let mobileImages = ['image1.jpg', 'image2.jpg', 'image3.jpg'];
+    let currentImageIndex = 0;
+    let startX = 0;
 
-<script>
-    function sendWhatsAppMessage(productName) {
-        const phoneNumber = '6285186655283';
-        const message = `Halo Compimedic, saya ingin menanyakan produk ${productName}. Tolong bantu saya untuk proses pemesanannya, terimakasih.`;
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-
-        window.open(whatsappUrl, '_blank');
+    // Fungsi ganti gambar di mobile
+    function changeMobileImage(imageSrc) {
+      document.getElementById('mobileMainImage').src = imageSrc;
     }
 
-    function sharePage() {
-        if (navigator.share) {
-            navigator.share({
-                title: document.title,
-                url: window.location.href
-            }).then(() => {
-                console.log('Thanks for sharing!');
-            }).catch(console.error);
+    // Fungsi ganti gambar di desktop
+    function changeImage(imageSrc) {
+      document.getElementById('mainImage').src = imageSrc;
+    }
+
+    // Fungsi untuk swipe di mobile
+    const mobileMainImage = document.getElementById('mobileMainImage');
+    mobileMainImage.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    mobileMainImage.addEventListener('touchend', (e) => {
+      let endX = e.changedTouches[0].clientX;
+      let diffX = startX - endX;
+
+      if (Math.abs(diffX) > 50) { // Minimal swipe distance
+        if (diffX > 0) {
+          // Geser ke kiri (next image)
+          currentImageIndex = (currentImageIndex + 1) % mobileImages.length;
         } else {
-            alert('Fitur share tidak didukung di browser ini.');
+          // Geser ke kanan (previous image)
+          currentImageIndex = (currentImageIndex - 1 + mobileImages.length) % mobileImages.length;
         }
-    }
-</script>
-<!-- end share button -->
-
-
-        <div class="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
-          <div class="flex items-end">
-            <h3 class="text-xl font-bold"><span id="price-{{ page.id }}">{{ page.price | remove: ',' | remove: '.' }}</span></h3>
-            <span class="text-sm">/<span id="price-{{ page.id }}" class="line-through">{{ page.real-price | remove: ',' | remove: '.' }}</span></span>
-          </div>
-
-          <button type="button" class=" inline-flex items-center justify-center px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out hover:bg-gray-800" style="border-top-left-radius: 25px; background: linear-gradient(to right, rgba(51, 150, 187), rgba(0, 205, 200));">
-            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 mr-3 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-            {{ page.tombol-beli }}
-          </button>
-        </div>
-
-        <ul class="mt-8 space-y-2">
-          <li class="flex items-center text-left text-sm font-medium text-gray-600">
-            <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-  <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
-</svg>
-            {{ page.location }}
-          </li>
-
-          <li class="flex items-center text-left text-sm font-medium text-gray-600">
-            <svg class="mr-2"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box2-fill" viewBox="0 0 16 16">
-  <path d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4zM15 4.667V5H1v-.333L1.5 4h6V1h1v3h6z"/>
-</svg>
-            {{ page.preorder }}
-          </li>
-        </ul>
-      </div>
-
-<!-- tab deskripsi -->
- <div class="lg:col-span-3 pt-5 pb-10">
-  <div class="border-b border-gray-300">
-    <nav id="tabNav" class="flex gap-4">
-      <a href="#" id="descriptionTab" class="tab-link border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800" onclick="switchTab('description', this, event)"> Description </a>
-
-      <a href="#" id="reviewsTab" class="tab-link inline-flex items-center border-b-2 border-transparent py-4 text-sm font-medium text-gray-600" onclick="switchTab('reviews', this, event)">
-        Reviews
-      </a>
-    </nav>
-  </div>
-
-  <div id="tabContent" class="mt-8 flow-root sm:mt-12">
-    <div id="descriptionContent" class="tab-content">
-      <p class="mt-4">{{ page.description }}</p>
-    </div>
-    <div id="reviewsContent" class="tab-content hidden">
-      <p class="mt-4">Here are the reviews...</p>
-    </div>
-  </div>
-</div>
-
-<script>
-  function switchTab(tabName, element, event) {
-    // Prevent default behavior of anchor tags
-    event.preventDefault();
-
-    // Hilangin active class dari semua tab
-    var tabs = document.querySelectorAll('.tab-link');
-    tabs.forEach(function(tab) {
-      tab.classList.remove('border-gray-900', 'text-gray-900');
-      tab.classList.add('border-transparent', 'text-gray-600');
+        document.getElementById('mobileMainImage').src = mobileImages[currentImageIndex];
+      }
     });
-
-    // Kasih active class ke tab yang dipilih
-    element.classList.remove('border-transparent', 'text-gray-600');
-    element.classList.add('border-gray-900', 'text-gray-900');
-
-    // Sembunyiin semua tab content
-    var contents = document.querySelectorAll('.tab-content');
-    contents.forEach(function(content) {
-      content.classList.add('hidden');
-    });
-
-    // Tampilain content yang sesuai dengan tab yang dipilih
-    var selectedContent = document.getElementById(tabName + 'Content');
-    selectedContent.classList.remove('hidden');
-  }
-</script>
-<!-- end tab deskripsi -->
-
-    </div>
-  </div>
-</section>
-
+  </script>
+</body>
 
 {% include footer.html %}
 

@@ -189,15 +189,24 @@ function changeImage(imageSrc) {
 
     <!-- Mobile Layout -->
     <div class="md:hidden flex flex-col gap-4">
-      <!-- Gambar Utama -->
-      <img id="mobileMainImage" src="{{ page.image1 }}" alt="Main Image" class="w-[100%] h-[100%] object-cover">
+     <!-- Gambar Utama -->
+<img id="mobileMainImage" src="{{ page.image1 }}" alt="Main Image" class="w-[100%] h-[100%] object-cover">
 
-      <!-- Gambar kecil dibawah gambar utama -->
-      <div class="flex gap-2 justify-center">
-        <img id="mobileThumb1" src="{{ page.image1 }}" alt"Thumbnail 1" class="w-16 h-16 object-cover cursor-pointer border border-gray-300" onclick="changeMobileImage('image1.jpg')">
-        <img id="mobileThumb2" src="{{ page.image2 }}" alt="Thumbnail 2" class="w-16 h-16 object-cover cursor-pointer border border-gray-300" onclick="changeMobileImage('image2.jpg')">
-        <img id="mobileThumb3" src="{{ page.image3 }}" alt="Thumbnail 3" class="w-16 h-16 object-cover cursor-pointer border border-gray-300" onclick="changeMobileImage('image3.jpg')">
-      </div>
+<!-- Gambar kecil dibawah gambar utama -->
+<div class="flex gap-2 justify-center">
+  <img id="mobileThumb1" src="{{ page.image1 }}" alt="Thumbnail 1" class="w-16 h-16 object-cover cursor-pointer border border-gray-300" onclick="changeMobileImage('{{ page.image1 }}')">
+  <img id="mobileThumb2" src="{{ page.image2 }}" alt="Thumbnail 2" class="w-16 h-16 object-cover cursor-pointer border border-gray-300" onclick="changeMobileImage('{{ page.image2 }}')">
+  <img id="mobileThumb3" src="{{ page.image3 }}" alt="Thumbnail 3" class="w-16 h-16 object-cover cursor-pointer border border-gray-300" onclick="changeMobileImage('{{ page.image3 }}')">
+</div>
+<script>
+function changeMobileImage(imageSrc) {
+  // Mengambil elemen gambar utama untuk mobile
+  const mobileMainImage = document.getElementById('mobileMainImage');
+  
+  // Mengubah sumber gambar utama mobile dengan gambar yang diklik
+  mobileMainImage.src = imageSrc;
+}
+</script>
 
       <!-- Info Produk di bawah gambar -->
       <div>

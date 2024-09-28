@@ -107,37 +107,31 @@ document.getElementById('searchInput').addEventListener('keypress', function (e)
 
 <!-- js filter -->
 <script>
-// Toggle Dropdown Menu
+// Fungsi untuk toggle dropdown
 function toggleDropdown() {
-    var dropdown = document.getElementById('categoryDropdown');
-    dropdown.classList.toggle('hidden'); // Toggle 'hidden' class to show/hide the dropdown
+    const dropdown = document.getElementById("categoryDropdown");
+    dropdown.classList.toggle("hidden");
 }
 
-// Close dropdown if clicked outside
-document.addEventListener('click', function(event) {
-    var dropdown = document.getElementById('categoryDropdown');
-    var filterButton = document.getElementById('filterButton');
-
-    if (!filterButton.contains(event.target) && !dropdown.contains(event.target)) {
-        dropdown.classList.add('hidden'); // Hide the dropdown if click is outside
-    }
-});
-
-// Filter Function
+// Fungsi untuk filter kategori
 function filterCategory(category) {
-    var items = document.querySelectorAll('.card');
+    // Ambil semua kartu produk
+    const cards = document.querySelectorAll('.card');
 
-    items.forEach(function(item) {
-        var itemCategory = item.getAttribute('data-category'); // Ambil kategori dari data attribute
+    // Loop melalui setiap kartu
+    cards.forEach(card => {
+        // Ambil kategori dari kartu
+        const cardCategory = card.querySelector('.card-category').getAttribute('data-category');
 
-        if (category === 'all' || itemCategory === category) {
-            item.style.display = ''; // Show the item
+        // Tampilkan kartu yang sesuai dengan kategori yang dipilih
+        if (category === 'all' || cardCategory === category) {
+            card.style.display = 'block'; // Tampilkan kartu
         } else {
-            item.style.display = 'none'; // Hide the item
+            card.style.display = 'none'; // Sembunyikan kartu
         }
     });
 
-    // Hide the dropdown after selection
+    // Tutup dropdown setelah kategori dipilih
     toggleDropdown();
 }
 </script>

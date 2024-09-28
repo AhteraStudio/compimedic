@@ -93,13 +93,14 @@ document.getElementById('searchInput').addEventListener('keypress', function (e)
                 </svg>
             </button>
 
- <!-- Dropdown Menu (Initially hidden) -->
+<!-- Dropdown Menu (Initially hidden) -->
   <div id="categoryDropdown" class="hidden absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
       <!-- Categories dynamically generated from Jekyll -->
-      {% for item in site.items %}
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('{{ item.category }}')">
-          {{ item.category | capitalize }}
+      {% assign categories = site.items | map: 'category' | uniq %}
+      {% for category in categories %}
+        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('{{ category }}')">
+          {{ category | capitalize }}
         </a>
       {% endfor %}
       <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('all')">All Categories</a>
@@ -129,7 +130,7 @@ function filterCategory(category) {
     var items = document.querySelectorAll('.card');
 
     items.forEach(function(item) {
-        var itemCategory = item.getAttribute('data-category'); // Get category from data attribute
+        var itemCategory = item.getAttribute('data-category'); // Ambil kategori dari data attribute
 
         if (category === 'all' || itemCategory === category) {
             item.style.display = ''; // Show the item

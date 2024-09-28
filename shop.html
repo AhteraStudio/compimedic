@@ -53,6 +53,31 @@ title: Compimedic Official Store
                 </div>
             </div>
 
+<!-- JS search -->
+<script>
+    function searchItems() {
+        // Get the search input value
+        let input = document.getElementById('searchInput').value.toLowerCase();
+        
+        // Get all the product cards
+        let products = document.querySelectorAll('.card');
+        
+        // Loop through each product card
+        products.forEach(product => {
+            // Get the product name from the card
+            let productName = product.querySelector('.card-title').textContent.toLowerCase();
+            
+            // Check if the product name includes the search input
+            if (productName.includes(input)) {
+                product.style.display = ''; // Show product
+            } else {
+                product.style.display = 'none'; // Hide product
+            }
+        });
+    }
+</script>
+<!-- end JS search -->
+
             <!-- Filter Button -->
             <button class="ml-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">

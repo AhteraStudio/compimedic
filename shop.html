@@ -506,4 +506,41 @@ color: #3396bb;
   </div>
 </section>
 
+
+<script>
+// untuk ambil data local storage item cart
+document.addEventListener('DOMContentLoaded', function() {
+    const cartBadge = document.querySelector('#cart-badge');
+    const cartContent = document.querySelector('#cart-content');
+
+    // Fungsi untuk update tampilan cart
+    function updateCartDisplay() {
+        // Ambil item cart dari localStorage
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+
+        // Kosongkan konten cart sebelum diupdate
+        if (cartContent) {
+            cartContent.innerHTML = '';
+
+            // Loop setiap item di cart dan tampilkan
+            cart.forEach(item => {
+                const productElement = document.createElement('div');
+                productElement.textContent = `${item.name} - ${item.price}`;
+                cartContent.appendChild(productElement);
+            });
+        }
+
+        // Tampilkan badge merah kalau ada barang di cart
+        if (cart.length > 0) {
+            cartBadge.classList.remove('hidden');
+        } else {
+            cartBadge.classList.add('hidden');
+        }
+    }
+
+    // Panggil fungsi updateCartDisplay saat halaman di-load
+    updateCartDisplay();
+});
+</script>
+
 </body>

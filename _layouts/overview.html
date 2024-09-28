@@ -226,8 +226,8 @@ function changeMobileImage(imageSrc, thumbnail) {
         <!-- Nama produk dan harga -->
         <h1 class="text-xl font-semibold">{{ page.product }}</h1>
         <div class="flex items-center space-x-2">
-          <p class="text-lg text-[#3396bb] font-bold">{{ page.price }}</p>
-          <p class="text-sm text-gray-500 line-through">{{ page.real-price }}</p>
+          <p class="text-lg text-[#3396bb] font-bold"><span id="price-{{ page.id }}">{{ page.price | remove: ',' | remove: '.' }}</span></p>
+          <p class="text-sm text-gray-500 line-through"><span id="price-{{ page.id }}" class="line-through">{{ page.real-price | remove: ',' | remove: '.' }}</span></p>
         </div>
 
         <!-- Tabel detail produk -->
@@ -254,6 +254,28 @@ function changeMobileImage(imageSrc, thumbnail) {
     </div>
   </div>
 
+<!-- price JS -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Pilih semua elemen yang memiliki ID yang dimulai dengan 'price-'
+    var prices = document.querySelectorAll('[id^="price-"]');
+    prices.forEach(function(span) {
+        var priceValue = span.innerHTML.trim();
+        // Hapus semua non-digit kecuali koma dan titik desimal
+        priceValue = priceValue.replace(/[^\d,]/g, '');
+
+        // Mengganti koma dengan titik untuk format angka
+        priceValue = priceValue.replace(',', '.');
+
+        // Format angka dengan Locale Indonesia
+        var formattedPrice = parseFloat(priceValue).toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+
+        // Update harga pada elemen
+        span.innerHTML = formattedPrice;
+    });
+});
+</script>
+<!-- end price JS -->
 
 
 <!-- tombol mobile -->

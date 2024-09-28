@@ -281,15 +281,15 @@ function changeMobileImage(imageSrc, thumbnail) {
 </div>
 <!-- end tombol mobile -->
 
-<!-- JS tombol mobile -->
+<!-- JS tombol mobile chat -->
 <script>
 function openWhatsApp(product) {
-    const message = `Halo saya ingin memesan produk ${page.product}. Bantu saya untuk melakukan pemesanan.`;
-    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+    const message = `Halo saya ingin memesan produk ${product}. Bantu saya untuk melakukan pemesanan.`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=6285186655283&text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 }
 </script>
-<!-- end JS tombol mobile -->
+<!-- end JS tombol mobile chat -->
 
   <script>
     let mobileImages = ['image1.jpg', 'image2.jpg', 'image3.jpg'];

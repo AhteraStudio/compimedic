@@ -84,12 +84,42 @@ document.getElementById('searchInput').addEventListener('keypress', function (e)
 <!-- end JS search -->
 
             <!-- Filter Button -->
-            <button class="ml-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371zm1.57-.785L11 2.687h-.047l-.652 2.157z"/>
-                    <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293z"/>
-                </svg>
-            </button>
+            <!-- Filter Category Button -->
+<div class="relative inline-block text-left">
+  <button class="ml-4 inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700">
+    Filter Category
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down ml-2" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M1.646 5.646a.5.5 0 0 1 .708 0L8 11.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+    </svg>
+  </button>
+
+  <!-- Dropdown Menu -->
+  <div class="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('monitor')">Monitor</a>
+      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('ventilator')">Ventilator</a>
+      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('infusion')">Infusion Pump</a>
+      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('all')">All Categories</a>
+    </div>
+  </div>
+</div>
+<!-- is filter -->
+<script>
+function filterCategory(category) {
+    var items = document.querySelectorAll('.card');
+
+    items.forEach(function(item) {
+        var itemCategory = item.getAttribute('data-category'); // Get category from data attribute
+
+        if (category === 'all' || itemCategory === category) {
+            item.style.display = ''; // Show the item
+        } else {
+            item.style.display = 'none'; // Hide the item
+        }
+    });
+}
+</script>
+<!-- end JS filter -->
 
             <!-- Cart Icon -->
             <button class="ml-4">

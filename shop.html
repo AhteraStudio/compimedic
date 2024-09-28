@@ -155,6 +155,60 @@ function filterCategory(category) {
 <div id="cart-content">
     <!-- Produk yang masuk ke cart bakal ditampilin di sini -->
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const addToCartBtn = document.querySelector('#add-to-cart');
+    const cartContent = document.querySelector('#cart-content');
+    const cartBadge = document.querySelector('#cart-badge'); // Ambil badge merah
+
+    // Contoh data produk dari {{page.product}} dan {{page.price}}
+    const product = {
+        name: "{{page.product}}", // Ganti ini dengan {{page.product}}
+        price: "{{page.price}}"    // Ganti ini dengan {{page.price}}
+    };
+
+    // Event listener untuk tombol Add to Cart
+    addToCartBtn.addEventListener('click', function() {
+        // Ambil item cart dari localStorage
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+
+        // Tambah produk ke array cart
+        cart.push(product);
+
+        // Simpan array cart kembali ke localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Update tampilan cart dan badge
+        updateCartDisplay();
+    });
+
+    // Fungsi untuk update tampilan cart dan badge
+    function updateCartDisplay() {
+        // Ambil item cart dari localStorage
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+
+        // Kosongkan konten cart sebelum diupdate
+        cartContent.innerHTML = '';
+
+        // Loop setiap item di cart dan tampilkan
+        cart.forEach(item => {
+            const productElement = document.createElement('div');
+            productElement.textContent = `${item.name} - ${item.price}`;
+            cartContent.appendChild(productElement);
+        });
+
+        // Tampilkan badge merah kalau ada barang di cart
+        if (cart.length > 0) {
+            cartBadge.classList.remove('hidden');
+        } else {
+            cartBadge.classList.add('hidden');
+        }
+    }
+
+    // Panggil fungsi updateCartDisplay saat halaman di-load
+    updateCartDisplay();
+});
+</script>
 
 
 

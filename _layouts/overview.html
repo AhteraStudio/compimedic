@@ -284,7 +284,9 @@ function changeMobileImage(imageSrc, thumbnail) {
 <!-- JS tombol mobile chat -->
 <script>
 function openWhatsApp(product) {
-    const message = `Halo saya ingin memesan produk ${product}. Bantu saya untuk melakukan pemesanan.`;
+    const message = `Halo saya ingin memesan produk *${page.product}* Bantu saya untuk melakukan pemesanan.
+
+product: ${currentUrl}`;
     const whatsappUrl = `https://api.whatsapp.com/send?phone=6285186655283&text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 }

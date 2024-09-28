@@ -93,18 +93,19 @@ document.getElementById('searchInput').addEventListener('keypress', function (e)
                 </svg>
             </button>
 
-  <!-- Dropdown Menu (Initially hidden) -->
+ <!-- Dropdown Menu (Initially hidden) -->
   <div id="categoryDropdown" class="hidden absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('monitor')">Monitor</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('ventilator')">Ventilator</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('infusion')">Infusion Pump</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('ecg')">ECG</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('defibrillator')">Defibrillator</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('alkes')">alkes</a>
+      <!-- Categories dynamically generated from Jekyll -->
+      {% for item in site.items %}
+        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('{{ item.category }}')">
+          {{ item.category | capitalize }}
+        </a>
+      {% endfor %}
       <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('all')">All Categories</a>
     </div>
   </div>
+
 <!-- js filter -->
 <script>
 // Toggle Dropdown Menu
@@ -112,6 +113,16 @@ function toggleDropdown() {
     var dropdown = document.getElementById('categoryDropdown');
     dropdown.classList.toggle('hidden'); // Toggle 'hidden' class to show/hide the dropdown
 }
+
+// Close dropdown if clicked outside
+document.addEventListener('click', function(event) {
+    var dropdown = document.getElementById('categoryDropdown');
+    var filterButton = document.getElementById('filterButton');
+
+    if (!filterButton.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.classList.add('hidden'); // Hide the dropdown if click is outside
+    }
+});
 
 // Filter Function
 function filterCategory(category) {

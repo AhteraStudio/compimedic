@@ -43,38 +43,37 @@ title: Compimedic Official Store
             </div>
 
             <!-- Search Bar -->
-            <div class="relative flex-1">
-                <input type="text" id="searchInput" placeholder="Search..." class="w-full p-2 pr-10 border border-gray-300 rounded-lg" oninput="searchItems()">
-                <!-- Search Icon -->
-                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                    </svg>
-                </div>
-            </div>
+<div class="relative flex-1">
+    <input type="text" id="searchInput" placeholder="Search..." class="w-full p-2 pr-10 border border-gray-300 rounded-lg" oninput="searchItems()">
+    <!-- Search Icon -->
+    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+    </div>
+</div>
 
 <!-- JS search -->
 <script>
     function searchItems() {
-        // Get the search input value
-        let input = document.getElementById('searchInput').value.toLowerCase();
+    // Ambil nilai dari input search
+    var input = document.getElementById('searchInput').value.toLowerCase();
+    
+    // Ambil semua card produk
+    var cards = document.querySelectorAll('#product-container .card');
+    
+    // Looping semua produk buat ngecek sesuai search atau nggak
+    cards.forEach(function(card) {
+        var productName = card.querySelector('.card-title').textContent.toLowerCase();
         
-        // Get all the product cards
-        let products = document.querySelectorAll('.card');
-        
-        // Loop through each product card
-        products.forEach(product => {
-            // Get the product name from the card
-            let productName = product.querySelector('.card-title').textContent.toLowerCase();
-            
-            // Check if the product name includes the search input
-            if (productName.includes(input)) {
-                product.style.display = ''; // Show product
-            } else {
-                product.style.display = 'none'; // Hide product
-            }
-        });
-    }
+        // Kalau product name sesuai dengan input, tampilin card
+        if (productName.includes(input)) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
 </script>
 <!-- end JS search -->
 

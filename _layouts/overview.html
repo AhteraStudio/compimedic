@@ -288,7 +288,8 @@ function openWhatsApp() {
     const currentUrl = window.location.href; 
     // Buat pesan yang mau dikirim
     const product = "{{ page.product }}"; // Ambil produk dari page
-    const message = `Halo saya ingin memesan produk ${product}. Bantu saya untuk melakukan pemesanan. Lihat halaman ini: ${currentUrl}`; 
+    const message = `Halo saya ingin memesan produk * ${product} *. Bantu saya untuk melakukan pemesanan.
+Lihat halaman ini: ${currentUrl}`; 
     // Encode pesan untuk URL
     const whatsappUrl = `https://api.whatsapp.com/send?phone=6285186655283&text=${encodeURIComponent(message)}`; 
     // Buka link WhatsApp di tab baru

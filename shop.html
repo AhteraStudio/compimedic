@@ -55,7 +55,8 @@ title: Compimedic Official Store
 
 <!-- JS search -->
 <script>
-    function searchItems() {
+    // Search Function
+function searchItems() {
     var input = document.getElementById('searchInput').value.toLowerCase();
     var items = document.querySelectorAll('.card');
 
@@ -68,6 +69,17 @@ title: Compimedic Official Store
         }
     });
 }
+
+// Event Listener for Enter key
+document.getElementById('searchInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        e.preventDefault(); // Prevent form submit if any
+        searchItems(); // Call search function
+
+        // Close keyboard (only works on mobile browsers)
+        this.blur(); // Blurs the input field to hide the keyboard
+    }
+});
 </script>
 <!-- end JS search -->
 

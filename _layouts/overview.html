@@ -138,8 +138,8 @@ function changeImage(imageSrc) {
           <!-- Nama produk dan harga -->
           <h1 class="text-2xl font-semibold">{{ page.product }}</h1>
           <div class="flex items-center space-x-2">
-            <p class="text-xl text-[#3396bb] font-bold">Rp 1.500.000</p>
-            <p class="text-sm text-gray-500 line-through">Rp 2.000.000</p>
+            <p class="text-xl text-[#3396bb] font-bold">{{ page.price }}</p>
+            <p class="text-sm text-gray-500 line-through">{{ page.real-price }}</p>
           </div>
 
 <!-- Tombol Beli, Chat, Share -->

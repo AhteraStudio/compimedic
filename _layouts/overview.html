@@ -151,59 +151,20 @@ document.getElementById('searchInput').addEventListener('keypress', function (e)
 </script>
 <!-- end JS search -->
 
-            <!-- Filter Button -->
-           <!-- Filter Category Button with Toggle -->
-<div class="relative">
-<button id="filterButton" class="ml-4" onclick="toggleDropdown()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#3396bb" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371zm1.57-.785L11 2.687h-.047l-.652 2.157z"/>
-                    <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293z"/>
-                </svg>
-            </button>
+            <!-- share Button fixed -->
+           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="100%" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<path fill="#000000" opacity="1.000000" stroke="none" 
+	d="
+M499.004883,513.000000 
+	C332.670258,513.000000 166.837112,513.000000 1.002964,513.000000 
+	C1.001976,342.334839 1.001976,171.669662 1.000988,1.003376 
+	C171.664978,1.002251 342.329956,1.002251 512.996216,1.001125 
+	C512.997437,171.664795 512.997437,342.329590 512.998718,512.997192 
+	C508.502106,513.000000 504.004242,513.000000 499.004883,513.000000 
+z"/>
+</svg>
 
-  <!-- Dropdown Menu (Initially hidden) -->
-  <div id="categoryDropdown" class="hidden absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('alkes')">Alkes</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('monitor')">Monitor</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('USG')">USG</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('ultrasound')">Ultrasound</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="filterCategory('all')">All Categories</a>
-    </div>
-  </div>
-</div>
-
-<!-- js filter -->
-<script>
-// Fungsi untuk toggle dropdown
-function toggleDropdown() {
-    const dropdown = document.getElementById("categoryDropdown");
-    dropdown.classList.toggle("hidden");
-}
-
-// Fungsi untuk filter kategori
-function filterCategory(category) {
-    // Ambil semua kartu produk
-    const cards = document.querySelectorAll('.card');
-
-    // Loop melalui setiap kartu
-    cards.forEach(card => {
-        // Ambil kategori dari kartu
-        const cardCategory = card.querySelector('.card-category').getAttribute('data-category');
-
-        // Tampilkan kartu yang sesuai dengan kategori yang dipilih
-        if (category === 'all' || cardCategory === category) {
-            card.style.display = 'block'; // Tampilkan kartu
-        } else {
-            card.style.display = 'none'; // Sembunyikan kartu
-        }
-    });
-
-    // Tutup dropdown setelah kategori dipilih
-    toggleDropdown();
-}
-</script>
-<!-- end JS filter -->
 
             <!-- Cart Icon <button class="ml-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#3396bb" class="bi bi-bag" viewBox="0 0 16 16">

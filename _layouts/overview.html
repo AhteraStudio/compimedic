@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </button>
 
   <!-- Tombol Cart -->
-  <button class="w-1/4 bg-gray-300 text-black rounded-tl-3xl p-3 relative z-10 flex items-center justify-center pr-7">
+  <button id="add-to-cart" class="w-1/4 bg-gray-300 text-black rounded-tl-3xl p-3 relative z-10 flex items-center justify-center pr-7">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
       <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5"/>
       <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
@@ -478,5 +478,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', handleScroll);
   });
+</script>
+
+<!-- JS add to cart -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const addToCartBtn = document.querySelector('#add-to-cart');
+    const cartContent = document.querySelector('#cart-content');
+    const cartBadge = document.querySelector('#cart-badge'); // Ambil badge merah
+
+    // Contoh data produk dari {{page.product}} dan {{page.price}}
+    const product = {
+        name: "{{page.product}}", // Ganti ini dengan {{page.product}}
+        price: "{{page.price}}"    // Ganti ini dengan {{page.price}}
+    };
+
+    // Event listener untuk tombol Add to Cart
+    addToCartBtn.addEventListener('click', function() {
+        // Ambil item cart dari localStorage
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+
+        // Tambah produk ke array cart
+        cart.push(product);
+
+        // Simpan array cart kembali ke localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Update tampilan cart dan badge
+        updateCartDisplay();
+    });
+
+    // Fungsi untuk update tampilan cart dan badge
+    function updateCartDisplay() {
+        // Ambil item cart dari localStorage
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+
+        // Kosongkan konten cart sebelum diupdate
+        cartContent.innerHTML = '';
+
+        // Loop setiap item di cart dan tampilkan
+        cart.forEach(item => {
+            const productElement = document.createElement('div');
+            productElement.textContent = `${item.name} - ${item.price}`;
+            cartContent.appendChild(productElement);
+        });
+
+        // Tampilkan badge merah kalau ada barang di cart
+        if (cart.length > 0) {
+            cartBadge.classList.remove('hidden');
+        } else {
+            cartBadge.classList.add('hidden');
+        }
+    }
+
+    // Panggil fungsi updateCartDisplay saat halaman di-load
+    updateCartDisplay();
+});
 </script>
 </html>

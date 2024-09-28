@@ -283,12 +283,28 @@ function changeMobileImage(imageSrc, thumbnail) {
 
 <!-- JS tombol mobile chat -->
 <script>
+function getGreetingTime() {
+    const hours = new Date().getHours(); // Ambil jam saat ini
+    if (hours >= 5 && hours < 12) {
+        return "Pagi";
+    } else if (hours >= 12 && hours < 18) {
+        return "Siang";
+    } else if (hours >= 18 && hours < 21) {
+        return "Sore";
+    } else {
+        return "Malam";
+    }
+}
+
 function openWhatsApp() {
     // Ambil URL halaman saat ini
     const currentUrl = window.location.href; 
+    // Ambil produk dari page
+    const product = "{{ page.product }}"; 
+    // Dapatkan waktu sapaan
+    const greeting = getGreetingTime();
     // Buat pesan yang mau dikirim
-    const product = "{{ page.product }}"; // Ambil produk dari page
-    const message = `Halo saya ingin memesan produk *${product}*. Bantu saya untuk melakukan pemesanan.
+    const message = `Halo Selamat ${greeting}, saya ingin bertanya mengenai produk *${product}*. Apakah ada informasi lebih lanjut yang bisa diberikan? Terima kasih.
 
 Lihat halaman ini: ${currentUrl}`; 
     // Encode pesan untuk URL
@@ -298,6 +314,9 @@ Lihat halaman ini: ${currentUrl}`;
 }
 </script>
 <!-- end JS tombol mobile chat -->
+
+
+
 
   <script>
     let mobileImages = ['image1.jpg', 'image2.jpg', 'image3.jpg'];

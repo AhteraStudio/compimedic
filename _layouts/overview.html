@@ -309,12 +309,12 @@ function getGreetingTime() {
     const hours = new Date().getHours(); // Ambil jam saat ini
     if (hours >= 5 && hours < 12) {
         return "Pagi";
-    } else if (hours >= 12 && hours < 18) {
+    } else if (hours >= 12 && hours < 15) {
         return "Siang";
-    } else if (hours >= 18 && hours < 21) {
+    } else if (hours >= 15 && hours < 18) {
         return "Sore";
-    } else {
-        return "Malam";
+    } else if (hours >= 18 && hours < 23) {
+        return "malam";
     }
 }
 

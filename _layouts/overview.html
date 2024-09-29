@@ -178,7 +178,7 @@
 
 
 <script>
- document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const cartButton = document.querySelector('#cart');
     const cartModal = document.querySelector('#cart-modal');
     const closeModal = document.querySelector('#close-modal');
@@ -195,6 +195,26 @@
     closeModal.addEventListener('click', function() {
         cartModal.classList.add('hidden');
     });
+
+    // Fungsi untuk nambah item ke cart
+    function addItemToCart(item) {
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+
+        // Cek apakah item sudah ada di cart
+        let existingItem = cart.find(cartItem => cartItem.name === item.name);
+
+        if (existingItem) {
+            // Kalau item sudah ada, update quantity
+            existingItem.quantity += 1; // Atau seberapa banyak quantity yang mau lo tambahin
+        } else {
+            // Kalau item belum ada, tambahin ke cart dengan quantity minimal 1
+            item.quantity = 1;  // Set minimal quantity 1
+            cart.push(item);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartDisplay();
+    }
 
     // Fungsi untuk update cart display (menampilkan item cart)
     function updateCartDisplay() {

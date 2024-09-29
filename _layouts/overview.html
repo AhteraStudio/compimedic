@@ -102,95 +102,90 @@
 </head>
 <body class="bg-white">
 
-    <!-- Header -->
-    <header class="bg-white fixed w-full z-50" style="box-shadow: 0 4px 10px rgba(51, 150, 187, 0.1);">
-        <div class="container mx-auto flex items-center justify-between p-2">
-            <!-- Logo (Desktop only) -->
-            <div class="hidden md:flex items-center">
-                <img src="https://raw.githubusercontent.com/EdilAhtera/compimedic/main/img/1721568418869.png" alt="Logo" class="h-[80px] mr-20">
+    
+
+
+<!-- Header -->
+<header class="bg-white fixed w-full z-50" style="box-shadow: 0 4px 10px rgba(51, 150, 187, 0.1);">
+    <div class="container mx-auto flex items-center justify-between p-2">
+        <!-- Logo (Desktop only) -->
+        <div class="hidden md:flex items-center">
+            <img src="https://raw.githubusercontent.com/EdilAhtera/compimedic/main/img/1721568418869.png" alt="Logo" class="h-[80px] mr-20">
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative flex-1">
+            <input type="text" id="searchInput" placeholder="Search..." class="w-full p-2 pr-10 border border-[#3396bb] rounded-lg" oninput="searchItems()">
+            <!-- Search Icon -->
+            <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3396bb" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
             </div>
+        </div>
 
-            <!-- Search Bar -->
-<div class="relative flex-1">
-    <input type="text" id="searchInput" placeholder="Search..." class="w-full p-2 pr-10 border border-[#3396bb] rounded-lg" oninput="searchItems()">
-    <!-- Search Icon -->
-    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#3396bb" class="bi bi-search" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-        </svg>
-    </div>
-</div>
+        <!-- JS Search -->
+        <script>
+            // Search Function
+            function searchItems() {
+                const input = document.getElementById('searchInput').value.toLowerCase();
+                const items = document.querySelectorAll('.card');
 
-<!-- JS search -->
-<script>
-    // Search Function
-function searchItems() {
-    var input = document.getElementById('searchInput').value.toLowerCase();
-    var items = document.querySelectorAll('.card');
+                items.forEach(function(item) {
+                    const productName = item.querySelector('.card-title').textContent.toLowerCase();
+                    item.style.display = productName.includes(input) ? '' : 'none'; // Show or hide the item
+                });
+            }
 
-    items.forEach(function(item) {
-        var productName = item.querySelector('.card-title').textContent.toLowerCase();
-        if (productName.includes(input)) {
-            item.style.display = ''; // Show the item
-        } else {
-            item.style.display = 'none'; // Hide the item
-        }
-    });
-}
+            // Event Listener for Enter key
+            document.getElementById('searchInput').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault(); // Prevent form submit if any
+                    searchItems(); // Call search function
+                    this.blur(); // Close keyboard (only works on mobile browsers)
+                }
+            });
+        </script>
+        <!-- End JS Search -->
 
-// Event Listener for Enter key
-document.getElementById('searchInput').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        e.preventDefault(); // Prevent form submit if any
-        searchItems(); // Call search function
+        <!-- Share Button -->
+        <button class="ml-4">
+            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24">
+                <path stroke="#3396BB" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.248 19C3.22 15.77 5.275 8.232 12.466 8.232V6.079a1.025 1.025 0 0 1 1.644-.862l5.479 4.307a1.108 1.108 0 0 1 0 1.723l-5.48 4.307a1.026 1.026 0 0 1-1.643-.861v-2.154C5.275 13.616 4.248 19 4.248 19Z"/>
+            </svg>
+        </button>
 
-        // Close keyboard (only works on mobile browsers)
-        this.blur(); // Blurs the input field to hide the keyboard
-    }
-});
-</script>
-<!-- end JS search -->
+        <!-- Cart Icon with Badge -->
+        <button id="cart-icon" class="relative" onclick="toggleCartModal()">
+            <svg /* SVG Cart Icon Code Here */ ></svg>
+            <span id="cart-badge" class="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs h-4 w-4 flex items-center justify-center" style="display: none;"></span>
+        </button>
 
-            <!-- share Button fixed -->
-<button class="ml-4">
-         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24">
-  <path stroke="#3396BB" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.248 19C3.22 15.77 5.275 8.232 12.466 8.232V6.079a1.025 1.025 0 0 1 1.644-.862l5.479 4.307a1.108 1.108 0 0 1 0 1.723l-5.48 4.307a1.026 1.026 0 0 1-1.643-.861v-2.154C5.275 13.616 4.248 19 4.248 19Z"/>
-</svg>
-</button>
-
-
-
-           <!-- Cart Icon with Badge -->
-<button id="cart-icon" class="relative" onclick="toggleCartModal()">
-  <svg /* SVG Cart Icon Code Here */ ></svg>
-  <span id="cart-badge" class="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs h-4 w-4 flex items-center justify-center" style="display: none;"></span>
-</button>
-
-<!-- Modal Cart Template -->
-<div id="cart-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-  <div class="bg-white w-full md:w-3/4 lg:w-2/3 h-full md:h-auto p-4 md:p-6 rounded-lg shadow-lg flex flex-col">
-    <!-- Header -->
-    <div class="flex items-center justify-between mb-4">
-      <button class="text-gray-600 hover:text-gray-800 md:hidden" onclick="closeModal()">
-        &#x2190; <!-- Simbol Back -->
-      </button>
-      <h2 class="text-lg md:text-xl font-semibold">Your Cart</h2>
-      <button class="text-gray-600 hover:text-gray-800 hidden md:block" onclick="closeModal()">
-        &#x2715; <!-- Simbol X untuk close -->
-      </button>
-    </div>
-    <!-- Modal Content -->
-    <div class="mt-2 flex-grow overflow-y-auto space-y-4 md:space-y-6" id="cart-items">
-      <!-- Dynamic card items will be inserted here -->
-    </div>
-    <button class="bg-blue-600 text-white font-semibold py-3 rounded shadow-lg hover:bg-blue-700 mt-4 hidden md:block">
-      Beli Semua
-    </button>
-    <button class="mt-4 bg-blue-600 text-white font-semibold py-3 text-xs md:text-lg hover:bg-blue-700 md:hidden fixed bottom-0 left-0 w-full">
-      Beli Semua
-    </button>
-  </div>
-</div>
+        <!-- Modal Cart Template -->
+        <div id="cart-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+            <div class="bg-white w-full md:w-3/4 lg:w-2/3 h-full md:h-auto p-4 md:p-6 rounded-lg shadow-lg flex flex-col">
+                <!-- Header -->
+                <div class="flex items-center justify-between mb-4">
+                    <button class="text-gray-600 hover:text-gray-800 md:hidden" onclick="closeModal()">
+                        &#x2190; <!-- Back symbol -->
+                    </button>
+                    <h2 class="text-lg md:text-xl font-semibold">Your Cart</h2>
+                    <button class="text-gray-600 hover:text-gray-800 hidden md:block" onclick="closeModal()">
+                        &#x2715; <!-- Close symbol -->
+                    </button>
+                </div>
+                <!-- Modal Content -->
+                <div class="mt-2 flex-grow overflow-y-auto space-y-4 md:space-y-6" id="cart-items">
+                    <!-- Dynamic card items will be inserted here -->
+                </div>
+                <button class="bg-blue-600 text-white font-semibold py-3 rounded shadow-lg hover:bg-blue-700 mt-4 hidden md:block">
+                    Beli Semua
+                </button>
+                <button class="mt-4 bg-blue-600 text-white font-semibold py-3 text-xs md:text-lg hover:bg-blue-700 md:hidden fixed bottom-0 left-0 w-full">
+                    Beli Semua
+                </button>
+            </div>
+        </div>
 
 <script>
   // Initialize cart

@@ -175,17 +175,121 @@ document.getElementById('searchInput').addEventListener('keypress', function (e)
 </button>
 
 <!-- Modal untuk menampilkan cart -->
-<div id="cart-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center hidden">
-    <div class="bg-white w-11/12 md:w-1/2 h-3/4 overflow-auto rounded-lg p-4 relative">
-        <button id="close-modal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800">
-            &times; Close
+<!-- template modal & card item -->
+<style>
+  @layer utilities {
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+    }
+  }
+</style>
+</head>
+<body class="bg-gray-100">
+
+  <div class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center">
+    <div class="bg-white w-full md:w-3/4 lg:w-2/3 h-full md:h-auto p-4 md:p-6 rounded-lg shadow-lg flex flex-col">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-4">
+        <button class="text-gray-600 hover:text-gray-800 md:hidden" onclick="closeModal()">
+          &#x2190; <!-- Simbol Back -->
         </button>
-        <h2 class="text-lg font-bold mb-4">Your Cart</h2>
-        <div id="cart-items">
-            <!-- Loop produk cart bakal tampil di sini -->
-        </div>
+        <h2 class="text-lg md:text-xl font-semibold">Your Cart</h2>
+        <button class="text-gray-600 hover:text-gray-800 hidden md:block" onclick="closeModal()">
+          &#x2715; <!-- Simbol X untuk close -->
+        </button>
+      </div>
+
+      <!-- Modal Content -->
+      <div class="mt-2 flex-grow overflow-y-auto space-y-4 md:space-y-6" id="cart-items">
+        <!-- Dynamic card items will be inserted here -->
+      </div>
+
+      <!-- Tombol Beli Semua (Desktop di dalam modal) -->
+      <button class="bg-blue-600 text-white font-semibold py-3 rounded shadow-lg hover:bg-blue-700 mt-4 hidden md:block">
+        Beli Semua
+      </button>
+
+      <!-- Tombol Beli Semua (Mobile Fixed) -->
+      <button class="mt-4 bg-blue-600 text-white font-semibold py-3 text-xs md:text-lg hover:bg-blue-700 md:hidden fixed bottom-0 left-0 w-full">
+        Beli Semua
+      </button>
+
     </div>
-</div>
+  </div>
+
+  <script>
+    // Simulate data for cart
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function renderCartItems() {
+      const cartItemsContainer = document.getElementById('cart-items');
+      cartItemsContainer.innerHTML = ''; // Clear previous items
+
+      cart.forEach((item, index) => {
+        const cardHTML = `
+          <div class="flex items-center relative p-4 md:p-6 bg-gray-50 rounded-lg shadow">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 md:w-20 md:h-20 object-cover rounded-lg">
+            <div class="ml-4 md:ml-6 flex-1">
+              <p class="text-sm md:text-base font-semibold line-clamp-2">${item.name}</p>
+              <p class="text-xs md:text-sm text-gray-500 mt-1">Rp. ${item.price.toLocaleString('id-ID')}</p>
+            </div>
+            <div class="flex items-center">
+              <div class="flex border border-gray-300 rounded-md">
+                <button class="bg-white w-5 h-5 flex items-center justify-center border-r border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-l-md" onclick="updateQuantity(${index}, -1)">-</button>
+                <input type="text" value="${item.quantity}" class="w-6 text-center border-none p-0 text-xs rounded-none" readonly style="height: 20px;">
+                <button class="bg-white w-5 h-5 flex items-center justify-center border-l border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-r-md" onclick="updateQuantity(${index}, 1)">+</button>
+              </div>
+            </div>
+            <button class="absolute top-0 right-0 mt-1 mr-1 text-red-600 hover:text-red-800 text-xs" onclick="removeItem(${index})">
+              &#x2716; hapus
+            </button>
+          </div>
+        `;
+        cartItemsContainer.insertAdjacentHTML('beforeend', cardHTML);
+      });
+    }
+
+    function updateQuantity(index, delta) {
+      if (cart[index].quantity + delta > 0) {
+        cart[index].quantity += delta;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCartItems();
+      }
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCartItems();
+    }
+
+    function closeModal() {
+      // Implement modal close functionality
+      document.querySelector('.fixed.inset-0').style.display = 'none'; // Hide modal
+    }
+
+    // Render cart items on page load
+    document.addEventListener('DOMContentLoaded', renderCartItems);
+  </script>
+</body>
+<!-- end template modal & card item -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const addToCartBtn = document.querySelector('#add-to-cart');

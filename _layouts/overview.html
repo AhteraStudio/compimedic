@@ -155,132 +155,136 @@
             </svg>
         </button>
 
-        <!-- Cart Icon with Badge -->
-        <button id="cart-icon" class="relative" onclick="toggleCartModal()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
-  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
-</svg>
-            <span id="cart-badge" class="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs h-4 w-4 flex items-center justify-center" style="display: none;"></span>
-        </button>
+       <!-- Cart Icon -->
+<button id="cart" class="ml-4 relative">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#3396bb" class="bi bi-bag" viewBox="0 0 16 16">
+        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+    </svg>
+    <span id="cart-badge" class="hidden absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full"></span>
+</button>
 
-        <!-- Modal Cart Template -->
-        <div id="cart-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-            <div class="bg-white w-full md:w-3/4 lg:w-2/3 h-full md:h-auto p-4 md:p-6 rounded-lg shadow-lg flex flex-col">
-                <!-- Header -->
-                <div class="flex items-center justify-between mb-4">
-                    <button class="text-gray-600 hover:text-gray-800 md:hidden" onclick="closeModal()">
-                        &#x2190; <!-- Back symbol -->
-                    </button>
-                    <h2 class="text-lg md:text-xl font-semibold">Your Cart</h2>
-                    <button class="text-gray-600 hover:text-gray-800 hidden md:block" onclick="closeModal()">
-                        &#x2715; <!-- Close symbol -->
-                    </button>
-                </div>
-                <!-- Modal Content -->
-                <div class="mt-2 flex-grow overflow-y-auto space-y-4 md:space-y-6" id="cart-items">
-                    <!-- Dynamic card items will be inserted here -->
-                </div>
-                <button class="bg-blue-600 text-white font-semibold py-3 rounded shadow-lg hover:bg-blue-700 mt-4 hidden md:block">
-                    Beli Semua
-                </button>
-                <button class="mt-4 bg-blue-600 text-white font-semibold py-3 text-xs md:text-lg hover:bg-blue-700 md:hidden fixed bottom-0 left-0 w-full">
-                    Beli Semua
-                </button>
-            </div>
+<!-- Modal untuk menampilkan cart -->
+<div id="cart-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center hidden">
+    <div class="bg-white w-11/12 md:w-1/2 h-3/4 overflow-auto rounded-lg p-4 relative">
+        <button id="close-modal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800">
+            &times; Close
+        </button>
+        <h2 class="text-lg font-bold mb-4">Your Cart</h2>
+        <div id="cart-items">
+            <!-- Loop produk cart bakal tampil di sini -->
         </div>
+    </div>
 </div>
 
+
 <script>
-  // Initialize cart
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+ document.addEventListener('DOMContentLoaded', function() {
+    const cartButton = document.querySelector('#cart');
+    const cartModal = document.querySelector('#cart-modal');
+    const closeModal = document.querySelector('#close-modal');
+    const cartItemsContainer = document.querySelector('#cart-items');
+    const cartBadge = document.querySelector('#cart-badge');
 
-  function addToCart(item) {
-    // Check if item already exists in cart
-    const existingItemIndex = cart.findIndex(cartItem => cartItem.id === item.id);
-    
-    if (existingItemIndex > -1) {
-      // If it exists, increment quantity
-      cart[existingItemIndex].quantity++;
-    } else {
-      // If not, add new item
-      cart.push({...item, quantity: 1});
-    }
-    
-    // Update local storage and badge count
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartBadge();
-  }
-
-  function updateCartBadge() {
-    const cartBadge = document.getElementById('cart-badge');
-    const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
-
-    if (itemCount > 0) {
-      cartBadge.textContent = itemCount;
-      cartBadge.style.display = 'flex'; // Show badge
-    } else {
-      cartBadge.style.display = 'none'; // Hide badge
-    }
-  }
-
-  function renderCartItems() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    cartItemsContainer.innerHTML = ''; // Clear previous items
-
-    cart.forEach((item, index) => {
-      const cardHTML = `
-        <div class="flex items-center relative p-4 md:p-6 bg-gray-50 rounded-lg shadow">
-          <img src="${item.image}" alt="${item.name}" class="w-16 h-16 md:w-20 md:h-20 object-cover rounded-lg">
-          <div class="ml-4 md:ml-6 flex-1">
-            <p class="text-sm md:text-base font-semibold line-clamp-2">${item.name}</p>
-            <p class="text-xs md:text-sm text-gray-500 mt-1">Rp. ${item.price.toLocaleString('id-ID')}</p>
-          </div>
-          <div class="flex items-center">
-            <div class="flex border border-gray-300 rounded-md">
-              <button class="bg-white w-5 h-5 flex items-center justify-center border-r border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-l-md" onclick="updateQuantity(${index}, -1)">-</button>
-              <input type="text" value="${item.quantity}" class="w-6 text-center border-none p-0 text-xs rounded-none" readonly style="height: 20px;">
-              <button class="bg-white w-5 h-5 flex items-center justify-center border-l border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-r-md" onclick="updateQuantity(${index}, 1)">+</button>
-            </div>
-          </div>
-          <button class="absolute top-0 right-0 mt-1 mr-1 text-red-600 hover:text-red-800 text-xs" onclick="removeItem(${index})">
-            &#x2716; hapus
-          </button>
-        </div>
-      `;
-      cartItemsContainer.insertAdjacentHTML('beforeend', cardHTML);
+    // Buka Modal saat icon cart di klik
+    cartButton.addEventListener('click', function() {
+        updateCartDisplay();  // Update cart tiap kali dibuka
+        cartModal.classList.remove('hidden');
     });
-  }
 
-  function updateQuantity(index, delta) {
-    if (cart[index].quantity + delta > 0) {
-      cart[index].quantity += delta;
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCartItems();
-      updateCartBadge(); // Update badge count
+    // Tutup Modal saat tombol close di klik
+    closeModal.addEventListener('click', function() {
+        cartModal.classList.add('hidden');
+    });
+
+    // Fungsi untuk update cart display (menampilkan item cart)
+    function updateCartDisplay() {
+        let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+        cartItemsContainer.innerHTML = '';
+
+        if (cart.length === 0) {
+            cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+        } else {
+            cart.forEach((item, index) => {
+                const cartItem = `
+                    <div class="flex items-center justify-between mb-4 p-3 border rounded-lg">
+                        <div class="flex items-center">
+                            <!-- Gambar Produk -->
+                            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover mr-4">
+                            <div>
+                                <!-- Nama Produk -->
+                                <h3 class="font-semibold">${item.name}</h3>
+                                <!-- Harga Produk -->
+                                <p class="text-gray-500">${item.price}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <!-- Quantity Selector -->
+                            <button class="decrease-qty bg-gray-300 text-black px-2 py-1 rounded-l">-</button>
+                            <input type="number" class="qty-input w-10 text-center border px-2 py-1" value="${item.quantity}">
+                            <button class="increase-qty bg-gray-300 text-black px-2 py-1 rounded-r">+</button>
+                            <!-- Tombol Hapus -->
+                            <button class="remove-item bg-red-500 text-white p-2 ml-4 rounded" data-index="${index}">Hapus</button>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.insertAdjacentHTML('beforeend', cartItem);
+            });
+        }
+
+        // Tampilkan badge merah kalau ada barang di cart
+        updateCartBadge(cart);
+
+        // Tambah listener untuk hapus item
+        document.querySelectorAll('.remove-item').forEach(button => {
+            button.addEventListener('click', function() {
+                removeItemFromCart(button.dataset.index);
+            });
+        });
+
+        // Tambah listener untuk ubah quantity
+        document.querySelectorAll('.decrease-qty').forEach((button, index) => {
+            button.addEventListener('click', function() {
+                changeQuantity(index, -1);
+            });
+        });
+
+        document.querySelectorAll('.increase-qty').forEach((button, index) => {
+            button.addEventListener('click', function() {
+                changeQuantity(index, 1);
+            });
+        });
     }
-  }
 
-  function removeItem(index) {
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    renderCartItems();
-    updateCartBadge(); // Update badge count
-  }
-
-  function toggleCartModal() {
-    const modal = document.getElementById('cart-modal');
-    modal.classList.toggle('hidden');
-    if (!modal.classList.contains('hidden')) {
-      renderCartItems(); // Render items when modal opens
+    // Fungsi untuk update badge cart
+    function updateCartBadge(cart) {
+        if (cart.length > 0) {
+            cartBadge.classList.remove('hidden');
+        } else {
+            cartBadge.classList.add('hidden');
+        }
     }
-  }
 
-  function closeModal() {
-    document.getElementById('cart-modal').classList.add('hidden');
-  }
+    // Fungsi untuk mengubah quantity
+    function changeQuantity(index, amount) {
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        cart[index].quantity += amount;
+        if (cart[index].quantity < 1) cart[index].quantity = 1;  // Minimal 1
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartDisplay();
+    }
 
-  // Update badge count on page load
-  document.addEventListener('DOMContentLoaded', updateCartBadge);
+    // Fungsi untuk hapus item dari cart
+    function removeItemFromCart(index) {
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartDisplay();
+    }
+
+    // Panggil fungsi updateCartBadge saat halaman di-load
+    updateCartDisplay();
+});
+
 </script>
 
 

@@ -151,8 +151,45 @@
     <div class="bg-white w-full md:w-3/4 lg:w-2/3 h-full md:h-auto p-4 md:p-6 rounded-lg shadow-lg flex flex-col">
 
       <!-- Header -->
+      <div class="flex items-center justify-between mb-4">
+        <button class="text-gray-600 hover:text-gray-800 md:hidden" onclick="closeModal()">
+          &#x2190; <!-- Simbol Back -->
+        </button>
+        <h2 class="text-lg md:text-xl font-semibold">Your Cart</h2>
+        <button class="text-gray-600 hover:text-gray-800 hidden md:block" onclick="closeModal()">
+          &#x2715; <!-- Simbol X untuk close -->
+        </button>
+      </div>
+
+      <!-- Modal Content -->
+      <div class="mt-2 flex-grow overflow-y-auto space-y-4 md:space-y-6" id="cart-items">
+        <!-- Dynamic card items will be inserted here -->
+      </div>
+
+      <!-- Tombol Beli Semua (Desktop di dalam modal) -->
+      <button class="bg-blue-600 text-white font-semibold py-3 rounded shadow-lg hover:bg-blue-700 mt-4 hidden md:block">
+        Beli Semua
+      </button>
+
+      <!-- Tombol Beli Semua (Mobile Fixed) -->
+      <button class="mt-4 bg-blue-600 text-white font-semibold py-3 text-xs md:text-lg hover:bg-blue-700 md:hidden fixed bottom-0 left-0 w-full">
+        Beli Semua
+      </button>
+
+    </div>
+  </div>
+<!-- end template modal & card item -->
+
+          <!-- Menu Icon -->
+          <button class="ml-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#3396bb" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                  <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+              </svg>
+          </button>
+      </div>
+  </header>
 <!-- end header -->
- 
+
 <!-- js script modal cart, add to cart, quantit, local storage -->
  <script>
 document.addEventListener('DOMContentLoaded', function() {

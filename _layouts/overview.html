@@ -102,7 +102,7 @@
 </head>
 <body class="bg-white">
 
-  <!-- Header menu -->
+<!-- Header menu -->
 <header class="bg-white fixed w-full z-50" style="box-shadow: 0 4px 10px rgba(51, 150, 187, 0.1);">
   <div class="container mx-auto flex items-center justify-between p-2">
       <!-- Logo (Desktop only) -->
@@ -278,6 +278,7 @@ function removeFromCart(index) {
 // Load cart count saat halaman pertama kali di load
 document.addEventListener('DOMContentLoaded', updateBadge);
 </script>
+
 
 
 
@@ -593,8 +594,9 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.replace(newPath);
     }
 })();
+</script>
 
-  //chat whatsapp
+<script>
     function sendWhatsAppMessage(productName) {
         const phoneNumber = '6285186655283';
         const message = `Halo Compimedic, saya ingin menanyakan produk *${productName}*. Tolong bantu saya untuk proses pemesanannya, terimakasih.`;

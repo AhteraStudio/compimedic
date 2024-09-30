@@ -662,5 +662,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', handleScroll);
   });
+
+
+
+// JS buat hide tombol mobile pas scroll ke footer
+document.addEventListener('DOMContentLoaded', function () {
+    const mobileButtons = document.querySelector('.fixed.bottom-0'); // Target tombol mobile
+    const footer = document.querySelector('#footer'); // Target footer
+
+    // Observer buat deteksi ketika footer muncul
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Hide tombol pas footer kelihatan
+                mobileButtons.style.display = 'none';
+            } else {
+                // Show tombol pas footer gak kelihatan
+                mobileButtons.style.display = 'flex';
+            }
+        });
+    });
+
+    // Mulai observe footer
+    observer.observe(footer);
+});
 </script>
 </html>

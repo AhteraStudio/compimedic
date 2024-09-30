@@ -463,7 +463,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 <!-- tombol mobile -->
-<div class="fixed bottom-0 left-0 right-0 flex justify-between overflow-hidden md:hidden">
+<div id="mobile-buttons" class="fixed bottom-0 left-0 right-0 flex justify-between overflow-hidden md:hidden">
  <!-- Tombol Chat (warna putih, lebar, dan di belakang) -->
 <button class="w-1/2 bg-white text-black rounded-tl-3xl p-3 relative z-0 flex items-center justify-center pr-[20%] mr-[-20%]" onclick="openWhatsApp()">
     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-whatsapp mr-2" viewBox="0 0 16 16">
@@ -666,39 +666,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // JS buat hide tombol mobile pas scroll ke footer
-document.addEventListener('DOMContentLoaded', function () {
-    const mobileButtons = document.querySelector('.fixed.bottom-0'); // Target tombol mobile
-    const footer = document.querySelector('#footer'); // Target footer
+document.addEventListener('DOMContentLoaded', function() {
+    var footer = document.querySelector('#footer');
+    var mobileButtons = document.querySelector('#mobile-buttons');
 
-    // Observer buat deteksi ketika footer muncul
-    const observer = new IntersectionObserver((entries) => {
+    // Buat observer buat ngedetect footer
+    var observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Hide tombol pas footer kelihatan
+                // Sembunyiin mobile buttons pas footer kelihatan
                 mobileButtons.style.display = 'none';
             } else {
-                // Show tombol pas footer gak kelihatan
+                // Tampilkan mobile buttons lagi kalau footer nggak kelihatan
                 mobileButtons.style.display = 'flex';
             }
         });
     });
 
-    // Mulai observe footer
+    // Observe footer
     observer.observe(footer);
-});
-
-// detektor JS tombol mobile
-document.addEventListener('scroll', function() {
-    var footer = document.querySelector('#footer');
-    var mobileButtons = document.querySelector('.fixed.bottom-0');
-    var footerPosition = footer.getBoundingClientRect().top;
-    var screenHeight = window.innerHeight;
-
-    if (footerPosition <= screenHeight) {
-        mobileButtons.style.display = 'none';
-    } else {
-        mobileButtons.style.display = 'flex';
-    }
 });
 </script>
 </html>

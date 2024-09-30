@@ -121,12 +121,36 @@
           </div>
       </div>
 
-      <!-- Share Button -->
-      <button class="ml-4">
-          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24">
-              <path stroke="#3396bb" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.248 19C3.22 15.77 5.275 8.232 12.466 8.232V6.079a1.025 1.025 0 0 1 1.644-.862l5.479 4.307a1.108 1.108 0 0 1 0 1.723l-5.48 4.307a1.026 1.026 0 0 1-1.643-.861v-2.154C5.275 13.616 4.248 19 4.248 19Z"/>
-          </svg>
-      </button>
+ <!-- Share Button -->
+<button class="ml-4" onclick="copyToClipboard('{{ page.clink }}')">
+    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24">
+        <path stroke="#3396bb" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.248 19C3.22 15.77 5.275 8.232 12.466 8.232V6.079a1.025 1.025 0 0 1 1.644-.862l5.479 4.307a1.108 1.108 0 0 1 0 1.723l-5.48 4.307a1.026 1.026 0 0 1-1.643-.861v-2.154C5.275 13.616 4.248 19 4.248 19Z"/>
+    </svg>
+</button>
+<script>
+    function copyToClipboard(clink) {
+        // Asumsikan clink sudah full URL (custom Jekyll variable)
+        var fullUrl = clink; // {{ page.clink }} di sini udah lengkap
+
+        // Bikin elemen input buat nyimpen URL sementara
+        var tempInput = document.createElement("input");
+        tempInput.style.position = "absolute";
+        tempInput.style.left = "-9999px";
+        tempInput.value = fullUrl;
+        document.body.appendChild(tempInput);
+        
+        // Salin teks dari input ke clipboard
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999); // Ini buat support mobile juga
+        document.execCommand("copy");
+        
+        // Bersihkan elemen input
+        document.body.removeChild(tempInput);
+
+        // Optional: Notifikasi kalo URL udah disalin
+        alert("URL berhasil disalin ke clipboard: " + fullUrl);
+    }
+</script>
 
      <!-- Cart Icon -->
 <button id="cart" class="ml-4 relative" onclick="openCart()">

@@ -686,5 +686,19 @@ document.addEventListener('DOMContentLoaded', function () {
     // Mulai observe footer
     observer.observe(footer);
 });
+
+// detektor JS tombol mobile
+document.addEventListener('scroll', function() {
+    var footer = document.querySelector('#footer');
+    var mobileButtons = document.querySelector('.fixed.bottom-0');
+    var footerPosition = footer.getBoundingClientRect().top;
+    var screenHeight = window.innerHeight;
+
+    if (footerPosition <= screenHeight) {
+        mobileButtons.style.display = 'none';
+    } else {
+        mobileButtons.style.display = 'flex';
+    }
+});
 </script>
 </html>

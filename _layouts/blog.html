@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Layout with Tailwind</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans bg-gray-100">
+
+    <div class="container mx-auto p-5 flex flex-col lg:flex-row gap-6">
+        <!-- Blog Section -->
+        <div class="blog flex-1">
+            <h2 class="text-3xl font-bold mb-2">Judul Artikel</h2>
+            <div class="text-gray-600 text-sm mb-4">
+                <span class="mr-4">Penulis: John Doe</span>
+                <span>Tanggal: 1 Oktober 2024</span>
+            </div>
+            <div class="text-base leading-relaxed">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae eros eget tellus tristique bibendum. Donec rutrum sed sem quis venenatis.</p>
+                <p>Proin viverra risus a eros volutpat tempor. In quis arcu et eros porta lobortis sit amet at lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+            </div>
+        </div>
+
+        <!-- Sidebar Section -->
+        <div class="sidebar bg-white p-6 rounded-lg shadow-md flex-1 lg:max-w-xs">
+            <h3 class="text-2xl font-semibold mb-4">Sidebar Title</h3>
+            <p class="text-sm leading-6">Ini sidebar content, bisa buat recent posts, tags, atau info-info menarik lainnya yang bisa ditaro di sini.</p>
+        </div>
+    </div>
+
+</body>
+</html>

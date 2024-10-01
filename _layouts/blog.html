@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Layout with Tailwind</title>
+    <title>{{ page.judul }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-sans bg-gray-100">
@@ -11,14 +11,13 @@
     <div class="container mx-auto p-5 flex flex-col lg:flex-row gap-6">
         <!-- Blog Section -->
         <div class="blog flex-1">
-            <h2 class="text-3xl font-bold mb-2">Judul Artikel</h2>
+            <h2 class="text-3xl font-bold mb-2">{{ page.judul }}</h2>
             <div class="text-gray-600 text-sm mb-4">
-                <span class="mr-4">Penulis: John Doe</span>
+                <span class="mr-4">Penulis: {{ page.penulis }}</span>
                 <span>Tanggal: 1 Oktober 2024</span>
             </div>
             <div class="text-base leading-relaxed">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae eros eget tellus tristique bibendum. Donec rutrum sed sem quis venenatis.</p>
-                <p>Proin viverra risus a eros volutpat tempor. In quis arcu et eros porta lobortis sit amet at lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                <p>{{ page.artikel }}</p>
             </div>
         </div>
 

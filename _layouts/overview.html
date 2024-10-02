@@ -192,7 +192,7 @@
   </div>
 
   <!-- Tombol Beli Semua (Desktop di dalam modal) -->
-  <button class="bg-blue-600 text-white font-semibold py-3 rounded shadow-lg hover:bg-blue-700 mt-4 hidden md:block">
+  <button class="bg-blue-600 text-white font-semibold py-3 rounded shadow-lg pl hover:bg-blue-700 mt-4 hidden md:block">
     Beli Semua
   </button>
 
@@ -383,8 +383,8 @@ function changeImage(imageSrc) {
                 <td class="py-2">{{ page.weight }}</td>
               </tr>
               <tr class="border-b border-gray-300">
+                <td class="py-2">Category</td>
                 <td class="py-2">{{ page.category }}</td>
-                <td class="py-2">23 Januari 2024</td>
               </tr>
             </tbody>
           </table>
@@ -443,11 +443,11 @@ function changeMobileImage(imageSrc, thumbnail) {
           <tbody>
             <tr class="border-b border-gray-300">
               <td class="py-2">Brand</td>
-              <td class="py-2">Brand XYZ</td>
+              <td class="py-2">{{ page.brand }}</td>
             </tr>
             <tr class="border-b border-gray-300">
               <td class="py-2">Weight</td>
-              <td class="py-2">1.2 kg</td>
+              <td class="py-2">{{ page.weight }}</td>
             </tr>
             <tr class="border-b border-gray-300">
               <td class="py-2">Category</td>

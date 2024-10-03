@@ -98,6 +98,18 @@
       width: 80px;
       height: 80px;
     }
+
+      /* Tambahkan ini di CSS lo */
+#mobile-buttons {
+    display: none; /* Sembunyikan tombol mobile secara default */
+}
+
+@media (max-width: 768px) { /* Ganti 768px sesuai breakpoint yang lo mau */
+    #mobile-buttons {
+        display: flex; /* Tampilkan tombol mobile di layar kecil */
+    }
+}
+
   </style>
 </head>
 <body class="bg-white">

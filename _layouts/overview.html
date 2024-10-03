@@ -158,7 +158,10 @@
       <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
   </svg>
   <span id="cart-badge" class="hidden absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full"></span>
-</button>
+</button>
+
+<div id="cart-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 hidden"></div>
+
 </header>
 
 
@@ -212,6 +215,11 @@ function removeFromCart(product) {
 function showCartModal() {
   const cartModal = document.getElementById('cart-modal');
   const cartContent = cartModal.querySelector('.p-4'); // Isi cart
+
+// event listener modal
+document.getElementById('add-to-cart').addEventListener('click', function() {
+  document.getElementById('cart-modal').classList.remove('hidden');
+});
 
   // Ambil data cart dari localStorage
   const cart = JSON.parse(localStorage.getItem('cart')) || [];

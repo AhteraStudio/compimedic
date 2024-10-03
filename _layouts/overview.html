@@ -163,6 +163,17 @@
 
 
 <!-- javascript untuk modal cart terbaru -->
+  <style>
+    /* Custom styles for line clamping and truncating */
+    .line-clamp-2 {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; /* Limit to 2 lines */
+      max-width: calc(100% - 80px); /* Prevent overflow past the remove button */
+      white-space: normal; /* Allow normal white space handling */
+    }
+  </style>
 <script>
 // fungsi update quantity 
 function increaseQuantity(product) {

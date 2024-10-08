@@ -199,6 +199,7 @@
 
   </div>
 </div>
+<script>
 // Inisialisasi Cart dari Local Storage
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -288,6 +289,7 @@ function decreaseQuantity(index) {
 
 // Ketika halaman dimuat, tampilkan cart dari local storage jika ada
 document.addEventListener('DOMContentLoaded', renderCartItems);
+</script>
 </header>
 
 

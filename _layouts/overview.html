@@ -164,131 +164,99 @@
 <div id="cart-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 hidden"></div>
 
 
-<!-- Template Modal Cart -->
-<div id="cart-modal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-  <div class="bg-white w-full md:w-3/4 lg:w-2/3 h-full md:h-auto p-4 md:p-6 rounded-lg shadow-lg flex flex-col">
-    
-    <!-- Header -->
-    <div class="flex items-center justify-between mb-4">
-      <button id="close-cart" class="text-gray-600 hover:text-gray-800 md:hidden">
-        &#x2190; <!-- Simbol Back -->
-      </button>
-      <h2 class="text-lg md:text-xl font-semibold">Your Cart</h2>
-      <button class="text-gray-600 hover:text-gray-800 hidden md:block" onclick="hideCartModal()">
-        &#x2715; <!-- Simbol X untuk close -->
-      </button>
-    </div>
-    
-    <!-- Modal Content -->
-    <div class="mt-2 flex-grow overflow-y-auto space-y-4 md:space-y-6">
-      <!-- Daftar item cart akan dirender di sini -->
-      <div id="cart-items" class="mt-2 flex-grow overflow-y-auto space-y-4 md:space-y-6">
-        <!-- Items akan ditampilkan di sini oleh JavaScript -->
-      </div>
-    </div>
-
-    <!-- Tombol Beli Semua (Desktop di dalam modal) -->
-    <button class="bg-blue-600 text-white font-semibold py-3 rounded shadow-lg hover:bg-blue-700 mt-4 hidden md:block">
-      Beli Semua
-    </button>
-
-    <!-- Tombol Beli Semua (Mobile Fixed) -->
-    <button class="mt-4 bg-blue-600 text-white font-semibold py-3 text-xs md:text-lg hover:bg-blue-700 md:hidden fixed bottom-0 left-0 w-full">
-      Beli Semua
-    </button>
-
-  </div>
-</div>
 <script>
-// Inisialisasi Cart dari Local Storage
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  // Fungsi untuk menampilkan modal cart
+  function openCart() {
+    document.getElementById('cart-modal').classList.remove('hidden');
+  }
 
-// Fungsi untuk menampilkan modal cart
-const showCartModal = () => {
-    document.querySelector('.fixed').classList.remove('hidden');
-    renderCartItems();
-};
+  // Fungsi untuk menutup modal cart
+  function closeCart() {
+    document.getElementById('cart-modal').classList.add('hidden');
+  }
 
-// Fungsi untuk menyembunyikan modal cart
-const hideCartModal = () => {
-    document.querySelector('.fixed').classList.add('hidden');
-};
+  // Simpan dan ambil data dari local storage
+  function getCart() {
+    return JSON.parse(localStorage.getItem('cart')) || [];
+  }
 
-// Tombol open modal (bisa pasang di button cart icon)
-document.getElementById('cart-icon').addEventListener('click', showCartModal);
+  function saveCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+  }
 
-// Tombol back dalam modal untuk menutup modal
-document.querySelector('.md\\:hidden').addEventListener('click', hideCartModal);
-
-// Fungsi untuk menambahkan item ke dalam cart
-function addToCart(product, price) {
-    const existingItemIndex = cart.findIndex(item => item.product === product);
-
-    if (existingItemIndex !== -1) {
-        cart[existingItemIndex].quantity += 1; // Jika item sudah ada, tambahkan quantity
-    } else {
-        cart.push({ product, price, quantity: 1 }); // Tambah item baru
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart)); // Simpan ke localStorage
-    renderCartItems();
-}
-
-// Fungsi untuk merender item-item di dalam cart
-function renderCartItems() {
-    const cartContainer = document.querySelector('.mt-2.flex-grow');
-    cartContainer.innerHTML = ''; // Kosongkan container terlebih dahulu
+  // Fungsi untuk render ulang isi cart pada modal
+  function renderCart() {
+    const cart = getCart();
+    const cartContainer = document.querySelector('#cart-modal .mt-2');
+    cartContainer.innerHTML = '';
 
     cart.forEach((item, index) => {
-        cartContainer.innerHTML += `
-            <div class="flex items-center relative p-4 md:p-6 bg-gray-50 rounded-lg shadow">
-                <img src="placeholder.jpg" alt="${item.product}" class="w-16 h-16 md:w-20 md:h-20 object-cover rounded-lg">
-                <div class="ml-4 md:ml-6 flex-1">
-                    <p class="text-sm md:text-base font-semibold line-clamp-2">${item.product}</p>
-                    <p class="text-xs md:text-sm text-gray-500 mt-1">Rp ${item.price}</p>
-                </div>
-                <div class="flex items-center">
-                    <div class="flex border border-gray-300 rounded-md">
-                        <button class="bg-white w-5 h-5 flex items-center justify-center border-r border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-l-md" onclick="decreaseQuantity(${index})">-</button>
-                        <input type="text" value="${item.quantity}" class="w-6 text-center border-none p-0 text-xs rounded-none" readonly style="height: 20px;">
-                        <button class="bg-white w-5 h-5 flex items-center justify-center border-l border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-r-md" onclick="increaseQuantity(${index})">+</button>
-                    </div>
-                </div>
-                <button class="absolute top-0 right-0 mt-1 mr-1 text-red-600 hover:text-red-800 text-xs" onclick="removeItem(${index})">
-                    &#x2716; hapus
-                </button>
-            </div>
-        `;
+      const cartItem = document.createElement('div');
+      cartItem.classList.add('flex', 'items-center', 'relative', 'p-4', 'md:p-6', 'bg-gray-50', 'rounded-lg', 'shadow');
+      
+      cartItem.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" class="w-16 h-16 md:w-20 md:h-20 object-cover rounded-lg">
+        <div class="ml-4 md:ml-6 flex-1">
+          <p class="text-sm md:text-base font-semibold line-clamp-2">${item.name}</p>
+          <p class="text-xs md:text-sm text-gray-500 mt-1">Rp${item.price}</p>
+        </div>
+        <div class="flex items-center">
+          <div class="flex border border-gray-300 rounded-md">
+            <button class="bg-white w-5 h-5 flex items-center justify-center border-r border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-l-md" onclick="decreaseQuantity(${index})">-</button>
+            <input type="text" value="${item.quantity}" class="w-6 text-center border-none p-0 text-xs rounded-none" readonly style="height: 20px;">
+            <button class="bg-white w-5 h-5 flex items-center justify-center border-l border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-r-md" onclick="increaseQuantity(${index})">+</button>
+          </div>
+        </div>
+        <button class="absolute top-0 right-0 mt-1 mr-1 text-red-600 hover:text-red-800 text-xs" onclick="removeFromCart(${index})">
+          &#x2716; hapus
+        </button>
+      `;
+      cartContainer.appendChild(cartItem);
     });
-}
+  }
 
-// Fungsi untuk menghapus item dari cart
-function removeItem(index) {
-    cart.splice(index, 1); // Hapus item dari array
-    localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
-    renderCartItems();
-}
+  // Fungsi untuk menambahkan item ke dalam cart
+  function addToCart(name, price, image) {
+    const cart = getCart();
+    const existingItemIndex = cart.findIndex(item => item.name === name);
 
-// Fungsi untuk menambah quantity item
-function increaseQuantity(index) {
-    cart[index].quantity += 1;
-    localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
-    renderCartItems();
-}
-
-// Fungsi untuk mengurangi quantity item
-function decreaseQuantity(index) {
-    if (cart[index].quantity > 1) {
-        cart[index].quantity -= 1;
+    if (existingItemIndex !== -1) {
+      cart[existingItemIndex].quantity += 1; // Tambah quantity jika item sudah ada di cart
     } else {
-        cart.splice(index, 1); // Jika quantity 1 dan ditekan "-", hapus item
+      cart.push({ name, price, image, quantity: 1 }); // Tambah item baru
     }
-    localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
-    renderCartItems();
-}
 
-// Ketika halaman dimuat, tampilkan cart dari local storage jika ada
-document.addEventListener('DOMContentLoaded', renderCartItems);
+    saveCart(cart);
+  }
+
+  // Fungsi untuk menghapus item dari cart
+  function removeFromCart(index) {
+    const cart = getCart();
+    cart.splice(index, 1);
+    saveCart(cart);
+  }
+
+  // Fungsi untuk menambah quantity
+  function increaseQuantity(index) {
+    const cart = getCart();
+    cart[index].quantity += 1;
+    saveCart(cart);
+  }
+
+  // Fungsi untuk mengurangi quantity
+  function decreaseQuantity(index) {
+    const cart = getCart();
+    if (cart[index].quantity > 1) {
+      cart[index].quantity -= 1;
+    } else {
+      cart.splice(index, 1); // Hapus item jika quantity 1
+    }
+    saveCart(cart);
+  }
+
+  // Render ulang isi cart saat halaman dimuat
+  document.addEventListener('DOMContentLoaded', renderCart);
 </script>
 </header>
 

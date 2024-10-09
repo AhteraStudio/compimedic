@@ -208,61 +208,25 @@
 </div>
 
 <script>
-// Fungsi buat buka modal cart
-function openCart() {
-    const modal = document.getElementById('default-modal');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-}
-
-// Fungsi buat tutup modal cart
-function closeCart() {
-    const modal = document.getElementById('default-modal');
-    modal.classList.remove('flex');
-    modal.classList.add('hidden');
-}
-
-// Tambahin event listener buat close button
-document.querySelectorAll('[data-modal-hide]').forEach(button => {
-    button.addEventListener('click', closeCart);
-});
-// Simpan cart di local storage atau session
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-function addToCart(product, price) {
-    // Cek apakah item udah ada di cart
+function addToCart(product, price, image) {
+    // Cek apakah item sudah ada di cart
     const itemIndex = cart.findIndex(item => item.product === product);
     if (itemIndex !== -1) {
-        // Kalau udah ada, tambahin quantity
+        // Kalau sudah ada, tambahkan quantity
         cart[itemIndex].quantity += 1;
     } else {
-        // Kalau belum ada, tambahin item baru
-        cart.push({ product, price, quantity: 1 });
+        // Kalau belum ada, tambahkan item baru dengan gambar
+        cart.push({ product, price, image, quantity: 1 });
     }
 
     // Simpan perubahan di local storage
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // Update badge di icon cart
+    // Update badge dan modal cart
     updateCartBadge();
-
-    // Update modal cart content
     updateCartModal();
 }
 
-// Fungsi buat update badge di icon cart
-function updateCartBadge() {
-    const badge = document.getElementById('cart-badge');
-    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-
-    if (totalItems > 0) {
-        badge.classList.remove('hidden');
-    } else {
-        badge.classList.add('hidden');
-    }
-}
-
-// Fungsi buat update modal cart
 function updateCartModal() {
     const modalContent = document.querySelector('.mt-2.flex-grow');
     modalContent.innerHTML = '';
@@ -273,10 +237,10 @@ function updateCartModal() {
         cart.forEach(item => {
             modalContent.innerHTML += `
                 <div class="flex items-center rounded-xl border-2 border-gray-200 relative p-4 md:p-6 border-gray-100">
-                    <img src="{item.image1}" alt="Item Image" class="w-16 h-16 md:w-20 md:h-20 object-cover">
+                    <img src="${item.image}" alt="Item Image" class="w-16 h-16 md:w-20 md:h-20 object-cover">
                     <div class="ml-4 md:ml-6 flex-1">
-                        <p class="text-sm md:text-base font-semibold line-clamp-2 truncate...">${item.product}</p>
-                        <p class="text-xs md:text-sm text-gray-500 mt-1">${item.price}</p>
+                        <p class="text-sm md:text-base font-semibold line-clamp-2 truncate">${item.product}</p>
+                        <p class="text-xs md:text-sm text-gray-500 mt-1">$${item.price}</p>
                     </div>
                     <div class="flex items-center">
                         <div class="flex border border-gray-300 rounded-md">
@@ -293,40 +257,6 @@ function updateCartModal() {
         });
     }
 }
-
-// Fungsi buat hapus item dari cart
-function removeFromCart(product) {
-    cart = cart.filter(item => item.product !== product);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartBadge();
-    updateCartModal();
-}
-
-// Fungsi buat nambahin quantity
-function increaseQuantity(product) {
-    const itemIndex = cart.findIndex(item => item.product === product);
-    if (itemIndex !== -1) {
-        cart[itemIndex].quantity += 1;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartModal();
-    }
-}
-
-// Fungsi buat ngurangin quantity
-function decreaseQuantity(product) {
-    const itemIndex = cart.findIndex(item => item.product === product);
-    if (itemIndex !== -1 && cart[itemIndex].quantity > 1) {
-        cart[itemIndex].quantity -= 1;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartModal();
-    }
-}
-
-// Update badge dan modal pas halaman di-load
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartBadge();
-    updateCartModal();
-});
 </script>
 
 </header>

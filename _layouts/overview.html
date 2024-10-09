@@ -165,35 +165,34 @@
     }
 </script>
 
-
 <!-- Cart Icon -->
 <button data-modal-target="default-modal" data-modal-toggle="default-modal" class="ml-4 relative" onclick="openCart()">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#3396bb" class="bi bi-bag" viewBox="0 0 16 16">
       <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
   </svg>
-  <span id="cart-badge" class="hidden absolute top-0 right-0 w-3 h-3 bg-red-600 rounded-full"></span>
+  <span id="cart-badge" class="hidden absolute top-0 right-0 w-4 h-4 bg-red-600 text-white text-xs rounded-full flex items-center justify-center">0</span>
 </button>
 
-<!-- Modal Cart -->
+<!-- Modal cart -->
 <div id="default-modal" tabindex="-1" aria-hidden="true" class="fixed hidden inset-0 z-50 flex items-center justify-center">
   <div class="bg-white w-full md:w-3/4 md:rounded-xl lg:w-2/3 h-full md:h-auto p-4 md:p-6 shadow-lg flex flex-col">
-    <!-- Modal Header -->
     <div class="flex items-center justify-between mb-4">
-      <button class="text-[#3396bb] flex items-center hover:text-gray-800 md:hidden" onclick="closeCart()">
+      <!-- Tombol back untuk mobile -->
+      <button class="text-[#3396bb] flex items-center hover:text-gray-800 md:hidden" data-modal-hide="default-modal">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-        </svg>Back
+        </svg>
+        Back
       </button>
       <h2 class="text-lg md:text-xl font-bold">Checkouts</h2>
-      <button class="text-gray-600 hover:text-gray-800 hidden md:block" onclick="closeCart()">
+      <button class="text-gray-600 hover:text-gray-800 hidden md:block" data-modal-hide="default-modal">
         &#x2715;
       </button>
     </div>
 
     <!-- Modal Content -->
     <div id="cart-items" class="mt-2 flex-grow overflow-y-auto space-y-4 md:space-y-6">
-      <!-- Item di sini nanti akan ditambahkan melalui JavaScript -->
-      <p id="empty-cart" class="text-center text-gray-500">Keranjang Kosong</p>
+      <p id="empty-cart-text" class="text-gray-500 text-center">Keranjang Kosong</p>
     </div>
 
     <!-- Tombol Beli Semua (Desktop) -->
@@ -201,7 +200,7 @@
       Buy All
     </button>
 
-    <!-- Tombol Beli Semua (Mobile Fixed) -->
+    <!-- Tombol Beli Semua (Mobile) -->
     <button class="bg-gradient-to-r from-[#3396bb] to-cyan-500 mt-4 text-white font-semibold py-3 rounded-tl-3xl text-md md:text-lg hover:bg-gray-400 md:hidden fixed bottom-0 left-0 w-full">
       Buy All
     </button>
@@ -209,138 +208,77 @@
 </div>
 
 <script>
-// Fungsi buat buka modal cart
+let cart = []; // Ini buat nyimpan item yang ditambah ke cart
+
+// Fungsi buka modal
 function openCart() {
-    const modal = document.getElementById('default-modal');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
+    document.getElementById('default-modal').classList.remove('hidden');
+    document.body.classList.add('overflow-hidden'); // Matikan scroll
 }
 
-// Fungsi buat tutup modal cart
+// Fungsi tutup modal
 function closeCart() {
-    const modal = document.getElementById('default-modal');
-    modal.classList.remove('flex');
-    modal.classList.add('hidden');
+    document.getElementById('default-modal').classList.add('hidden');
+    document.body.classList.remove('overflow-hidden'); // Hidupkan scroll lagi
 }
 
-//buat hapus overlay
-function openCart() {
-    document.getElementById('default-modal').classList.remove('hidden'); // Buka modal
-    document.body.classList.add('overflow-hidden'); // Matikan scroll biar modal-nya fokus
-}
-
-function closeCart() {
-    document.getElementById('default-modal').classList.add('hidden'); // Tutup modal
-    document.body.classList.remove('overflow-hidden'); // Balikin scroll ke normal
-}
-
-// Tambahin event listener buat close button
-document.querySelectorAll('[data-modal-hide]').forEach(button => {
-    button.addEventListener('click', closeCart);
-});
-
-
-// Simpan cart di local storage atau session
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+// Fungsi tambah ke cart
 function addToCart(product, price) {
-    // Cek apakah item udah ada di cart
-    const itemIndex = cart.findIndex(item => item.product === product);
-    if (itemIndex !== -1) {
-        // Kalau udah ada, tambahin quantity
-        cart[itemIndex].quantity += 1;
+    let existingItem = cart.find(item => item.product === product);
+
+    if (existingItem) {
+        existingItem.quantity++; // Kalo udah ada, tambah quantity
     } else {
-        // Kalau belum ada, tambahin item baru
-        cart.push({ product, price, quantity: 1 });
+        cart.push({ product, price, quantity: 1 }); // Tambah item baru
     }
 
-    // Simpan perubahan di local storage
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Update badge di icon cart
-    updateCartBadge();
-
-    // Update modal cart content
-    updateCartModal();
+    updateCart();
+    updateBadge();
 }
 
-// Fungsi buat update badge di icon cart
-function updateCartBadge() {
+// Update isi cart modal
+function updateCart() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    cartItemsContainer.innerHTML = ''; // Hapus isi sebelumnya
+
+    cart.forEach(item => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('flex', 'items-center', 'rounded-xl', 'border-2', 'border-gray-200', 'relative', 'p-4', 'md:p-6', 'border-gray-100');
+
+        cartItem.innerHTML = `
+          <div class="ml-4 md:ml-6 flex-1">
+            <p class="text-sm md:text-base font-semibold truncate...">${item.product}</p>
+            <p class="text-xs md:text-sm text-gray-500 mt-1">Rp ${item.price}</p>
+          </div>
+          <div class="flex items-center">
+            <div class="flex border border-gray-300 rounded-md">
+              <button class="bg-white w-5 h-5 flex items-center justify-center border-r border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-l-md">-</button>
+              <input type="text" value="${item.quantity}" class="w-6 text-center border-none p-0 text-xs rounded-none" readonly>
+              <button class="bg-white w-5 h-5 flex items-center justify-center border-l border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-r-md">+</button>
+            </div>
+          </div>
+        `;
+
+        cartItemsContainer.appendChild(cartItem);
+    });
+
+    // Update text 'Keranjang Kosong'
+    const emptyCartText = document.getElementById('empty-cart-text');
+    emptyCartText.style.display = cart.length === 0 ? 'block' : 'none';
+}
+
+// Update badge merah dengan jumlah item di cart
+function updateBadge() {
     const badge = document.getElementById('cart-badge');
-    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
     if (totalItems > 0) {
-        badge.classList.remove('hidden');
+        badge.textContent = totalItems; // Update angka di badge
+        badge.classList.remove('hidden'); // Tampilkan badge
     } else {
-        badge.classList.add('hidden');
+        badge.classList.add('hidden'); // Sembunyikan badge kalo cart kosong
     }
 }
-
-// Fungsi buat update modal cart
-function updateCartModal() {
-    const modalContent = document.querySelector('.mt-2.flex-grow');
-    modalContent.innerHTML = '';
-
-    if (cart.length === 0) {
-        modalContent.innerHTML = '<p class="text-center">Keranjang Kosong</p>';
-    } else {
-        cart.forEach(item => {
-            modalContent.innerHTML += `
-                <div class="flex items-center rounded-xl border-2 border-gray-200 relative p-4 md:p-6 border-gray-100">
-                    <img src="{item.image1}" alt="Item Image" class="w-16 h-16 md:w-20 md:h-20 object-cover">
-                    <div class="ml-4 md:ml-6 flex-1">
-                        <p class="text-sm md:text-base font-semibold line-clamp-2 truncate...">${item.product}</p>
-                        <p class="text-xs md:text-sm text-gray-500 mt-1">${item.price}</p>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="flex border border-gray-300 rounded-md">
-                            <button class="bg-white w-5 h-5 flex items-center justify-center border-r border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-l-md" onclick="decreaseQuantity('${item.product}')">-</button>
-                            <input type="text" value="${item.quantity}" class="w-6 text-center border-none p-0 text-xs rounded-none" readonly style="height: 20px;">
-                            <button class="bg-white w-5 h-5 flex items-center justify-center border-l border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-r-md" onclick="increaseQuantity('${item.product}')">+</button>
-                        </div>
-                    </div>
-                    <button class="absolute top-0 right-0 mt-2 mr-4 text-red-600 hover:text-red-800 text-xs" onclick="removeFromCart('${item.product}')">
-                        <i class="bi bi-trash3"></i> Delete
-                    </button>
-                </div>
-            `;
-        });
-    }
-}
-
-// Fungsi buat hapus item dari cart
-function removeFromCart(product) {
-    cart = cart.filter(item => item.product !== product);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartBadge();
-    updateCartModal();
-}
-
-// Fungsi buat nambahin quantity
-function increaseQuantity(product) {
-    const itemIndex = cart.findIndex(item => item.product === product);
-    if (itemIndex !== -1) {
-        cart[itemIndex].quantity += 1;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartModal();
-    }
-}
-
-// Fungsi buat ngurangin quantity
-function decreaseQuantity(product) {
-    const itemIndex = cart.findIndex(item => item.product === product);
-    if (itemIndex !== -1 && cart[itemIndex].quantity > 1) {
-        cart[itemIndex].quantity -= 1;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCartModal();
-    }
-}
-
-// Update badge dan modal pas halaman di-load
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartBadge();
-    updateCartModal();
-});
 </script>
 
 </header>

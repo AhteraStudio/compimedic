@@ -235,103 +235,98 @@
 
 
 <script>
-  // Array to hold cart items
-  let cartItems = [];
+  // Fungsi untuk ngambil data cart dari localStorage
+function getCartItems() {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
+}
 
-  // Function to add items to the cart
-  function addToCart(product, price) {
-    // Check if the item already exists in the cart
-    const existingItem = cartItems.find(item => item.product === product);
-    
-    if (existingItem) {
-      // Increment quantity if the item already exists
-      existingItem.quantity++;
-    } else {
-      // Add new item if it doesn't exist
-      cartItems.push({ product, price, quantity: 1 });
-    }
-    
-    updateCartModal(); // Update modal content
-    updateCartBadge(); // Update the cart badge
-  }
+// Fungsi untuk nyimpen item ke localStorage
+function saveCartItems(cartItems) {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+}
 
-  // Function to update the cart modal
-  function updateCartModal() {
-    const cartModalContent = document.querySelector('.mt-2.flex-grow');
-    cartModalContent.innerHTML = ''; // Clear existing content
+// Fungsi untuk nge-refresh tampilan cart di modal
+function updateCartModal() {
+    const cartItems = getCartItems();
+    const cartContainer = document.querySelector('.modal-content .flex-grow'); // Div tempat card barang
+    cartContainer.innerHTML = ''; // Clear dulu
 
     if (cartItems.length === 0) {
-      cartModalContent.innerHTML = '<p class="text-center text-gray-500">Keranjang Kosong</p>';
-      return;
-    }
-
-    cartItems.forEach(item => {
-      const itemCard = `
-        <div class="flex items-center rounded-xl border-2 border-gray-200 relative p-4 md:p-6 border-gray-100">
-          <img src="{item.image1}" alt="Item Image" class="w-16 h-16 md:w-20 md:h-20 object-cover">
-          <div class="ml-4 md:ml-6 flex-1">
-            <p class="text-sm md:text-base font-semibold line-clamp-2 truncate">${item.product}</p>
-            <p class="text-xs md:text-sm text-gray-500 mt-1">${item.price}</p>
-            <p class="text-xs md:text-sm text-gray-500 mt-1">Quantity: ${item.quantity}</p>
-          </div>
-          <div class="flex items-center">
-            <div class="flex border border-gray-300 rounded-md">
-              <button class="bg-white w-5 h-5 flex items-center justify-center border-r border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-l-md" onclick="decreaseQuantity('${item.product}')">-</button>
-              <input type="text" value="${item.quantity}" class="w-6 text-center border-none p-0 text-xs rounded-none" readonly style="height: 20px;">
-              <button class="bg-white w-5 h-5 flex items-center justify-center border-l border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-r-md" onclick="increaseQuantity('${item.product}')">+</button>
-            </div>
-          </div>
-          <!-- Tombol Hapus di sudut kanan atas -->
-          <button class="absolute top-0 right-0 mt-2 mr-4 text-red-600 hover:text-red-800 text-xs" onclick="removeFromCart('${item.product}')">
-            <i class="bi bi-trash3"></i> Delete
-          </button>
-        </div>`;
-        
-      cartModalContent.insertAdjacentHTML('beforeend', itemCard);
-    });
-  }
-
-  // Function to update the cart badge
-  function updateCartBadge() {
-    const cartBadge = document.getElementById('cart-badge');
-    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-
-    if (totalItems > 0) {
-      cartBadge.classList.remove('hidden');
-      cartBadge.textContent = totalItems;
+        cartContainer.innerHTML = '<p class="text-center">Keranjang Kosong</p>';
     } else {
-      cartBadge.classList.add('hidden');
+        cartItems.forEach((item, index) => {
+            cartContainer.innerHTML += `
+                <div class="flex items-center rounded-xl border-2 border-gray-200 relative p-4 md:p-6 border-gray-100">
+                    <img src="${item.image}" alt="Item Image" class="w-16 h-16 md:w-20 md:h-20 object-cover">
+                    <div class="ml-4 md:ml-6 flex-1">
+                        <p class="text-sm md:text-base font-semibold line-clamp-2">${item.product}</p>
+                        <p class="text-xs md:text-sm text-gray-500 mt-1">Rp ${item.price}</p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="flex border border-gray-300 rounded-md">
+                            <button class="bg-white w-5 h-5 flex items-center justify-center border-r border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-l-md">-</button>
+                            <input type="text" value="${item.quantity}" class="w-6 text-center border-none p-0 text-xs rounded-none" readonly style="height: 20px;">
+                            <button class="bg-white w-5 h-5 flex items-center justify-center border-l border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-r-md">+</button>
+                        </div>
+                    </div>
+                    <button class="absolute top-0 right-0 mt-2 mr-4 text-red-600 hover:text-red-800 text-xs" onclick="removeFromCart(${index})">
+                        <i class="bi bi-trash3"></i> Delete
+                    </button>
+                </div>
+            `;
+        });
     }
-  }
 
-  // Function to increase item quantity
-  function increaseQuantity(product) {
-    const item = cartItems.find(item => item.product === product);
-    if (item) {
-      item.quantity++;
-    }
-    updateCartModal();
-    updateCartBadge();
-  }
+    updateCartBadge(); // Update badge jumlah item
+}
 
-  // Function to decrease item quantity
-  function decreaseQuantity(product) {
-    const item = cartItems.find(item => item.product === product);
-    if (item && item.quantity > 1) {
-      item.quantity--;
+// Fungsi buat update badge jumlah item di cart
+function updateCartBadge() {
+    const cartItems = getCartItems();
+    const badge = document.getElementById('cart-badge');
+    
+    if (cartItems.length > 0) {
+        badge.classList.remove('hidden');
+        badge.innerText = cartItems.length;
     } else {
-      removeFromCart(product); // Remove item if quantity reaches 0
+        badge.classList.add('hidden');
     }
-    updateCartModal();
-    updateCartBadge();
-  }
+}
 
-  // Function to remove an item from the cart
-  function removeFromCart(product) {
-    cartItems = cartItems.filter(item => item.product !== product);
+// Fungsi buat nambah item ke cart
+function addToCart(product, price, image) {
+    let cartItems = getCartItems();
+    
+    const existingItemIndex = cartItems.findIndex(item => item.product === product);
+    if (existingItemIndex !== -1) {
+        cartItems[existingItemIndex].quantity += 1; // Kalau udah ada, tambah quantity
+    } else {
+        // Kalau item baru, push ke cartItems
+        cartItems.push({ product, price, image, quantity: 1 });
+    }
+    
+    saveCartItems(cartItems);
     updateCartModal();
-    updateCartBadge();
-  }
+}
+
+// Fungsi buat hapus item dari cart
+function removeFromCart(index) {
+    let cartItems = getCartItems();
+    cartItems.splice(index, 1); // Hapus item dari array
+    saveCartItems(cartItems);
+    updateCartModal();
+}
+
+// Panggil ini pas halaman selesai load
+document.addEventListener('DOMContentLoaded', function() {
+    updateCartModal(); // Untuk nampilin cart pas pertama kali modal dibuka
+});
+
+// Contoh event listener untuk tombol add-to-cart
+document.getElementById('add-to-cart').addEventListener('click', function() {
+    addToCart('Nama Produk', 100000, 'https://via.placeholder.com/150'); // Contoh data produk
+});
 </script>
 
 </header>

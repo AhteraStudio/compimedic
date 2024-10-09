@@ -235,101 +235,105 @@
 
 
 <script>
-  // Inisialisasi array untuk menyimpan item di cart
+  // Array to hold cart items
   let cartItems = [];
 
-  // Fungsi untuk menambahkan item ke dalam cart
+  // Function to add items to the cart
   function addToCart(product, price) {
-    // Cek apakah item sudah ada di dalam cart
+    // Check if the item already exists in the cart
     const existingItem = cartItems.find(item => item.product === product);
-
+    
     if (existingItem) {
-      // Jika item sudah ada, tambahkan quantity
-      existingItem.quantity += 1;
+      // Increment quantity if the item already exists
+      existingItem.quantity++;
     } else {
-      // Jika item belum ada, tambahkan sebagai item baru
+      // Add new item if it doesn't exist
       cartItems.push({ product, price, quantity: 1 });
     }
-
-    // Update badge cart
-    updateCartBadge();
-
-    // Update tampilan modal cart
-    updateCartModal();
+    
+    updateCartModal(); // Update modal content
+    updateCartBadge(); // Update the cart badge
   }
 
-  // Fungsi untuk memperbarui badge cart
+  // Function to update the cart modal
+  function updateCartModal() {
+    const cartModalContent = document.querySelector('.mt-2.flex-grow');
+    cartModalContent.innerHTML = ''; // Clear existing content
+
+    if (cartItems.length === 0) {
+      cartModalContent.innerHTML = '<p class="text-center text-gray-500">Keranjang Kosong</p>';
+      return;
+    }
+
+    cartItems.forEach(item => {
+      const itemCard = `
+        <div class="flex items-center rounded-xl border-2 border-gray-200 relative p-4 md:p-6 border-gray-100">
+          <img src="{item.image1}" alt="Item Image" class="w-16 h-16 md:w-20 md:h-20 object-cover">
+          <div class="ml-4 md:ml-6 flex-1">
+            <p class="text-sm md:text-base font-semibold line-clamp-2 truncate">${item.product}</p>
+            <p class="text-xs md:text-sm text-gray-500 mt-1">${item.price}</p>
+            <p class="text-xs md:text-sm text-gray-500 mt-1">Quantity: ${item.quantity}</p>
+          </div>
+          <div class="flex items-center">
+            <div class="flex border border-gray-300 rounded-md">
+              <button class="bg-white w-5 h-5 flex items-center justify-center border-r border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-l-md" onclick="decreaseQuantity('${item.product}')">-</button>
+              <input type="text" value="${item.quantity}" class="w-6 text-center border-none p-0 text-xs rounded-none" readonly style="height: 20px;">
+              <button class="bg-white w-5 h-5 flex items-center justify-center border-l border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-r-md" onclick="increaseQuantity('${item.product}')">+</button>
+            </div>
+          </div>
+          <!-- Tombol Hapus di sudut kanan atas -->
+          <button class="absolute top-0 right-0 mt-2 mr-4 text-red-600 hover:text-red-800 text-xs" onclick="removeFromCart('${item.product}')">
+            <i class="bi bi-trash3"></i> Delete
+          </button>
+        </div>`;
+        
+      cartModalContent.insertAdjacentHTML('beforeend', itemCard);
+    });
+  }
+
+  // Function to update the cart badge
   function updateCartBadge() {
     const cartBadge = document.getElementById('cart-badge');
-    const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-    
+    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+
     if (totalItems > 0) {
-      cartBadge.textContent = totalItems;
       cartBadge.classList.remove('hidden');
+      cartBadge.textContent = totalItems;
     } else {
       cartBadge.classList.add('hidden');
     }
   }
 
-  // Fungsi untuk memperbarui modal cart dengan item terbaru
-  function updateCartModal() {
-    const cartModalContent = document.querySelector('.mt-2.flex-grow');
-    cartModalContent.innerHTML = '';
-
-    if (cartItems.length === 0) {
-      cartModalContent.innerHTML = '<p class="text-center">Keranjang Kosong</p>';
-    } else {
-      cartItems.forEach(item => {
-        cartModalContent.innerHTML += `
-          <div class="flex items-center rounded-xl border-2 border-gray-200 relative p-4 md:p-6 border-gray-100">
-            <img src="https://via.placeholder.com/64" alt="Item Image" class="w-16 h-16 md:w-20 md:h-20 object-cover">
-            <div class="ml-4 md:ml-6 flex-1">
-              <p class="text-sm md:text-base font-semibold line-clamp-2 truncate">${item.product}</p>
-              <p class="text-xs md:text-sm text-gray-500 mt-1">${item.price} - Qty: ${item.quantity}</p>
-            </div>
-            <div class="flex items-center">
-              <div class="flex border border-gray-300 rounded-md">
-                <button class="bg-white w-5 h-5 flex items-center justify-center border-r border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-l-md" onclick="decreaseQuantity('${item.product}')">-</button>
-                <input type="text" value="${item.quantity}" class="w-6 text-center border-none p-0 text-xs rounded-none" readonly style="height: 20px;">
-                <button class="bg-white w-5 h-5 flex items-center justify-center border-l border-gray-300 hover:bg-gray-200 text-xs font-semibold rounded-r-md" onclick="increaseQuantity('${item.product}')">+</button>
-              </div>
-            </div>
-            <button class="absolute top-0 right-0 mt-2 mr-4 text-red-600 hover:text-red-800 text-xs" onclick="removeItem('${item.product}')">
-              <i class="bi bi-trash3"></i> Delete
-            </button>
-          </div>
-        `;
-      });
-    }
-  }
-
-  // Fungsi untuk menambah quantity item
+  // Function to increase item quantity
   function increaseQuantity(product) {
     const item = cartItems.find(item => item.product === product);
     if (item) {
-      item.quantity += 1;
+      item.quantity++;
     }
-    updateCartBadge();
     updateCartModal();
+    updateCartBadge();
   }
 
-  // Fungsi untuk mengurangi quantity item
+  // Function to decrease item quantity
   function decreaseQuantity(product) {
     const item = cartItems.find(item => item.product === product);
     if (item && item.quantity > 1) {
-      item.quantity -= 1;
+      item.quantity--;
+    } else {
+      removeFromCart(product); // Remove item if quantity reaches 0
     }
-    updateCartBadge();
     updateCartModal();
+    updateCartBadge();
   }
 
-  // Fungsi untuk menghapus item dari cart
-  function removeItem(product) {
+  // Function to remove an item from the cart
+  function removeFromCart(product) {
     cartItems = cartItems.filter(item => item.product !== product);
-    updateCartBadge();
     updateCartModal();
+    updateCartBadge();
   }
-</script>  
+</script>
+
 </header>
 
 
